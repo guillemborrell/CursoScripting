@@ -5,6 +5,11 @@ Lenguajes Interpretados para Simulación en Ingeniería
 :Autor: Guillem Borrell i Nogueras
 :email: guillemborrell@gmail.com
 :revision: 0.0.1
+:fecha: |date|
+
+.. |date| date:: 
+
+
 
 Revisiones
 ^^^^^^^^^^
