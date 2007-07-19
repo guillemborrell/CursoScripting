@@ -56,7 +56,7 @@ El paradigma de la optimización prematura
 
   La optimización prematura es el orígen de todos los males.
 
-  -- Donald E. Knuth
+  -- Donald E. Knuth, [KNU]_
 
 Los algoritmos asociados al análisis numérico requieren tiempos de
 computación elevados, tanto que algunos problemas necesitarían una
@@ -103,7 +103,7 @@ Metodologías de programación
   es capaz de escribir en un tiempo dado es independiente del lenguaje
   de programación.
 
-  -- Fernando J. Corbató
+  -- Fernando J. Corbató, [COR]_
 
 Cuando un investigador necesita simular la naturaleza ve, y es
 completamente comprensible, el código escrito como una herramienta
@@ -131,3 +131,8 @@ influyen más sobre la calidad del producto final y el tiempo de
 desarrollo.  La ley de Corbató parte del hecho que un programador
 tiene una capacidad dada, esto hace que su productividad dependa
 de las herramientas. 
+
+
+.. [KNU] http://www.acm.org/ubiquity/views/v7i24_fallacy.html
+
+.. [COR] http://en.wikipedia.org/wiki/Fernando_J._Corbató
