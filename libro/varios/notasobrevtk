@@ -1,0 +1,31 @@
+la manera de comunicar vtk arrays y numpy arrays es utilizar la función
+ravel que existe para cada objeto array de numpy>>> import numpy as n
+
+>>> a=n.array([[1.,2.,3.],[4.,5.,6.]])
+>>> a
+array([[ 1.,  2.,  3.],
+       [ 4.,  5.,  6.]])
+>>> import vtk
+>>> fa = vtk.vtkFloatArray()
+
+>>> fa.SetNumberOfComponents(3)
+>>> fa.SetNumberOfTuples(6)
+
+>>> a=a.astype(n.float32)
+
+>>> fa.SetVoidArray(a.ravel(),len(a.flat),1)
+>>> fa.GetTuple3(0)
+(1.0, 2.0, 3.0)
+>>> fa.GetTuple3(1)
+(4.0, 5.0, 6.0)
+
+>>> a
+array([[ 1.,  2.,  3.],
+       [ 4.,  5.,  6.]], dtype=float32)
+>>> a[0,0]=3
+>>> a
+array([[ 3.,  2.,  3.],
+       [ 4.,  5.,  6.]], dtype=float32)
+>>> fa.GetTuple3(0)
+(3.0, 2.0, 3.0)
+>>>

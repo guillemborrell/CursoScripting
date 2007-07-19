@@ -1,0 +1,820 @@
+\documentclass[10pt,letterpaper,conference]{ieeeconfspanish}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{cite}
+\usepackage{setspace}
+\usepackage{flushend}
+\usepackage{amsmath}
+\usepackage{pstricks}
+\usepackage{url}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{xtab}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\overrideIEEEmargins
+\title{\LARGE \bf Octave: una alternativa real a Matlab a coste cero}
+
+\author{\parbox{7in}{\centering Guillem Borrell i Nogueras\\% 
+\mbox{}\\
+Englobe Technologies,
+        {\tt\small guillemborrell@gmail.com}\\%
+}
+}
+
+\begin{document}
+
+\maketitle
+
+
+\thispagestyle{empty}
+\pagestyle{empty}
+
+
+\begin{abstract}
+Octave es un proyecto de software libre maduro y consolidado. Es una
+herramienta de gran utilidad en el campo del cálculo numérico en todas
+sus vertientes.  Aunque no fue uno de sus objetivos iniciales, en su
+madurez ha ido convergiendo hacia una de las estrellas del software en
+ingeniería, Matlab. Octave se ha convertido en una alternativa en dos
+casos: cuando la adquisición de Matlab no es viable por cualquier
+motivo y cuando la pericia de un buen programador en C++ puede
+extender su funcionalidad.
+\end{abstract}
+
+%___________________________________________________________________________
+
+\hypertarget{qu-es-matlab}{}
+\pdfbookmark[0]{¿Qué es Matlab?}{qu-es-matlab}
+
+\section*{¿Qué es Matlab?}
+
+Matlab es un lenguaje de programación interpretado e interactivo, esto
+significa que a diferencia de C o Fortran no se generan ejecutables
+sino que un programa llamado interprete recibe órdenes y las ejecuta.
+Estas órdenes se comunican al intérprete mediante un lenguaje de
+programación que recibe el mismo nombre que el programa, Matlab.
+Entonces utilizar Matlab es equivalente a programar en Matlab.
+
+Matlab cuenta con una biblioteca de cálculo numérico y de ingeniería
+tan extensa como útil y el intérprete es extensible mediante distintos
+lenguajes compilados como C y Fortran.
+
+Matlab tiene la gran virtud convertir en triviales tareas fáciles como
+las operaciones elementales:
+\begin{verbatim}
+>> 2+2
+ans = 4
+\end{verbatim}
+
+O de convertir en fáciles tareas que no lo son en absoluto como por
+ejemplo esta integral de una función de Bessel
+\[ \int_0 ^{4.5} J_{2.5}\ dx \]
+
+\begin{verbatim}
+>> quad(@(x) besselj(2.5,x)0,4.5)
+ans = 1.1178
+\end{verbatim}
+
+Además, en Matlab es tremendamente fácil representar gráficamente
+tanto curvas como superfícies.
+
+Sin embargo Matlab no es ni orientado a objetos\footnote{Matlab cuenta
+  con algo parecido a la orientación a objetos que no puede
+  considerarse como tal.  Pueden agruparse funciones para que se
+  comporten de un modo parecido a como lo haría un objeto pero no es
+  capaz de definir una clase.} ni modular ni completamente
+interactivo.  Aquí no terminan los inconvenientes, al ser un producto
+comercial sujeto a las estrategias de marketing de MathWorks el
+lenguaje no es estable y debido a problemas de compatibilidad hacia
+atrás hereda ciertas inconsistencias.  Antes de adquirirlo debe
+meditarse si realmente vale lo que cuesta y la respuesta a esta
+pregunta no es inmediata.
+
+Como lenguaje de programación tiene competidores, algunos muy serios.
+Se destacan Mathematica, Scilab, IDL, R, Octave y una nueva estrella
+emergente, Python gracias a los proyectos NumPy y SciPy.
+
+
+%___________________________________________________________________________
+
+\hypertarget{un-poco-de-historia}{}
+\pdfbookmark[0]{Un poco de historia}{un-poco-de-historia}
+\section*{Un poco de historia}
+
+Matlab es un producto de \href{http://www.mathworks.com}{MathWorks} .  Fue diseñado a finales de los
+70 por Cleve Moler como una herramienta para evitar a sus estudiantes
+tener que aprender Fortran.  Apareció como producto comercial en el
+año 1984 y desde entonces ha ido gandando adeptos, sobretodo en el
+campo del control lineal y no lineal y en la ingeniería en general.
+La versión mas actual al escribir estas líneas es la R2007a
+
+El orígen de Octave es bastante parecido, nació en la Universidad de
+Wisconsin en Madison a finales de los ochenta como una herramienta
+para completar las prácticas de ingeniería química.  La primera
+versión alpha apareció en el año 1992 y la 1.0 en Febrero de 1994.
+Pronto se popularizó dentro del mundo GNU/Linux y hace una década ya
+se incluía en la distribución Red Hat como paquete oficial.  El
+desarrollador principal del proyecto es John W. Eaton.
+
+
+%___________________________________________________________________________
+
+\hypertarget{octave}{}
+\pdfbookmark[0]{Octave}{octave}
+\section*{Octave}
+
+Antes de decir una sola palabra sobre Octave es necesario dejar claro
+lo siguiente: Octave no nació como un reemplazo de Matlab, ha ido
+convergiendo por pura necesidad.  En palabras de John Eaton: -hay
+diferencias entre Matlab y Octave y algunas seguirán así;  no existen
+porque Octave esté roto sino porque creemos que Matlab lo está.-
+
+Pero la tesis es si Octave es una alternativa real a Matlab... ¿Lo
+sigue siendo a pesar de sus diferencias?  Octave es compatible con
+Matlab en un 99{\%} pero es obvio que no es un sustituto perfecto.
+Siempre existirán problemas de incompatibilidad debido a que el
+lenguaje no está estandarizado de ningun modo. ¿Tiene Octave alguna
+ventaja esencial que pueda paliar estas diferencias?  Sí.  \textbf{Octave es
+software libre}.
+
+Parte del proyecto GNU y publicado bajo la licencia GPL versión 2 o
+posterior Octave se basa \textbf{al igual que Matlab} en bibliotecas de
+código abierto o libres como Atlas, UMFPack o FFTW.  Al basarse en
+gran parte en las mismas tecnologías el rendimiento en muchos casos es
+parecido.
+
+
+%___________________________________________________________________________
+
+\hypertarget{por-qu-sustituir-matlab}{}
+\pdfbookmark[0]{¿Por qué sustituir Matlab?}{por-qu-sustituir-matlab}
+\section*{¿Por qué sustituir Matlab?}
+
+¿Hay alguna necesidad de buscar un sustituto libre a Matlab? ¿Es esta
+necesidad real o sólo puede explicarse por motivos filosóficos?
+Algunos proyectos de software libre argumentan que la libertad de uso
+es un motivo suficiente para no utilizar cualquier tipo de
+software propietario.  Este motivo no es suficiente para una empresa
+que requiere un producto garantizado y con soporte.  Este sector, que
+más dinero aporta al mundo del desarrollo de software, debe tener
+motivos reales para escoger un producto y descartar otro. Deben ser
+razones de peso si se trata de abandonar algo tan útil y necesario
+como Matlab.
+
+
+%___________________________________________________________________________
+
+\hypertarget{matlab-es-un-producto-comercial}{}
+\pdfbookmark[1]{Matlab es un producto comercial}{matlab-es-un-producto-comercial}
+\subsection*{Matlab es un producto comercial}
+
+Matlab no es sólo un programa, es también un lenguaje de
+programación.  Sin embargo MathWorks no piensa igual.  No existe
+ningún estándar ni especificación más que el propio funcionamiento del
+intérprete y la documentación.  Normalmente los lenguajes de
+programación van con una especificación por delante para que los
+desarrolladores tengan toda la información necesaria para poder
+programar lo mejor posible.  Para MathWorks Matlab es primero una
+aplicación y el lenguaje queda siempre en un segundo plano.
+
+
+%___________________________________________________________________________
+
+\hypertarget{matlab-es-caro-muy-caro}{}
+\pdfbookmark[1]{Matlab es caro, muy caro}{matlab-es-caro-muy-caro}
+\subsection*{Matlab es caro, muy caro}
+
+¿Cuánto cuesta Matlab? Lo suficiente como para que muchas empresas
+tengan que descartarlo.  Este problema no se limita a pequeñas
+empresas o consultorías donde el coste de una única licencia puede
+significar una porción relevante de su presupuesto, también afecta a
+grandes multinacionales.
+
+Teras es una pequeña consultoría de nuevo cuño.  Uno de sus campos de
+trabajo es el sector aeroespacial.  Como cualquier empresa del sector
+se interesó por Matlab para aumentar su productividad en el campo del
+análisis y tuvo que descartarlo por el coste tan desorbitado que
+alcanzaba una única licencia, equivalente a la mitad del sueldo anual
+de un consultor junior.
+
+Rolls Royce, multinacional que ocupa el segundo puesto mundial como
+fabricante de motores para aviación se encuentra en el otro extremo
+del sector aeroespacial.  Para una empresa tan grande es de vital
+importancia gestionar eficientemente el gran volumen de datos que
+genera.  Es imprescindible que todos los ingenieros que trabajan en
+una misma empresa sean capaces de utilizarlos lo que implica que la
+adquisición del número de licencias de Matlab necesarias sea inviable.
+Los servidores de licencias son una solución parcial ya que en los
+picos de trabajo, cuando se necesitan todas las licencias, es probable
+que un ingeniero clave no pueda trabajar.  Matlab se ha descartado y
+los datos se analizan mediante hojas de cálculo con la consiguiente
+pérdida de productividad.
+
+
+%___________________________________________________________________________
+
+\hypertarget{matlab-en-las-universidades}{}
+\pdfbookmark[1]{Matlab en las universidades}{matlab-en-las-universidades}
+\subsection*{Matlab en las universidades}
+
+La Universidad Politécnica de Madrid dispone de un número no
+despreciable de licencias para el uso académico.  Las actualiza
+periódicamente para que tanto sus alumnos como el personal docente e
+investigador dispongan de la última versión del software.  Es común
+que haya un centenar de alumnos que utiliza Matlab simultáneamente.
+En algunas escuelas las prácticas de la asignatura de cálculo numérico
+se realizan en Matlab.  Esto genera una pregunta esencial.
+
+Un alumno de segundo o tercer curso sólo utiliza un nimio porcentaje
+de la herramienta. ¿Es necesario entonces utilizar algo tan costoso
+para introducirlo al mundo de la programación teniendo en cuenta que
+no lo aprovecha? Un intento de justificación es argumentar que hay que
+enseñar lo que se utiliza en la industria pero ya se ha visto que su
+implantación no está exenta de dificultades.
+
+¿Es razonable hacerlo al coste equivalente de dos ordenadores? ¿No
+sería más razonable comprar estos ordenadores e instalar un programa
+casi idéntico como Octave?  Probablemente los responsables de IT de
+muchas universidades nunca se hayan planteado estas preguntas.
+
+
+%___________________________________________________________________________
+
+\hypertarget{matlab-vs-octave}{}
+\pdfbookmark[0]{Matlab Vs. Octave}{matlab-vs-octave}
+\section*{Matlab Vs. Octave}
+
+A pesar de los posibles inconvenientes Matlab es un gran programa.  Su
+interfaz gráfica está bien pensada, está disponible en los tres
+sistemas operativos mayoritarios.  Sus posibilidades para la
+representación gráfica de datos con casi ilimitadas, el compilador de
+Matlab es de una potencia bárbara y su optimización JIT\footnote{ JIT
+  son las siglas de Just In Time, una tecnología de optimización
+  automática de código que hace que su principal escollo a nivel de
+  rendimiento, los bucles, no lo sean tanto.} es efectiva en bastantes
+casos.
+
+Sin embargo su parser deja bastante que desear; incluso no acepta
+estructuras sintácticas que serían consistentes en el lenguaje.  Al no
+ser un proyecto de software libre no hay un modo de ampliarlo ni
+definir nuevos tipos.  La interfaz gráfica, escrita en Java, no es tan
+estable como podría desearse al igual que el intérprete capaz de
+romperse en casos relativamente sencillos.  Incluyendo además el
+inconveniente del precio.
+
+Octave soluciona algunos de los inconvenientes técnicos de Matlab.  No
+tiene interfaz gráfica, algo que puede ser visto como una ventaja y
+como un inconveniente; su parser es más listo y acepta estructuras más
+complejas.  Aunque el intérprete tiene problemas de estabilidad como
+el de Matlab se solucionan más rápidamente puesto que el tiempo de
+publicación de nuevas versiones es más corto.  Es además muy fácil de
+extender en C++ y permite un acceso directo a su maquinaria interna y
+a sus librerías para utilizarlas en cualquier programa en C++.  Es una
+herramienta más potente para un buen programador.
+
+
+%___________________________________________________________________________
+
+\hypertarget{conclusiones}{}
+\pdfbookmark[0]{Conclusiones}{conclusiones}
+\section*{Conclusiones}
+
+Una de las tentaciones comunes de los usuarios habituales de Matlab es
+que, como es capaz de realizar un amplio abanico de tareas, utilizarlo
+para absolutamente todo: crear interfaces gráficas, realizar programas
+relativamente grandes, analizar series de datos de mucha
+complejidad... Parece razonable pensar que el concepto de una
+aplicación para todo uso es erróneo. Entonces...
+\begin{itemize}
+\item {} 
+Si no se utiliza Matlab hasta para hacer tortillas de patatas.
+
+\item {} 
+Si no se necesita un determinado toolkit y es imposible
+desarrollarlo en un tiempo razonable.
+
+\item {} 
+So no está y adisponible.
+
+\item {} 
+Si utilizarlo no es una obligación.
+
+\end{itemize}
+
+Si no se cumple ninguna de las condiciones anteriores entonces \textbf{no
+hay ningún motivo razonable para no probar Octave}
+
+
+%___________________________________________________________________________
+
+\hypertarget{ejemplos}{}
+\pdfbookmark[0]{Ejemplos}{ejemplos}
+\section*{Ejemplos}
+
+A continuación se explorarán algunas de las características de Octave
+dentro de su campo de aplicación, el cálculo numérico.  No solo se
+tratará Octave como un intérprete del lenguaje Matlab sino que
+mostrarán algunos ejemplos de cómo utilizar lenguajes compilados para
+mejorar el comportamiento de un programa de simulación.
+
+
+%___________________________________________________________________________
+
+\hypertarget{flujo-alrededor-de-un-cilindro}{}
+\pdfbookmark[1]{Flujo alrededor de un cilindro}{flujo-alrededor-de-un-cilindro}
+\subsection*{Flujo alrededor de un cilindro}
+
+Sabiendo un poco de aerodinámica y dominando el campo de la variable
+compleja se demuestra que el potencial complejo de velocidades
+alrededor de un cilindro es
+\[ t + \frac{1}{t} + \frac{i\Gamma}{2 \pi}\log\ t \]
+Para representar las líneas de corriente basta con este pequeña
+porción de código:
+\begin{verbatim}
+gamma=input('¿Circulación?');
+f=@(x,y) (x+i*y) + 1./(x+i*y) +...
+       (i*gamma)/(2*pi)*log(x+i*y);
+[XX,YY]=meshgrid(linspace(-5,5,100),...
+              linspace(-5,5,100));
+contour (XX,YY,-imag(f(XX,YY)),29)
+\end{verbatim}
+
+El resultado es la siguiente figura:
+\begin{figure}[htbp]\begin{center}
+\scalebox{0.300000}{\includegraphics{files/cilindro.jpg}}
+\caption{Líneas de corriente correspondientes al flujo potencial alrededor de un cilindro}
+\end{center}\end{figure}
+
+Para los que no conozcan Matlab ni Octave es notorio que se ha llegado
+a un resultado no trivial con un esfuerzo mínimo mediante el uso de
+muchas funciones que deben conocerse previamente.
+
+Este código tiene la particularidad de ejecutarse con el mismo
+resultado tanto en Matlab como en Octave.  En la mayoría de los casos
+se presentarán incompatibilidades que requerirán cambios mínimos.
+
+
+%___________________________________________________________________________
+
+\hypertarget{aumentar-la-velocidad}{}
+\pdfbookmark[1]{Aumentar la velocidad}{aumentar-la-velocidad}
+\subsection*{Aumentar la velocidad}
+
+Una característica común entre los lenguajes interpretados es la
+posibilidad de escribir funciones en lenguajes compilados que luego el
+intérprete es capaz de entender.  Es un proceso más o menos laborioso
+que tiene la ventaja de aumentar significativamente la velocidad de
+ejecución.  El objetivo es conseguir con el mínimo esfuerzo acercar la
+velocidad del intérprete a la que se conseguiría con un código
+enteramente escrito en C o C++.
+
+Esta es la función de atractor de Lorentz
+\[
+\begin{array}{ccl}
+\dot x & = & a(y-x)\\
+\dot y & = & x(b-z)-y \\
+\dot z & = & xy-cz
+\end{array}\]
+Para integrarla es necesario escribirla como archivo .m:
+\begin{verbatim}
+function xdot=lorentz(t,x)
+  a=10;b=28;c=8/3;
+  xdot(1,1)=a*(x(2)-x(1));
+  xdot(2,1)=x(1)*(b-x(3))-x(2);
+  xdot(3,1)=x(1)*x(2)-c*x(3);
+end
+\end{verbatim}
+
+Ahora exactamente la misma función en C++ preparada para acoplarla
+a Octave:
+
+\begin{verbatim}
+#include <octave/oct.h>
+DEFUN_DLD (eqlorentz,args, ,
+  "Ecuacion de Lorentz en C++")
+  {
+    ColumnVector xdot (3);
+    ColumnVector x (args(0).vector_value());
+    int a=10;
+    int b=28;
+    double c=8./3;
+    xdot(0) = a*(x(1)-x(0));
+    xdot(1) = x(0)*(b-x(2))-x(1);
+    xdot(2) = x(0)*x(1)-c*x(2);
+
+    return octave_value (xdot);
+  }
+\end{verbatim}
+
+El esfuerzo de reescribir la función a C++ no es tan exagerado.  Sólo
+requiere conocer el lenguaje y unas pocas funciones para crear y
+devolver valores al intérprete. Mientras la primera es comprensible
+por el intérprete directamente, la segunda requiere ser compilada y
+enlazada con las bibliotecas de Octave:
+\begin{verbatim}
+$> mkoctfile eqlorentz.cpp
+\end{verbatim}
+
+Este proceso genera un archivo llamado \texttt{eqlorentz.oct} que para
+Octave es equivalente a un .m con la diferencia de ser un archivo
+binario.  Si se integra la primera versión de la función:
+\begin{verbatim}
+>> x0=[1;1;1];
+>> t=linspace(0,50,5000);
+>> tic;x=lsode(@lorentz,x0,t);toc
+\end{verbatim}
+
+Se llega al resultado en un tiempo de 5.1 segundos\footnote{El
+  ordenador utilizado ha sido un Athlon 2000 XP, algo obsoleto
+  teniendo en cuenta que sólo soporta 3dnow y SSE.}. Pero si se
+utiliza la nueva versión en C++:
+\begin{verbatim}
+>> x0=[1;1;1];
+>> t=linspace(0,50,5000);
+>> tic;x=lsode(@eqlorentz,x0,t);toc
+\end{verbatim}
+
+¡El tiempo de ejecución se reduce a 0.36 segundos! Es un orden de
+magnitud en el rendimiento y se acerca muchísimo a los timpos
+obtenidos con código enteramente escrito en C++ con un coste muchísimo
+menor.
+
+Queda demostrado entonces, por lo menos para un caso sencillo, que el
+mito que los lenguajes interpretados son irremisiblemente lentos no
+es tan cierto como parecía.
+
+
+%___________________________________________________________________________
+
+\hypertarget{tests}{}
+\pdfbookmark[1]{Tests}{tests}
+\subsection*{Tests}
+
+Una carencia de Matlab como lenguaje de programación es la posibilidad
+de realizar test de contingencia para saber si un programa funciona
+como debe.  Octave sí propone la infraestructura necesaria para ello.
+
+Algunas escuelas de metodología de programación como Extreme
+Programming sugieren que los test son lo primero que debe diseñarse,
+incluso antes que el algoritmo que resuelve el problema. Su utilidad
+radica más en el futuro mantenimiento o ampliación del código que en
+la escritura inicial.  Es un seguro que los cambios realizados a una
+rutina no alterarán su diseño.
+
+El siguiente es un mal ejemplo porque el código realiza una operación
+tremendamente simple pero sirve para esbozar su funcionamiento.  Para
+probar la función matpow, que eleva a una potencia entera una matriz
+cuadrada:
+\begin{verbatim}
+function b = matpow(a, n)
+  b = eye(size(a));
+  for i = 1:n
+    b = b * a;
+  endfor
+\end{verbatim}
+
+Se realizan los siguientes test; no cuesta mucho deducir para qué
+sirve la función \texttt{assert}:
+
+\begin{verbatim}
+%!shared a
+%!test
+%!  a = [ 2.0, -3.0;
+%!       -1.0,  1.0];
+%!
+%!assert(matpow(a,0), diag([1,1]));
+%!assert(matpow(a,1), a);
+%!assert(matpow(a,2), a^2);
+%!assert(matpow(a,3), a^3);
+%!assert(matpow(a,4), a^4);
+%!assert(matpow(a,22), a^22);
+%!assert(matpow(a,23), a^23);
+\end{verbatim}
+
+Estas líneas se escribirían al final de la función.  Para realizar los
+test basta volver al intérprete y ejecutar:
+
+\begin{verbatim}
+octave:1> test matpow
+PASSES 8 out of 8 tests
+\end{verbatim}
+
+
+%___________________________________________________________________________
+
+\hypertarget{octave-desde-c}{}
+\pdfbookmark[1]{Octave desde C++}{octave-desde-c}
+\subsection*{Octave desde C++}
+
+El último de los ejemplos ilustra cómo la biblioteca de cálculo
+matricial de Octave; estable, potente, completa y funcional, puede
+utilizarse desde C++ de un modo relativamente sencillo.  Para resolver
+el siguiente sistema de ecuaciones
+\[
+\left( \begin{array}{cc}
+2 & -6 \\
+5 & 3
+\end{array}\right)x=
+\left( \begin{array}{c}
+1 \\
+0 \end{array} \right)
+\]
+El código que resuelve el problema se entiende perfectamente sólo con
+nociones básicas de C++:
+\begin{verbatim}
+#include <iostream>
+#include <oct.h>
+
+int main(void)
+{
+  Matrix a = Matrix (2,2);
+  ColumnVector b = ColumnVector(2);
+  a(0,0)=2.;a(1,0)=5.;
+  a(0,1)=-6.;a(1,1)=3.;
+  b(0)=1.;b(1)=0.;
+
+  std::cout  << a.solve(b);
+  return 0;
+}
+\end{verbatim}
+
+Octave prevé este uso de sus librerías.  Para facilitar la compilación
+y el enlazado para crear un ejecutable el programa \texttt{mkoctfile} sirve
+de gran ayuda.  Basta con ir a una consola UNIX:
+
+
+\begin{verbatim}
+$> mkoctfile --link-stand-alone\
+      embedded.cpp
+\end{verbatim}
+
+
+Y ejecutar el programa:
+\begin{verbatim}
+$> ./a.out
+0.0833333
+-0.138889
+\end{verbatim}
+
+
+%___________________________________________________________________________
+
+\hypertarget{conclusiones-finales}{}
+\pdfbookmark[0]{Conclusiones finales}{conclusiones-finales}
+\section*{Conclusiones finales}
+
+Octave no puede considerarse un sustituto perfecto de Matlab pero sí
+una alternativa en algunos casos.  Es un proyecto maduro y completo
+que permite a un programador hábil realizar algoritmos numéricos de
+gran complejidad reduciendo al máximo los tiempos de
+desarrollo. También son útiles conocimientos de C++ para ampliar el
+intérprete y conseguir tiempos de ejecución cercanos a los de los
+lenguajes compilados.
+
+
+\begin{center}
+    {\bf APÉNDICE}
+\end{center}
+
+\section*{Python, el nuevo aspirante}
+
+Matlab presenta graves carencias como lenguaje de programación.
+Octave corrige algunas de ellas pero por motivos de compatibilidad
+muchas permanecen.  Si bien no son una molestia en aplicaciones
+sencillas sí pueden ser un escollo importante cuando el código se
+acerca a las mil líneas.  Hasta hace un par de años no existía ninguna
+alternativa libre real a Matlab como lenguaje.  Mientras a principios
+de los noventa se producía una revolución con la aparición de Python y
+Ruby estos cambios no parecían reflejarse en la programación orientada
+a ciencia e ingeniería.
+
+Era necesario encontrar un punto de vista simétrico al de Matlab, en
+vez de unir una colección de funciones con un lenguaje dotar a un
+lenguaje ya existente de una biblioteca lo suficientemente amplia. Una
+elección más que comprensible es Python, un lenguaje interpretado,
+interactivo, orientado a objetos, libre y gratuito.
+
+Python no fue diseñado para las matemáticas.  El lenguaje en sí no
+tiene un tipo correspondiente a un array. Era un módulo escrito en C
+llamado Numeric el que extendía el lenguaje para su uso en cálculo
+numérico.  No fue hasta la consolidación de SciPy
+(\url{http://scipy.org/}), una colección extensa de funciones de
+matemática aplicada, y NumPy, que unificaba los tipos numéricos,
+cuando Python se estableció como alternativa a los otros lenguajes de
+simulación.  La família de aplicaciones ha ido creciendo con
+Matplotlib, MayaVi, ipython...
+
+\subsection*{El lenguaje Python}
+
+Python ha ganado popularidad por ser un lenguaje polivalente y fácil
+de aprender.  Su máxima es que sólo debe haber un modo obvio y
+elegante de hacer las cosas lo que significa que es por diseño
+congruente.  Es razonablemente rápido y su código es muy leíble.  Por
+ejemplo, para generar exactamente la figura del primer ejemplo:
+
+\begin{verbatim}
+from numpy import *
+from pylab import *
+
+gamma=10
+
+f=lambda x,y: (x+y*1j) + 1/(x+y*1j) +\
+       (1j*gamma)/(2*pi)*log(x+y*1j)
+
+[XX,YY]=mgrid[-5:5:100j,-5:5:100j]
+contour(XX,YY,-imag(f(XX,YY)),29)
+show()
+\end{verbatim}
+
+Como se puede apreciar el lenguaje no es ni pretende ser compatible
+com Matlab. Las diferencias son evidentes.  El objetivo de SciPy y
+NumPy ha sido siempre convertir Python en el mejor lenguaje aplicado a
+ciencia e ingeniería.
+
+La contrapartida es que mientras algunas tareas resultan triviales en
+Matlab, Python tiene una curva de aprendizaje que no es
+despreciable. Cada desarrollador debe decidir si afrontar el
+aprendizaje de una nueva herramienta resulta rentable.
+
+\subsection*{Más y mejor que Octave (y Matlab)}
+
+Se ha alabado la facilidad que tiene Octave para comunicarse con otros
+lenguajes de programación para mejorar su rendimiento o reutilizar
+código antiguo pero garantizado.  Las herramientas de las que dispone
+Python para comunicarse con otros lenguajes superan con creces las de
+cualquier otro lenguaje.
+
+Los dos motivos para el uso de otro lenguaje de programación
+adicional, normalmente C o Fortran es la necesidad de aumentar la
+velocidad de ejecución y la utilización de librerías ya
+existentes.
+
+De un modo poco riguroso se puede decir que la manera más básica de
+ampliar los lenguajes interpretados es utilizar algo parecido a una
+librería enlazada dinámicamente con el intérprete.  Esto obliga a
+esciribir código en C o C++ utilizando librerías que proporcionan
+cierta compatibilidad.  Python rompe este esquema puesto que es capaz
+de enlazar con elementos de programa externos sin salir del mismo
+lenguaje.
+
+Las herramientas son f2py, pyrex, weave y ctypes.  Es imposible
+introducir cada una de ellas en tan poco espacio así que se ha optado
+por dar un par de ejemplos de su potencia. No se espera de ellos que
+sean un modelo de efectividad sino un mero esquema de su
+funcionamiento.
+
+\subsubsection*{Inlining con weave}
+
+Se conoce el inlining como la capacidad de embeber código en una
+variable o en un argumento.  Python es capaz de embeber código en C
+dentro de una rutina; es capaz de interpretarlo, gracias a weave.  En
+Python los bucles son lentos, es un mal vicio común en casi todos los
+lenguajes interpretados.  Aún lo es más si dentro del mismo existe
+alguna condición lógica que impide una correcta vectorización.
+
+\begin{footnotesize}
+\begin{verbatim}
+from numpy import empty,array
+from scipy import weave
+from scipy.weave import converters
+from timeit import Timer
+
+def lorentz(x):
+    xdot=empty(3)
+    a=10
+    b=28
+    c=8./3.
+    xdot[0] = a*(x[1]-x[0])
+    xdot[1] = x[0]*(b-x[2])-x[1]
+    xdot[2] = x[0]*x[1]-c*x[2]
+
+    return xdot
+
+def lorentz_weave(x):
+    xdot=empty(3)
+    code="""
+    double a=10;
+    double b=28;
+    double c=8./3.;
+    xdot[0] = a*(x[1]-x[0]);
+    xdot[1] = x[0]*(b-x[2])-x[1];
+    xdot[2] = x[0]*x[1]-c*x[2];
+    return_val=1;
+    """
+
+    err = weave.inline(code,
+            ['x','xdot'],
+            type_converters=converters.blitz,
+            compiler='gcc')
+
+    return xdot
+
+print lorentz(array([1,1,1]))
+print lorentz_weave(array([1,1,1]))
+
+t1=Timer('lorentz(array([1,1,1]))',"""
+from numpy import array
+from __main__ import lorentz""")
+
+print t1.timeit(number=10000)
+
+t2=Timer('lorentz_weave(array([1,1,1]))',"""
+from numpy import array
+from __main__ import lorentz_weave""")
+
+print t2.timeit(number=10000)
+\end{verbatim}
+\end{footnotesize}
+
+
+Si se ejecuta el programa se comprueba que no existe ninguna ganancia
+significativa.  Tampoco se suponía puesto que no hay ningún bucle en
+el algoritmo.  Sin embargo es difícil encontrar un modo más fácil de
+escribir una extensión en C
+
+\subsubsection*{Un wrapper con ctypes}
+Ctypes es un módulo que proporciona acceso directo a cualquier
+librería compartida (so en UNIX y dll en windows). Es parte de cpython
+desde la versión 2.5. Es preciso enfatizar el adjetivo directo, el
+módulo dota a python de los tipos necesarios y convierte cada
+biblioteca en un objeto manipulable desde el código. La consecuencia
+directa es una pequeña revolución en los lenguajes interpretados,
+hasta ahora era necesario escribir código para que la unión entre los
+lenguajes compilados e interpretados fuera suave, algo llamado
+wrapper. Este código ya no es necesario porque ctypes permite importar
+cualquier biblioteca compartida.
+
+Por ejemplo, ejecutando el siguiente script:
+
+\begin{footnotesize}
+\begin{verbatim}
+from ctypes import c_int, POINTER
+import numpy as np
+from numpy.ctypeslib import load_library,ndpointer
+
+def dgesv(N,A,B):
+    A = np.asfortranarray(A.astype(np.float64))
+    B = np.asfortranarray(B.astype(np.float64))
+
+    cN=c_int(N)
+    NRHS=c_int(1)
+    LDA=c_int(N)
+    IPIV=(c_int * N)()
+    LDB=c_int(N)
+    INFO=c_int(1)
+
+    lapack=load_library('liblapack.so','/usr/lib/')
+
+    lapack.dgesv_.argtypes=[POINTER(c_int),
+             POINTER(c_int),
+             ndpointer(dtype=np.float64,
+             ndim=2,
+             flags='FORTRAN'),
+             POINTER(c_int), POINTER(c_int),
+             ndpointer(dtype=np.float64,
+                       ndim=2,
+                       flags='FORTRAN'),
+             POINTER(c_int),POINTER(c_int)]
+
+
+    lapack.dgesv_(cN,NRHS,A,LDA,IPIV,B,LDB,INFO)
+    return B
+
+print dgesv(2,np.array([[1,2],[1,4]]),
+          np.array([[1,3]]))
+\end{verbatim}
+\end{footnotesize}
+
+se obtiene la solución del sistema de ecuaciones lineales resuelto
+anteriormente en C++ utilizando la conocida biblioteca lapack a través
+de Python.
+
+Tampoco parece muy eficaz utilizar este método cuando ya existe una
+función que resuelve el problema.  Otra vez se trata de un ejemplo de
+funcionalidad.
+
+\subsection*{Conclusiones}
+
+Aunque esta afirmación es discutible se puede concluir que en códigos
+pequeños, de un centenar de líneas, Octave es aún superior a Python
+por ser más directo y menos formal.  Pero en programas más complejos
+que requieran una mayor integración Python es también un contendiente
+a tener en cuenta.
+
+
+\begin{thebibliography}{1}
+\bibitem{MatyOct}
+Introducción Informal a Matlab y Octave, \emph{Guillem Borrell i
+  Nogueras} [Online]. Disponible en: \url{http://servidor-da.aero.upm.es/}
+
+\bibitem{OctWiki}
+Wiki del proyecto Octave [Online]. \url{http://wiki.octave.org/}
+
+\bibitem{PythonFCS}
+Python Scripting for Computational Science, \emph{Hans
+  P. Langtangen}. 2004, Springer.
+
+
+\end{thebibliography}
+
+\end{document}

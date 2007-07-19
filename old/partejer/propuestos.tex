@@ -1,0 +1,309 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Ejercicios propuestos}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Matrices}
+
+\begin{enumerate}
+\item Dado el vector $x=[3,1,5,7,9,2,6]$, intentar prever a mano el
+  resultado de las siguientes operaciones elementales\@.
+
+  \begin{enumerate}
+  \item \texttt{x(3)}
+  \item \texttt{x(1:7)}
+  \item \texttt{x(1:end)}
+  \item \texttt{x(1:end-1)}
+  \item \texttt{x(6:-2:1)}
+  \item \texttt{x({[}1,6,2,1,1{]})}
+  \item \texttt{sum(x)}
+  \end{enumerate}
+\item Dada la matriz $A=[2,4,1;6,2,7;3,5,9],$ calcular:
+
+  \begin{enumerate}
+  \item El vector \texttt{x1} que es la primera fila de $A$.
+  \item Asignar las 2 primeras filas de $A$ a un vector llamado
+    \texttt{y}.
+  \item Calcular la suma de los elementos de las columnas de $A$.
+  \item Calcular la suma de los elementos de las filas de $A$.
+  \item Calcular la desviación estándar de cada columna de $A$.
+  \end{enumerate}
+\item Dada la matriz:
+$$A=\left(\begin{array}{cccc}
+      2 & 7 & 9 & 7\\
+      3 & 1 & 5 & 6\\
+      8 & 1 & 2 & 5\\
+      4 & 2 & 8 & 7\end{array}\right)$$
+
+
+  \begin{enumerate}
+  \item Asignar los elementos impares de la matriz $A$ a otra matriz
+  \item Asignar los elementos pares de la matriz $A$ a otra matriz
+  \item Calular la raíz cuadrada de cada elemento de la matriz $A$
+  \end{enumerate}
+\end{enumerate}
+
+\section{Programación}
+
+\begin{enumerate}
+\item Dado el vector \texttt{x={[}3 15 9 2 -1 0 -12 9 6 1{]}} escribir
+  los comandos que darán los siguientes resultados, preferiblemente en
+  un único comando:
+
+  \begin{enumerate}
+  \item Devolver un vector que convierta los elementos de \texttt{x}
+    en 0
+  \item Convertir los elementos múltiples de 3 del vector en 3.
+  \item Multiplicar los valores impares de x por cinco.
+  \item Asignar los valores de módulo mayor a 10 a otro vector.
+  \item Convertir los elementos que son menores a la media en cero
+  \item Convertir los elementos que son mayores a la media en la
+    media.
+  \end{enumerate}
+\item Escribir una función cuyo resultado sea:
+$$ y(x)\left\{
+    \begin{array}{ccc}
+      2 & \qquad & x<6\\
+      x-4 & \qquad & 6\leq x\leq20\\
+      36-x & \qquad & 20\leq x\leq36\end{array}\right.$$
+ representarla
+  gráficamente para ver que tiene forma triangular con \texttt{fplot}.
+\item Calcular el número $\pi$ mediante la seguiente serie:
+$$\frac{\pi^{2}-8}{16}=\sum_{n=1}^{\infty}\frac{1}{(2n-1)^{2}(2n+1)^{2}}$$
+  ¿Cuántos términos son necesarios para llegar a una precisión de
+  $1\times10^{12}$?  ¿Cuánta es la precisión de la suma de 100
+  términos?
+\item Podemos calcular una serie de Fibonacci mediante la siguiente
+  relación recursiva:
+$$ F_{n}=F_{n-1}+F_{n-2}$$
+con $F_{0}=F_{1}=1$.
+  Calcular los 10 primeros números de la serie de Fibonacci. La
+  relación $\frac{F_{n}}{F_{n-1}}$ se va aproximando al número áureo
+  $\varphi=\frac{1+\sqrt{5}}{2}$ a medida que $n$ aumenta. ¿En qué
+  término de la serie de Fibonacci nos acercamos al número áureo con
+  una precisión de $1\times10^{12}$?
+\item Los polinomios de Legendre $P_{n}(x)$ se definen con la
+  siguiente relación recurrente:
+$$  (n+1)P_{n+1}(x)-(2n+1)P_{n}(x)+nP_{n-1}(x)=0$$ con $P_{0}(x)=1$,
+  $P_{1}(x)=x$ y $P_{2}(x)=\frac{3x^{2}-1}{2}$.  Cacular los tres
+  siguientes polinomios y representarlos gráficamente en el intervalo
+  {[}-1,1{]}
+\item Se plantea el siguiente algoritmo para calcular el número $\pi$.
+  Primero iniciar las constantes: $a=1$, $b=\frac{1}{\sqrt{2}}$,
+  $t=\frac{1}{4}$ y $x=1$. Repetir la siguiente secuencia de comandos
+  hasta que llegamos
+  a la precisión deseada:\\
+  \texttt{y = a}~\\
+  \texttt{a = (a+b)/2}~\\
+  \texttt{b = sqrt(b{*}y)}~\\
+  \texttt{t = t-x{*}(y-a)\textasciicircum{}2}~\\
+  \texttt{x = 2{*}x}\\
+  Por último se toman los valores de $a$, $b$, y $t$ para estimar
+  $\pi$ con:\\
+  \texttt{pi\_est = ((a+b)\textasciicircum{}2)/(4{*}t)}~\\
+  ¿Cuántas iteraciones son necesarias para llegar a una precisión de
+  $1\times10^{12}$?
+\item Escribir un programa que pida por línea de comandos un entero
+  ($n$)
+  y luego calcule lo siguiente.\\
+  1. Mientras el valor de $n$ sea mayor que 1, cambiar el entero por
+  la mitad de su valor si el entero es par; si es impar cambiarlo por
+  tres veces su valor mas 1.\\
+  2. Repetir estas operaciones cíclicamente y obtener el número de
+  iteraciones hasta que el algoritmo se para en 1. Por ejemplo, para
+  $n=10$ la secuencia es 5, 16, 8, 4, 2 y 1; entonces el número de
+  iteraciones
+  han sido 6.\\
+  3. Representar la longitud de las secuencias en función del entero
+  de entrada de 2 a 30 e intentar descubrir un patrón. Si no se deduce
+  intentarlo con más números.\\
+  4. ¿Hay algún número para el que la secuencia sea interminable?
+\item Escribir un programa que convierta números romanos en decimales.
+  La
+  tabla de conversion es: \\
+  \begin{minipage}[c]{1\linewidth}%
+\centering{}\begin{tabular}{|c|c|}
+\hline 
+Romanos&
+Decimales\tabularnewline
+\hline
+\hline 
+I&
+1\tabularnewline
+\hline 
+V&
+5\tabularnewline
+\hline 
+X&
+10\tabularnewline
+\hline 
+L&
+50\tabularnewline
+\hline 
+C&
+100\tabularnewline
+\hline 
+D&
+500\tabularnewline
+\hline 
+M&
+1000\tabularnewline
+\hline
+\end{tabular}\end{minipage}%
+
+\item Escribir un programa que haga la función inversa, que pase de números
+decimales a romanos. En ambos casos el número se pedirá por pantalla.
+\end{enumerate}
+
+\section{Álgebra lineal}
+
+\begin{enumerate}
+\item Resolver el siguiente sistema de ecuaciones lineales:$$
+  \begin{array}{ccccccc}
+    x & - & 2y & + & 3z & = & 9\\
+    -x & + & 3y &  &  & = & 4\\
+    2x & - & 5y & + & 5z & = & 17\end{array}$$
+
+\item Sean $B=\{(1,0,0),(0,1,0),(0,0,1)\}$ y
+  $B^{\prime}=\{(1,1,0),(1,-1,0),(0,0,1)\}$ bases en $\mathbb{R}^{3}$,
+  y sea $$ A=\left[\begin{array}{ccc}
+      1 & 3 & 0\\
+      3 & 1 & 0\\
+      0 & 0 & -2\end{array}\right]$$ la matriz de la aplicación lineal
+  $T:\mathbb{R}^{3}\rightarrow\mathbb{R}^{3}$ en la base $B$, base
+  cartesiana ortogonal se pide:
+
+  \begin{enumerate}
+  \item La matriz de cambio de base $P$ de $B^{\prime}$ a $B$
+  \item La matriz de camnio de base $P^{-1}$de $B$ a $B^{\prime}$
+  \item La matriz $A^{\prime}$ que es la matriz $A$ expresada en la
+    base $B^{\prime}$.
+  \item Sea$$ [v]_{B^{\prime}}=\left[\begin{array}{c}
+        1\\
+        2\\
+        3\end{array}\right]$$
+ encontrar $[v]_{B}$ y $[T(v)]_{B}$
+  \item Encontrar $[T(v)]_{B^{\prime}}$ de dos maneras, primero como
+    $P^{-1}[T(v)]_{B}$ y luego como $A^{\prime}[v]_{B^{\prime}}$.
+  \end{enumerate}
+\item Crear la matriz de $5\times5$ $T$ tal que:
+$$ T_{kl}=k-l$$ y
+  calcular sus autovalores y autovectores
+\item Un proceso para encriptar un mensaje secreto es usar cierta
+  matriz cuadrada con elementos enteros y cuya inversa es también
+  entera. Se asigna un número a cada letra (A=1, B=2... espacio=28) y
+  se procede como sigue a continuación. Supongamos que la matriz es:
+  $$A=\left(\begin{array}{ccccc}
+      1 & 2 & -3 & 4 & 5\\
+      -2 & -5 & 8 & -8 & 9\\
+      1 & 2 & -2 & 7 & 9\\
+      1 & 1 & 0 & 6 & 12\\
+      2 & 4 & -6 & 8 & 11\end{array}\right)$$ y el mensaje que
+  queremos enviar es {}``ALGEBRA LINEAL''. Para codificar el mensaje
+  romperemos la cadena de números en vectores de cinco elementos y los
+  codificaremos.
+
+  \begin{enumerate}
+  \item ¿Cuál será la cadena de datos encriptada que enviaremos?
+  \item Descifrar el mensaje: 48 64 -40 300 472 61 96 -90 346 538 16
+    -5 71 182 332 68 131 -176 322 411 66 125 -170 301 417.
+  \end{enumerate}
+\end{enumerate}
+
+\section{Cálculo y Ecuaciones Diferenciales Ordinarias.}
+
+\begin{enumerate}
+\item Hallar el área $A$ de la región del plano comprendida entre la
+  curva
+$$ y=\frac{x^{2}-1}{x^{2}+1}$$
+ y su asíntota. ($2\pi$)
+\item Hallar la longitud $s$ del arco de cicloide
+$$ \left\{
+    \begin{array}{ccc}
+      x & = & a(t-\sin t)\\
+      y & = & a(t-\cos t)\end{array}\right.\quad0\leq t\leq2\pi$$
+  ($8a$)
+\item Hallar el centro de masas de la cardioide
+$$
+  \rho=a(1+\cos\theta)$$ (Sobre el eje de simetría y en
+  $x=\frac{4a}{5}$)
+\item El péndulo esférico tiene de ecuaciones:$$
+  \ddot{\theta}=\frac{l\dot{\varphi}\sin\theta\cos\theta-g\sin\theta}{l}$$
+  $$
+  \ddot{\varphi}=\frac{-2\dot{\varphi}\dot{\theta}\cos\theta}{\sin\theta}$$
+  Integrarlas con una condición inicial cualquiera y representar
+  gráficamente las trayectorias.
+\item Resolver el sistema de ecuaciones diferenciales siguiente:$$
+  \begin{array}{ccc}
+    \frac{dx}{dt} & = & ax+bxy-cx^{2}\\
+    \frac{dy}{dt} & = & dxy-ey\end{array}$$
+  donde $a=0.05$, $b=0.0002$, $c=0.00001$, $d=0.0003$ y $e=0.06$.
+  Crear el mapa de fases linealizando la ecuación y utilizando el comando
+  \texttt{quiver}. Resolverlo para $t\in[0,300]$ con distintos valores
+  iniciales y ver que las soluciones siguen el camino marcado por el
+  gradiente numérico.
+\item Resolver el siguiente sistema que representa un modelo
+  depredador-presa:$$
+  \begin{array}{ccc}
+    x_{1}^{\prime} & = & x_{1}(15-x_{2})\\
+    x_{2}^{\prime} & = & x_{2}(-15+x_{1}-x_{2})\end{array}$$
+  con condición inicial $x_{1}(0)=10$ y $x_{2}(0)=15$. Si los depredadores
+  vienen dados por $x_{1}$, las presas por $x_{2}$ y el tiempo está
+  medido en meses, ¿cuántos predadores y presas hay al cabo de un año?
+  ¿Se extingue alguna de las especies en algún momento? Representar
+  $x_{1}-x_{2}$ y $x_{1}$ en función de $x_{2}$.
+\end{enumerate}
+
+\section{Estadística y análisis de datos}
+
+\begin{enumerate}
+\item Generar una muestra de 1000 elementos que sigan una distribución
+  normal de media $10$ y desviación típica $9$.
+\item Generar una muestra de 1000 elementos que sigan una distribución
+  uniforme de media cero y desviación típica $10$.
+\item Calcular y representar los caminos de un grupo de partículas con
+  movimiento aleatorio confinadas por un par de barreras $B^{+}$ y
+  $B^{-}$ unidades del orígen que es desde donde salen las partículas.
+  Un movimiento aleatorio se calcula mediante la fórmula;
+$$ x_{j+1}=x_{j}+s$$ donde $s$ es el número obtenido de una
+  distribución normal estandarizada de números aleatorios según la
+  función \texttt{randn}. Por ejemplo, N movimientos de la partícula
+  se calcularían con el fragmento de código
+  siguiente:\\
+  \texttt{x(1)=0;}~\\
+  \texttt{for j = 1:N}~\\
+  \texttt{x(j+1) = x(j) + randn(1,1);}~\\
+  \texttt{end}~\\
+  Se cambiarán las condiciones de contorno de la siguiente manera:\\
+  1. Reflexión. Cuando una partícula se encuentre fuera de la frontera
+  se devolverá al interior del dominio como si hubiera rebotado en una
+  pared\\
+  2. Absorción. La partícula muere cuando entra en contacto con la pared.\\
+  3. Absorción parcial. Es la combinación de los dos casos previos.
+  La partícula rebota en la pared y la perfección de la colisión
+  depende
+  de una determinada distribución de probabilidad.\\
+  Calcular una serie relevante de trayectorias y calcular:
+
+  \begin{enumerate}
+  \item La posición media de las partículas en función del tiempo.
+  \item La desviación típica de las posiciones de las partículas en
+    función del tiempo.
+  \item ¿Influyen las condiciones de contorno en las distribuciones?
+  \item Para los casos de absorción y absorción parcial representar
+    gráficamente el número de partículas supervivientes en función del
+    número de saltos temporales.
+  \end{enumerate}
+\item Desarrollar en serie de Fourier la función
+  $f(x)=x^{2}\qquad-\pi<x<\pi$.
+\end{enumerate}
+
+\section{Control automático}
+
+\begin{enumerate}
+\item Determinar la respuesta a un impulso y a un escalón del sistema expresado
+mediante la función discreta siguiente:$$
+y(n)=x(n)-2\cos(\pi/8)y(n-1)+y(n-2)$$
+
+\end{enumerate}

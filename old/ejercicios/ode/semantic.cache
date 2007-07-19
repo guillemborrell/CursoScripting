@@ -1,0 +1,21 @@
+;; Object semantic.cache
+;; SEMANTICDB Tags save file
+(semanticdb-project-database "semantic.cache"
+  :file "semantic.cache"
+  :tables (list 
+   (semanticdb-table "vdp1.cc"
+    :file "vdp1.cc"
+    :pointmax 265
+    :major-mode 'c++-mode
+    :tokens '(("octave/oct.h" include t nil nil [1 24]) ("DEFUN_DLD" function "int" (("" variable ("vdp1" type "class") nil nil nil nil [36 41]) ("" variable ("args" type "class") nil nil nil nil [41 46])) nil nil nil [25 264]))
+    :unmatched-syntax '((string 53 . 88))
+    )
+   (semanticdb-table "vdp1000.cc"
+    :file "vdp1000.cc"
+    :pointmax 276
+    :major-mode 'c++-mode
+    :tokens '(("octave/oct.h" include t nil nil [1 24]) ("DEFUN_DLD" function "int" (("" variable ("vdp1000" type "class") nil nil nil nil [36 44]) ("" variable ("args" type "class") nil nil nil nil [44 49])) nil nil nil [25 275]))
+    :unmatched-syntax 'nil
+    )
+   )
+  )

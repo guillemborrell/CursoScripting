@@ -1,0 +1,348 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                              %
+%   Introducción informal a Matlab y Octave                    %
+%   Archivo de fuente de texto LaTeX                           %
+%   Guillem Borrell Nogueras                                   %
+%   Licencia :                                                 %
+%     Creative Commons Public License                          %
+%     Reconocimiento-NoComercial-SinObraDerivada 2.5 España    %
+%   2005-2006                                                  %
+%                                                              %
+%   Builds with both LaTeX and pdfLaTeX                        %
+%   Remember to run makeindex                                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[10pt,fleqn,a4]{book}
+%   Makeindex support
+\usepackage{makeidx}
+\makeindex
+%   Usual document characteristics
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%   Page formatting
+\usepackage{geometry}
+\geometry{
+  verbose,
+  a4paper,
+  tmargin=2cm,
+  bmargin=2cm,
+  lmargin=2.5cm,
+  rmargin=1cm,
+  headheight=0.5cm,
+  headsep=0.5cm,
+  footskip=1cm
+}
+%   I do not know what this is for
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+%   Math packages
+\usepackage{array}
+\usepackage{float}
+%   Several font packages
+%   AMSmath and AMSsymbol packages may conflict with babel
+%     just console garbage, press <Enter> and go
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{marvosym}
+%   Creative common licenses symbols.  Requires cclicenes.sty
+\usepackage{cclicenses}
+%   Use roman fonts for text and formulas.  Verbatim text is
+%   still computer modern.
+%\usepackage{mathptmx}
+%   Graphics support
+\usepackage{graphicx}
+%   Fancyhdr and fncychap styles.  Requires external file
+%     fncyheader.sty
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[RE]{\slshape \rightmark}
+\fancyhead[LO]{\slshape \leftmark}
+\fancyhead[LE,RO]{\slshape \thepage}
+\fancyfoot[RO]{\slshape{Introducción informal a Matlab y Octave}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\usepackage[Conny]{fncychap}
+
+%   Hyperref package to automatically generate hyperlinks
+\usepackage{hyperref}
+%\usepackage{indentverbatim}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                          %
+%                                          %
+%      %%%Introducción informal a%%%       %
+%      %%%Matlab y Octave        %%%       % 
+%                                          %
+%                                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\title{\begin{Huge}Introducción informal a Matlab y Octave\end{Huge}}
+
+
+\author{Guillem Borrell i Nogueras\\
+  \href{mailto:guillemborrell@gmail.com}
+  {\texttt{guillemborrell@gmail.com}}\\
+  \texttt{\url{http://torroja.dmt.upm.es:9673/Guillem\_Site/}}\\
+}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter*{Prólogo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Hay muchos libros de Matlab, algunos muy buenos, pero en ninguno es
+tratado como un lenguaje de programación. El enfoque habitual es
+pensar en Matlab como programa, como un entorno de desarrollo
+completo. No se habla nunca del intérprete Octave ni a las ventajas y
+defectos respecto a otros lenguajes de programación. No son libros,
+son manuales.  Creo que es muy importante aplicar el sentido crítico a
+cualquier herramienta y todo lo editado hasta a hora no es de gran
+ayuda. Octave es un programa magnífico, lo he usado durante años. No
+llega a la magnitud de Matlab pero debe ser tenido en cuenta. En este
+libro los dos intérpretes se analizan en igualdad de condiciones y se
+apunta cuál puede ser la mejor opción en cada caso.
+
+Estos apuntes empezaron como material adicional mal escrito para un
+curso de seis horas; con tiempo y dedicación han crecido hasta lo que
+son ahora. Escribir sobre un lenguaje de programación es largo,
+difícil y laborioso; nunca sabes si el lector va entender los
+conceptos que plasmas sobre el papel. Esto requiere el esfuerzo extra
+de reducir las ideas a lo más básico. Es una experiencia gratificante,
+sobre todo cuando uno mismo tiene que reformular conceptos que ya
+creía asimilados. Uno aprende a escribir, a explicarse y a tener
+paciencia.  Es un curso informal, pretende ser cercano y ameno incluso
+cuando se tratan conceptos complejos o abstractos.
+
+Este libro es libre y abierto; quería que fuera así desde un
+principio.  Todo el que quiera participar en él puede hacerlo sin
+ninguna restricción.  Su única finalidad es ayudar a los demás. Espero
+que quien lo sostenga en sus manos aprecie esta pequeña muestra de
+altruismo y decida colaborar; estaré siempre abierto a sugerencias y
+correcciones. Incluso si alguien propone una reescritura o la
+inclusión de un capítulo no tengo ningún reparo en otorgarle la
+coautoría.\\
+\\
+\begin{flushright} Guillem Borrell i Nogueras \\
+  Calella, 13 de Agosto de 2005
+
+\end{flushright}
+
+\pagebreak
+
+Este documento está publicado según la siguiente licencia:
+\begin{center}
+\begin{Huge}
+$\cc$ \quad Creative Commons\\
+\end{Huge}
+\textbf{Reconocimiento-NoComercial-SinObraDerivada 2.5 Espa\~na}\\
+\end{center}
+
+
+Copyright $\cc$ $\byncnd$ Guillem Borrell i Nogueras {}``Some rights
+reserved''.\\
+
+
+El documento está publicado bajo una licencia que no permite el
+trabajo derivado. Sin embargo este documento puede publicarse bajo
+otras licencias del tipo {}``algunos derechos reservados'' para
+permitir la modificación libre del texto. Para obtener el texto sujeto
+a una licencia alternativa es necesario ponerse en contacto con el
+autor.\\
+
+
+Matlab${\textregistered}$ y MathWorks${\textregistered}$ son nombres
+registrados por MathWorks\\
+
+
+Versión 0.10
+
+Pendientes de ampliación las secciones marcadas con (+)
+
+Typeset by \LaTeX{}
+
+Escrito en Kubuntu GNU/Linux y Gentoo GNU/Linux. No ha sido necesaria
+ninguna herramienta comercial para preparar este texto, sirva como
+demostración que el software no por ser más caro debe ser mejor.
+
+pdf en \url{http://torroja.dmt.upm.es:9673/Guillem_Site/CursoMatlab/cursomo.pdf}
+
+
+\chapter*{Notas y agradecimientos}
+\subsection*{Versión 0.10}
+Las puntualizaciones para esta versión son más una fe de erratas que
+un conjunto de aclaraciones.  Marian me puntualizó que en algunos
+casos confundía el concepto de rango con el de dimensión de una
+matriz.  Esta confusión está diseminada por todo el libro y de momento
+no tengo tiempo para releerlo entero.  Es un error que por conocido no
+deja de ser grave.
+
+Otro error que debe ser subsanado es la afirmación, sobre todo en los
+apéndices, de que Matlab no tiene ningún método de optimización
+automática y que todos los bucles son lentos.  Mientras esto sigue
+siendo cierto para Octave, Matlab cuenta con dos herramientas muy
+interesantes; son el \emph{profiler} y el optimizador JIT (Just In
+Time).  Con un uso inteligente de la optimización automática la
+velocidad de los códigos simples se acerca a la obtenida con un
+lenguaje compilado.
+
+Sin embargo no deja de ser cierto que la mejor manera de acelerar
+código en Matlab es vectorizar y que obligar al usuario a optimizar
+manualmente en vez de generar bytecode a partir de las funciones no es
+camino a seguir.  En eso Python sigue siendo un ejemplo de mejor
+diseño.
+
+
+\tableofcontents{}
+
+\listoffigures
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\part{Introducción y elementos del lenguaje Matlab}
+
+%introducción
+\input{partI/intro.tex}
+%Elementos del lenguaje Matlab
+\input{partI/matlab.tex}
+
+%%Parte II, La biblioteca de funciones
+
+\part{La biblioteca de funciones}
+
+%Matrices y álgebra lineal
+\input{partfunc/matalg.tex}
+%Gráficos
+\input{partfunc/graficos.tex}
+%Cálculo y análisis
+\input{partfunc/calculo.tex}
+%toolkits
+\input{partfunc/toolkits.tex}
+%temas avanzados
+\input{partfunc/avanzado.tex}
+
+
+%%Parte II, ejercicios
+
+\part{Ejercicios}
+
+%Ejercicios resueltos
+\input{partejer/resueltos.tex}
+%Ejercicios propuestos
+\input{partejer/propuestos.tex}
+
+\appendix
+
+\part{Apéndices}
+%Los diez mandamientos de la programación en Matlab
+\input{apendices/diezmand.tex}
+%Pequeña introducción a LaTeX
+\input{apendices/latex.tex}
+%Software y formatos libres
+\input{apendices/freesoft.tex}
+%Lo que no me gusta de Matlab
+\input{apendices/matlabkk.tex}
+%Licencia creative commons
+
+
+
+\begin{thebibliography}{99}
+
+\bibitem{Turbulence}
+
+  Turbulence and Vortex Dynamics; Javier Jiménez; July 26, 2004;
+  http://torroja.dmt.upm.es/
+
+\bibitem{Fortran}
+
+  Fortran 95/2003 Explained; Michael Metcalf, John Reid, Malcolm
+  Cohen; Oxford University Press; 2004.
+
+\bibitem{Numerical}
+
+  Numerical Recipes in Fortran 77, The Art of Scientific Computing;
+  Second Edition; William H. Press, Saul A. Teukolsky, William T.
+  Vetterling, Brian P. Flannery; Cambridge University Press, 1997
+
+\bibitem{Orlandi}
+
+  Fluid Flow Phenomena, A Numerical Toolkit; Paolo Orlandi; Kluwer
+  Academic Publishers, 2000.
+
+\bibitem{Chung}
+
+  Computational Fluid Dynamics; T.S. Chung; Cambridge University
+  Press, 2002
+
+\bibitem{Schildt}
+
+  C++: The Complete Reference; Herbert Schildt; Tata Mc Graw-Hill
+  ,1999
+
+\bibitem{OctaveWiki}
+
+  Scary Octave; http://wiki.octave.org/
+
+\bibitem{OctaveManual}
+
+  The Octave Language for Numerical Computations; John W. Eaton;
+  http://www.octave.org/
+
+\bibitem{Python}
+
+  Python Documentation; Guido van Rossum; http://www.python.org/doc/
+
+\bibitem{Wolfram}
+
+  MathWorld; Eric W. Weisstein; http://mathworld.wolfram.com/
+
+\bibitem{Fluidos}
+
+  Mecánica de Fluidos; Amable Liñán; Publicaciones ETSIA, Universidad
+  Politécnica de Madrid.
+
+\bibitem{Numerico1}
+
+  Cálculo Numérico I; Varios; Publicaciones ETSIA, Universidad
+  Politécnica de Madrid.
+
+\bibitem{EDO}
+
+  Análisis y Cálculo Numérico en Ecuaciones en Derivadas Parciales;
+  Juan A. Hernández, Eusebio Valero; Publicaciones ETSIA, Universidad
+  Politécnica de Madrid.
+
+\bibitem{Trefethen}
+
+  Spectral methods in MATLAB; Lloyd N. Trefethen; SIAM, 2000
+
+\bibitem{Algebra}
+
+  Algebra Lineal y Geometría Cartesiana; Juan de Burgos; McGraw Hill,
+  2000
+
+\bibitem{Multicapa}
+
+  Fortran 95: Programación Multicapa para la simulación de sistemas
+  físicos; Juan A. Hernández, Mario A. Zamécnik; ADI, 2001.
+
+\bibitem{Wikipedia}
+
+  Wikipedia, the free encyclopedia:\url{http://en.wikipedia.org/wiki/Wikipedia}
+
+\end{thebibliography}
+
+
+
+
+
+\printindex{}
+
+\end{document}

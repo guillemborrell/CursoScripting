@@ -1,0 +1,187 @@
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Guía de estilo. Los 10 mandamientos}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+En muy bueno para un lenguaje de programación que tenga una guía de
+estilo asociada. Cómo formatear el código debe ser algo más que una
+marca de estilo personal, un estándar que todo el mundo siga a
+rajatabla.
+
+En algunos lenguajes la sintaxis viene acoplada a unas ciertas reglas
+de escritura, por ejemplo Python nos obliga a tabular las estructuras;
+si no ordenamos bien el inicio de las líneas el código no funcionará.
+C, C++ y Java usan corchetes para agrupar niveles de ejecución y se
+recomienda dejar sólo el corchete en la línea y tabular todo lo que
+contenga.
+
+En muchos casos estas reglas son en realidad recomendaciones. En
+Fortran recomiendan marcar los niveles de ejecución con tabulados de
+dos espacios, algo parecido se recomienda en Matlab. Pero tanto en
+Fortran como en Matlab estas normas son sistemáticamente ignoradas. El
+programador \emph{científico} no ha recibido ninguna educación sobre
+las reglas de escritura y tiene muy poca experiencia con lenguajes más
+fuertemente estructurados como C o Java. El resultado es un código
+plano, desestructurado, desorganizado y mal comentado.
+
+Una de las herramientas esenciales para evitar este desastre es el
+editor de texto. Sería muy largo describir el funcionamiento de un
+editor de texto, simplemente diremos que es un programa que edita
+código fuente y que tiene todas las herramientas disponibles para que
+sea mucho más fácil. Colorea las palabras clave, tabula el código
+automáticamente, corrije algunos fallos comunes... Matlab posee un
+buen editor de textos, pero no le llega ni a la suela del zapato a
+Emacs o VIM. El funcionamiento de Emacs puede resultar hasta
+sorprendente.  Imaginemos que abrimos un archivo de código escrito en
+Fortran 95.  Está lleno de \texttt{if} y \texttt{do} sin ordenar y mal
+tabulado.  Además el compilador nos dice que hay una estructura que
+está sin cerrar; que nos falta un \texttt{end}. Si estamos editando el
+archivo con Emacs sólo tenemos que pulsar \texttt{<Alt><Control><Q>} y
+todo el texto se tabula automáticamente.
+
+Sin embargo el estilo de un buen programador es insustituible. Matlab
+no tiene ninguna guía de estilo, sin embargo puede decirse que existen
+una serie de normas no escritas para que el código sea más leíble y,
+no menos importante, ejecute rápido.
+
+Estas normas parecen inservibles para pequeños scripts que escribimos
+para consumo propio. He aprendido que cuando se recupera un script que
+se ha escrito seis meses antes es como si lo hubiera escrito otro.
+Siempre que escribamos un programa tomaremos esta actitud; lo estamos
+escribiendo para que un desconocido lo entienda.
+
+Todas las buenas prácticas se resumen en diez técnicas, los 10
+mandamientos del Matlab.
+
+\begin{description}
+\item [1.]Utilizar funciones \texttt{inline} y \texttt{@} siempre que
+  se pueda.
+\end{description}
+Ya hemos visto que en Matlab (que no en Octave) definir una nueva
+función significa crear un archivo. Esto hace que el código de el
+programa principal sea más difícil de entender y de comentar. Aunque
+Matlab escala bien no es muy recomendable escribir programas demasiado
+largos y si tenemos demasiadas funciones y archivos es que no estamos
+haciendo las cosas bien.
+
+Las sentencias \texttt{inline} y los \emph{function handles} nos
+ayudan a mantener el código compacto y leíble.
+
+\begin{description}
+\item [2.]Usar bucles \texttt{for} sólo donde sea indispensable
+\end{description}
+Esta es la gran diferencia entre Matlab y Fortran. Una de las grandes
+decepciones de los programadores en Fortran cuando utilizan Matlab es
+la gran diferencia de velocidad. Esta diferencia existe y es de entre
+uno y dos órdenes de magnitud. El problema es que es gravemente
+acentuada por usar el estilo de Fortran en el código Matlab. En
+Fortran los bucles \texttt{do} son endiabladamente rápidos. Cuando se
+compila el código los contadores se optimizan como estructura entera,
+incluso algunos compiladores advierten cuando los bucles encapsulados
+no son dependientes y paralelizan la tarea automáticamente. El
+programador en Fortran encapsula porque sabe que el compilador le va a
+ayudar.
+
+Matlab no es capaz de optimizar el código de esta manera porque su
+arquitectura no lo permite. La solución para obtener una velocidad
+aceptable es usar siempre submatrices.
+
+\begin{description}
+\item [3.]Usar estructuras \texttt{if} planas.
+\end{description}
+Cuando hablamos de condicionales dijimos que el encapsulado tipo
+\emph{matroska} no era recomendable porque complica mucho la lectura
+del código. Además disminuye la velocidad de ejecución por la creación
+de más variables adicionales. Si utilizamos condiciones lógicas
+compuestas (siempre dentro de un límite) el resultado será más leíble
+y posiblemente más rápido.
+
+\begin{description}
+\item [4.]Utilizar las funciones de creación de matrices.
+\end{description}
+Las funciones como \texttt{zeros}, \texttt{ones}, \texttt{eye},
+\texttt{linspace} o \texttt{meshgrid} son tremendamente útiles. El
+código de un buen programador estará siempre lleno de composición de
+estas funciones para generar matrices. La alternativa es utilizar
+bucles, prohibido por el segundo mandamiento.
+
+\begin{description}
+\item [5.]Definir las variables de las cabeceras \emph{in situ}.
+\end{description}
+Cuando se pasan los argumentos a una función lo habitual es crear
+primero las variables que los contienen y luego poner las variables en
+la cabecera. Si lo hacemos es casi obligado hacerlo justo antes de
+llamar a la función. De otro modo tendremos que navegar por el código
+hasta encontrar dónde se define la variable que pasa el argumento.
+
+Es recomendable también que las constantes o los argumentos simples se
+definan directamente en la cabecera. Puede parecer que el resultado es
+difícil de leer, pero cuando uno se acostumbra resulta ser todo lo
+contrario. Es mucho mejor una línea con varios comandos que no
+repartir sentencias asociadas por todo el código.
+
+\begin{description}
+\item [6.]Utilizar submatrices siempre que se pueda.
+\end{description}
+Este es el \emph{No matarás} de los mandamientos de Matlab. La
+alternativa es utilizar bucles con un puntero que vaya rastreando la
+matriz; demasiado lento. El equivalente de esta recomendación en
+Fortran sería utilizar el \texttt{forall} en vez de los bucles
+simples.
+
+Esta práctica sólo tiene ventajas. El código es más leíble, es plano,
+mejor encapsulado, se entiende perfectamente y es más rápido. Cuando
+se dice que Matlab es un programa de cálculo matricial no se dice
+gratuitamente. No hay que pensar contando índices con la notación del
+sumatorio como en Fortran, hay que pensar matricialmente.
+
+\begin{description}
+\item [7.]Tabular bien los bloques de ejecución
+\end{description}
+Aunque ya hemos aprendido que lo más importante es evitar el
+encapsulado de estructuras de ejecución en algunos casos no tendremos
+más salida.  En ese caso el tabulado de cada uno de los bloques es muy
+recomendable.  Además de obteber un resultado más leíble evitaremos
+los errores tontos como los bucles o los condicionales sin cerrar.
+
+\begin{description}
+\item [8.]Comentar cualquier operación que lo precise.
+\end{description}
+Lo repito, cuando recuperemos código escrito unos meses antes será
+como si lo hubiera escrito otro. puede ser que una sentencia
+especialmente brillante sea además críptica; comentaremos
+sistemáticamente todo lo que sea necesario.
+
+\begin{description}
+\item [9.]Escribir una cabecera de ayuda en cada función.
+\end{description}
+Este mandamiento es directamente derivado del octavo. A medida que
+escribamos funciones terminaremos con una pequeña biblioteca personal.
+El resultado será que tendremos que usar funciones sin recordar ni la
+forma de su cabecera. El comando \texttt{help} es imprescindible no
+sólo para las funciones de la biblioteca; también nos servirá en las
+que escribamos nosotros mismos.
+
+\begin{description}
+\item [10.]Usar Octave en vez de Matlab y colaborar en el proyecto.
+\end{description}
+Las soluciones más justas no siempre son las más fáciles. Octave es
+más espartano y difícil pero ha sido posible gracias al esfuerzo de
+muchos desarrolladores que han colaborado desinteresadamente en el
+proyecto. El resultado es un programa de gran calidad que no para de
+mejorar día a día.
+
+El hecho de que se trate de software libre es un valor añadido.
+Podremos escudriñar en sus entrañas para descubrir su funcionamiento,
+extenderlo con otros lenguajes de programación, ayudar en proyectos
+secundarios.  Una vez se entra en este juego no se para de aprender.
+
+
+\subsubsection*{El último mandamiento que los recoje a todos:}
+
+\begin{center}
+
+Escribirás lo menos posible usando todas las funciones que puedas.\end{center}

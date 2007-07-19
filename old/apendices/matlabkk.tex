@@ -1,0 +1,201 @@
+\chapter{Lo que no me gusta de Matlab.}
+
+Matlab no es ni mucho menos mi lenguaje de programación favorito.
+Empecé con Matlab tras unos años de Fortran; poco tiempo después me
+lancé con Python. Cuando estaba completamente emocionado con Python
+me vi obligado a programar más en Matlab lo que me permitió compararlos
+profundamente. Matlab salió perdiendo por goleada.\\
+
+Además, cuando hago algún pequeño script uso el intérprete GNU/Octave.
+Llevo muchos y felices años programando en entorno Linux donde la
+instalación de Octave es trivial. Éste interprete no te deja hacer
+muchas maravillas, simplemente soporta la parte matemática; nada de
+gráficos renderizados y sombreados o interfaces de usuario. Para mí
+es más que suficiente, en programas más complicados no lo uso.\\
+
+Matlab es una gran ayuda para un ingeniero y es perfecto para cálculos
+de complejidad media. Esto no impide que seamos críticos, Matlab tiene
+defectos, algunos de ellos muy grandes; aunque donde yo digo defectos
+alguien puede decir virtudes.
+
+
+\section{Un lenguaje pobre y obsoleto.}
+
+Matlab va sobre {}``trucos''. Fue muy frustrante ver como me era
+imposible plasmar lo aprendido durante años con otros lenguajes. En
+vez de crear estructuras cada vez más sofisticadas iba aprendiendo
+cómo hackear el código descaradamente. El lenguaje no daba para más.
+No es un lenguaje de programación general y no pretende serlo pero
+tiene carencias que a mi parecer justificarían una revisión exhaustiva.
+Lo peor de todo es que Mathworks va extendiendo el lenguaje a base
+de añadidos que no tienen ninguna lógica. Por ejemplo la orientación
+a objetos. ¿De qué sirve crear una clase si no hay absolutamente ninguna
+en ningún toolkit? ¿Están diciendo desde Mathworks que quieren que
+hagamos su trabajo?\\
+
+Otro aspecto que me sorprendió muy negativamente fue la manera en
+la que se manejaba la precisión numérica, sobretodo cuando se trabaja
+con \texttt{Inf} o \texttt{0}. Matlab es incapaz de manejar integrales
+impropias del modo correcto como lo consigue por ejemplo Python o
+Java. La precisión de los cálculos internos es algo preocupante, además
+de la velocidad. Cuando Matlab era el único lenguaje de scripting
+científico decente aguantar su lentitud era algo asumido. Hoy en día
+otros lenguajes de scripting son del orden de tres veces más rápidos.\\
+
+El funcionamiento de Matlab es fuertemente imperativo y no soporta
+ningún otro paradigma de programación; ni siquiera la programación
+modular.  Todo es una función, incluso los métodos para pasar
+variables entre unidades de programa. Este paradigma resulta
+especialmente molesto cuando los programas se complican. Mantener la
+sintaxis del lenguaje minima e ir añadiendo una función tras otra no
+es siempre la solución porque tiende a empobrecer el lenguaje y obliga
+a aprender centenares
+de funciones que uno utiliza una vez en su vida.\\
+
+El hecho de que por cada función definida del modo usual se tenga
+que crear un archivo me saca de quicio. Si eso desembocara en una
+ganancia espectacular de velocidad estaría hasta cierto punto justificado,
+pero no es así. Es una tarea cansina partir un algoritmo en decenas
+de archivos porque ir juntando las piezas en function handles convierten
+el código en un jeroglífico. También lo es tener que jugar con las
+variables para pasar argumentos a funciones de una manera eficiente
+o crear estructuras de variables artificiales porque a Matlab le faltan
+tipos como listas o diccionarios. No se pueden usar estructuras complejas
+de datos porque no se pueden hacer asignaciones por grupo, no se pueden
+crear iteradores ni iterar sobre listas y muchas cosas más. En una
+comparación con otros lenguajes de scripting como Python o Ruby, Matlab
+sale netamente perdedor.
+
+
+\section{DWIMBNWIW.}
+
+Estas son las iniciales de Do What I Mean But Not What I Write. Es
+un paradigma de los lenguajes de programación en el que el resultado
+de nuestro código no depende del modo en el que se ha escrito. Significa
+que el compilador o el intérprete es tan listo que entiende lo que
+queremos decir aunque no hayamos sido capaces de plasmarlo en un código
+óptimo. Podemos preocuparnos más de escribir un código elegante y
+leíble sin pensar demasiado en una optimización máxima. Fortran es
+quizás el lenguaje de programación que se acerca más a este objetivo.\\
+
+Matlab hace literalmente lo que escribimos sin ningún tipo de optimización
+automática. La consecuencia inmediata es que, tal como hemos visto
+durante los ejemplos en el libro, la velocidad de ejecución depende
+directamente de nuestro estilo de programación. Un bucle mal puesto
+o una función sin optimizar puede aumentar el tiempo de ejecución
+en varios ordenes de magnitud. La optimización {}``en directo''
+no es algo ni imposible ni nuevo en lenguajes interpretados. Optimizar
+los bucles no es tan difícil y en Matlab sólo se hace si compilamos
+las funciones.\\
+
+La consecuencia indirecta es que la escritura del programa queda condicionada
+por el resultado. \textbf{Este defecto es un motivo suficiente como
+para calificar a Matlab de mal lenguaje de programación}. Algunos
+lenguajes imponen un estilo pero nunca por motivos relacionados con
+el resultado y siempre por elegancia o coherencia. Para que un código
+en Matlab funcione bien debemos evitar los bucles... ¿Cómo pueden
+pedirnos que evitemos una de las dos estructuras esenciales de la
+programación? Para conseguir el máximo rendimiento debemos encapsular
+los comandos lo máximo posible... Al final el código es difícilmente
+leíble. Para evitar las pérdidas de memoria debemos utilizar la menor
+cantidad de variables posibles... ¿No sería mejor dotar a Matlab de
+automatic garbage collection%
+\footnote{En un lenguaje donde se van creando y destruyendo variables y donde
+las funciones reciben los argumentos por valor en vez de por referencia
+es muy útil tener un mecanismo que libere la memoria que no se vuelve
+a utilizar. Automatic Garbage Collection es el nombre que recibe el
+mecanismo de búsqueda y eliminación de variables intermedias inútiles.
+Matlab sólo dispone del comando \texttt{clear}.%
+}?
+
+
+\section{Matlab para todo, absolutamente todo.}
+
+Cuando aprendí programar de verdad fue cuando dominé más de un lenguaje
+de programación. Fortran me maravilla porque en ningún momento ha
+querido salir del ámbito científico; si quieres herramientas gráficas
+programalas en C++ o en Java. En cambio Matlab te permite hacer absolutamente
+de todo, pero mal. Un ejemplo es el módulo para la creación de interfaces
+gráficas. Un programador experimentado sabe que cuando programa un
+interfaz lo más importante es saber en qué toolkit lo está haciendo
+porque puede que no funcione bien en algunos ordenadores. Un ejemplo
+claro son las máquinas Linux o BSD donde no hay una máquina virtual
+de Java por defecto. ¿Cuál es el toolkit de Matlab? Para programar
+interfaces gráficas es muy conveniente irse a otro lenguaje. De acuerdo,
+se puede hacer en Matlab; pero no convencerán a nadie si dicen que
+es la solución más adecuada. Hoy en día no se concibe una API para
+interfaces gráficas que no soporte orientación a objetos. Otro ejemplo
+es el toolkit de proceso de imágenes, muy inferior a Imlib que tiene
+bindings a casi todos los lenguajes de programación (excepto Matlab),
+es gratuita, rápida y con una API deliciosamente bien escrita.\\
+
+El ingeniero {}``Matlab-monkey'' es un patrón que se está extendiendo
+peligrosamente. Matlab puede hacer de todo, bien o mal; esto acaba
+muchas veces con el sentido crítico de que siempre hay que escoger
+la herramienta adecuada para una tarea. Para procesar datos o para
+pequeños scripts matemáticos Matlab es simplemente perfecto. Para
+trabajar con tipos complejos, crear grandes estructuras lógicas o
+hacer cálculos agresivos con la precisión del ordenador debemos buscar
+otra solución.\\
+
+El fenómeno {}``Matlab-monkey'' nace de la facilidad con la que
+se programa en Matlab y es agravado por la creencia que aprender un
+lenguaje de programación nuevo es costoso e inútil. Todos los programadores
+que dominen, y con dominar me refiero a ser capaces de escribir programas
+de miles de lineas que funcionen, admiten que usar regularmente tres
+o cuatro lenguajes de programación dota de unos recursos impagables;
+en el fondo todos son iguales.
+
+
+\section{El poder del dinero}
+
+En el tema de licencias Microsoft es una hermanita de la caridad al
+lado de Mathworks. Matlab es un programa caro, muy caro. Si compramos
+alguna versión de estudiante a un precio económico nos podemos encontrar
+con la desagradable sorpresa de que no está la función \texttt{fsolve}.
+El motivo es que Matlab está dividido en multitud de toolkits por
+motivos económicos y algunos de los esenciales están ausentes en el
+paquete básico. Ahora pensamos que no hay ningún problema, que siempre
+se puede conseguir pirateado... Pero si tenemos una empresa no hay
+pirateo que valga, hay que comprar el software. Un Matlab completamente
+operativo puede costarnos:
+
+\begin{description}
+\item [\texttt{2400\EUR}]Matlab. Sólo el intérprete, las funciones
+  básicas y la interfaz gráfica.
+\item [\texttt{1150\EUR}]Optimization toolkit. Sin esto no tenemos
+  \texttt{fsolve} .
+\item [\texttt{1000\EUR}]Statistics toolkit. Sin esto no tenemos
+  funciones estadísticas
+\item [\texttt{1000\EUR}]Signal processing toolkit. Sin esto nada de
+  convoluciones y FFT.
+\end{description}
+Y si encima queremos el Matlab Compiler para que el código vaya rápido
+de verdad (\texttt{6250}\EUR), Simulink (\texttt{3500}\EUR) y
+Stateflow (\texttt{3500}\EUR) la suma puede salirnos por la friolera
+de \texttt{18800}\EUR.  Y más nos vale ponerlo en un buen servidor de
+aplicaciones porque esto es el coste por puesto de trabajo.\\
+
+Si lo comparamos con el coste cero de muchas de los programas que
+podemos encontrar por Internet, algunas de ellos de tanta calidad
+o más que Matlab, es probable que cambiemos de herramienta de uso
+cotidiano.
+
+
+\section{Python}
+
+Programo en Matlab a menudo pero esto no significa que sea mi lenguaje
+favorito. Aprecio su carácter directo y su sencillez pero cuando tengo
+que programar aplicaciones más serias me voy a otro lenguaje interpretado,
+Python. Tiene absolutamente todo lo que se le puede pedir a un lenguaje
+de programación, además está creciendo en adeptos. Es muy recomendable
+echarle un vistazo, probablemente alguien vea la luz con Python; incluso
+puede ser que descubra que programar es divertido.\\
+
+El módulo orientado a matemáticas más versátil y completo es SciPy.
+Aunque está aún incompleto se ha convertido en una referencia entre
+los programadores en Python. A los recién llegados a este lenguaje
+les resulta raro encontrar rutinas para funciones de interpolación
+implementadas con orientación a objetos. Una vez se supera la sorpresa
+inicial el código resultante se vuelve cada vez mejor, incluso puede
+volverse más directo que Matlab.
