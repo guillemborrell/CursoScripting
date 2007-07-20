@@ -48,4 +48,39 @@ La mayoría de las distribuciones de GNU/Linux utilizan Python para
 implementar sus herramientas de gestión.  Esto significa que
 probablemente esté ya instalado.  El único trámite es asegurarse que
 se dispone de una versión reciente.  Bastará con abrir una consola y
-teclear ``python``.
+teclear ``python``::
+
+  U> python
+  Python 2.4.4 (#1, May 21 2007, 14:49:17)
+  [GCC 4.1.1 (Gentoo 4.1.1-r3)] on linux2
+  Type "help", "copyright", "credits" or "license" for more information.
+  >>>
+
+La versión más actual de Python es la |pythonversion| pero con esta
+versión un poco anterior será suficiente. Serán necesarios módulos
+adicionales pero su instalación se comentará cuando sea necesario
+
+Instalar Python en Microsoft Windows
+------------------------------------
+
+Windows no dispone de un intérprete de Python así que hay que
+instalarlo.  Hay varias distribuciones de Python para Windows pero por
+sencillez se utilizará la versión oficial.  Puede descargarse de
+http://python.org de forma gratuita.  La instalación es sencilla y no
+requiere conocimientos adicionales.  Una de las pocas precauciones es
+dejar que se instale en el directorio por defecto como muestra la
+figura 1:
+
+.. figure:: ./figuras/pantallazo1.png
+  :scale: 50
+
+  Captura de la instalación de Python
+
+Estará bien instalar todos los módulos posibles, Python ocupa bastante
+poco en el disco duro.  La figura 2 muestra el aspecto del diálogo con
+todos los módulos seleccionados; es la configuración por defecto.
+
+.. figure:: ./figuras/pantallazo2.png
+  :scale: 50
+
+  Captura del menú de módulos a instalar.
