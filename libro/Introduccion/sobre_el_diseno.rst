@@ -135,4 +135,4 @@ de las herramientas.
 
 .. [KNU] http://www.acm.org/ubiquity/views/v7i24_fallacy.html
 
-.. [COR] http://en.wikipedia.org/wiki/Fernando_J._Corbató
+.. [COR] http://larch-www.lcs.mit.edu:8001/~corbato/

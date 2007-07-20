@@ -59,8 +59,8 @@ pierde dinero ni el lector pierde derechos, goza de los que el autor
 le otorgue.
 
   
-restructuredtext(rw)
-====================
+restructuredtext
+================
   
 No tiene ningún sentido liberar el contenido de libro y publicarlo en
 un formato exótico o cerrado.  Una parte esencial del movimiento del
@@ -96,13 +96,10 @@ siguientes:
       
 El objetivo es entonces crear un *metadocumento* que sea capaz de
 convertir el texto en cualquier formato ya sea de impresión o de
-lectura online.
-
-Los tres candidatos que he considerado son LaTeX, `XML/docbook` y
-`restructuredtext`
-  
-El ganador final ha sido `restructuredtext` un lenguaje de marcas
-ligero parte de `docutils` que a su vez es un proyecto asociado a
-Python, uno de los lenguajes de programación utilizados en el libro.
+lectura online. Los tres candidatos que he considerado son LaTeX,
+`XML/docbook` y `restructuredtext` resultando vencedor el último, un
+lenguaje de marcas ligero parte de `docutils` que a su vez es un
+proyecto asociado a Python, uno de los lenguajes de programación
+utilizados en el libro.
   
 
