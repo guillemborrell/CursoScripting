@@ -154,6 +154,8 @@ soporta fortran 90 o 95. Que se produzca el salto también es cuestión
 de tiempo. El compilador de fortran más moderno de GCC, gfortran
 [GFO]_, debe instalarse a parte de modo análogo a MinGW.
 
+.. [GFO] http://gcc.gnu.org/wiki/GFortran
+
 .. admonition:: TODO
 
   Saca capturas de cómo instalarlo.

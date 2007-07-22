@@ -70,3 +70,8 @@ Prólogo
 ============================
 
 .. include:: Entorno/compilador.rst
+
+3. Metodología de programación
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. include:: Metodologia/desarrollo_incremental.rst
