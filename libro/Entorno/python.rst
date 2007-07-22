@@ -69,7 +69,7 @@ sencillez se utilizará la versión oficial.  Puede descargarse de
 http://python.org de forma gratuita.  La instalación es sencilla y no
 requiere conocimientos adicionales.  Una de las pocas precauciones es
 dejar que se instale en el directorio por defecto como muestra la
-figura 1:
+figura 1.
 
 .. figure:: ./figuras/pantallazo1.png
   :scale: 50
