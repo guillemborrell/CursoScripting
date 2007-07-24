@@ -26,7 +26,7 @@
 */
 
 
-#include "qhull_a.h"
+#include "qhull/qhull_a.h"
 
 char qh_version[]="0.1";
 
@@ -73,10 +73,10 @@ int main (int argc, char *argv[]) {
       }
     }
 
-    printf("nf %i\n",nf);
-    printf("Size cube %i\n",SIZEcube);
+    printf("Number of facets %i\n",nf);
+    printf("Number of points %i\n",SIZEcube);
     
-    triangles = (long *) malloc(numpoints*dim*sizeof(long));
+    triangles = (long *) malloc(nf*(dim+1)*sizeof(long));
 
     FORALLfacets{
       if (!facet->upperdelaunay){
