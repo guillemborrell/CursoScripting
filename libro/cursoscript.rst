@@ -10,6 +10,7 @@ Lenguajes Interpretados para Simulación en Ingeniería
 .. |date| date:: 
 
 
+.. include:: globals.rst
 
 Revisiones
 ^^^^^^^^^^
@@ -44,8 +45,33 @@ Prólogo
 
 .. include:: Introduccion/matlab_software_libre.rst
 
+1.5 Convenciones tipográficas
+=============================
+
+.. include:: Introduccion/convenciones.rst
+
 
 2. El entorno de desarrollo
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. include:: Entorno/el_entorno_de_desarrollo.rst
+
+2.1 Python
+==========
+
+.. include:: Entorno/python.rst
+
+2.2 Octave
+==========
+
+.. include:: Entorno/octave.rst
+
+2.3 Compilador y constructor
+============================
+
+.. include:: Entorno/compilador.rst
+
+3. Metodología de programación
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. include:: Metodologia/desarrollo_incremental.rst

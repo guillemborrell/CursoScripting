@@ -1,6 +1,3 @@
-Python
-======
-
 Según su página web Python es un lenguaje dinámico y orientado a
 objetos que puede utilizarse para cualquier proyecto de software.
 Ofrece potentes herramientas para comunicarse con otros lenguajes de
@@ -22,22 +19,68 @@ consistente lo que lo hace especialmente adecuado para que los
 ejemplos sean fácilmente entendibles y extrapolables a otros lenguajes
 de programación.  
 
-La página web del proyecto, http://www.python.org/ es una inestimable
+La página web del proyecto [PYT]_  es una inestimable
 fuente de información.  Incluso los programadores experimentados
 pueden encontrar documentación útil a partir de la página.
 
-Si no se conoce Python existen numerosos títulos introductorios a este
-lenguaje de programación. El más recomendable es el tutorial oficial,
-disponible en varios idiomas, es un buen punto de partida.  Se
+Si no se conoce Python existen numerosos títulos introductorios como
+[TUT]_, [DIV]_ y [THI]_. El más recomendable es el tutorial oficial,
+disponible en varios idiomas; es un buen punto de partida.  Se
 actualiza junto con el lenguaje de programación para que quien empieza
-a dar los primeros pasos no reciba información obsoleta.
+a dar los primeros pasos no reciba información obsoleta.  Una vez ya
+se dispongan de los conocimientos básicos puede darse el salto hacia
+la referencia del lenguaje [REF]_.
 
-Programe aquí, ejecute en cualquier sitio
-=========================================
+.. [PYT] http://www.python.org/
 
-Este eslogan, asociado a java, define perfectamente una de las
-ventajas de los nuevos lenguajes interpretados. Puede ejecutarse
-código escrito en Python sobre un número ingente de plataformas.  El
-intérprete ha sido portado a la mayoría de los sistemas operativos y
-no sólo los mayoritarios.  Existen implementaciones de Python incluso
-sobre una máquina virtual de Java (Jython) o sobre .NET (IronPython).
+.. [TUT] http://www.network-theory.co.uk/python/manual/
+
+.. [DIV] http://diveintopython.org
+
+.. [THI] http://thinkpython.com
+
+.. [REF] http://www.network-theory.co.uk/python/language/
+
+Instalar Python en GNU/Linux
+----------------------------
+
+La mayoría de las distribuciones de GNU/Linux utilizan Python para
+implementar sus herramientas de gestión.  Esto significa que
+probablemente esté ya instalado.  El único trámite es asegurarse que
+se dispone de una versión reciente.  Bastará con abrir una consola y
+teclear ``python``::
+
+  U> python
+  Python 2.4.4 (#1, May 21 2007, 14:49:17)
+  [GCC 4.1.1 (Gentoo 4.1.1-r3)] on linux2
+  Type "help", "copyright", "credits" or "license" for more information.
+  >>>
+
+La versión más actual de Python es la |pythonversion| pero con esta
+versión un poco anterior será suficiente. Serán necesarios módulos
+adicionales pero su instalación se comentará cuando sea necesario
+
+Instalar Python en Microsoft Windows
+------------------------------------
+
+Windows no dispone de un intérprete de Python así que hay que
+instalarlo.  Hay varias distribuciones de Python para Windows pero por
+sencillez se utilizará la versión oficial.  Puede descargarse de
+http://python.org de forma gratuita.  La instalación es sencilla y no
+requiere conocimientos adicionales.  Una de las pocas precauciones es
+dejar que se instale en el directorio por defecto como muestra la
+figura 1.
+
+.. figure:: ./figuras/pantallazo1.png
+  :scale: 50
+
+  Captura de la instalación de Python
+
+Estará bien instalar todos los módulos posibles, Python ocupa bastante
+poco en el disco duro.  La figura 2 muestra el aspecto del diálogo con
+todos los módulos seleccionados; es la configuración por defecto.
+
+.. figure:: ./figuras/pantallazo2.png
+  :scale: 50
+
+  Captura del menú de módulos a instalar.
