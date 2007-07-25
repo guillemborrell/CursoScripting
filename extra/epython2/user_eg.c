@@ -58,6 +58,7 @@ int main (int argc, char *argv[]) {
 
   printf( "\ncompute %d-d Delaunay triangulation\n", dim);
   numpoints= SIZEcube;
+  printf("numpoints,%i\n",numpoints);
 
 /*   for (i=numpoints; i--; ) */
 /*     rows[i]= points+dim*i; */
