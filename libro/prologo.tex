@@ -1,3 +1,5 @@
+\chapter*{Prólogo}
+
 Más que un prólogo, las lineas que siguen son una justificación.  
 
 Mi primer libro *Introducción informal al Matlab y Octave* me provoca
@@ -37,8 +39,7 @@ escritura; invito a quien quiera colaborar que lo haga, se lo
 agradeceré sinceramente.
 
 
-Este es un libro libre.
-=======================
+\section*{Este es un libro libre.}
   
 Lo es por un cálculo que parece no ser tan evidente para muchos
 autores.  Cuando después de escribir un libro para un público
@@ -47,7 +48,6 @@ casi siempre las mismas: el autor debe abonar la mitad de los costes
 de impresión de la primera edición. Esto sitúa al editor en una
 situación de victoria o victoria; si el libro fracasa no pierde dinero
 y si triunfa tiene los derechos de edición.
-  
   
 Las consecuencias son que el autor casi siempre termina perdiendo
 dinero y que el libro se difunde muchísimo menos de lo que debería.
@@ -59,8 +59,7 @@ pierde dinero ni el lector pierde derechos, goza de los que el autor
 le otorgue.
 
   
-restructuredtext
-================
+\section*{Un formato para cada libro}
   
 No tiene ningún sentido liberar el contenido de libro y publicarlo en
 un formato exótico o cerrado.  Una parte esencial del movimiento del
@@ -70,7 +69,6 @@ la escritura y la generación del documento final nos aseguramos que
 podrá leerlo quien lo desee Los formatos escogidos son casi siempre
 `pdf` para impresión y `xhtml` para la lectura online.
   
-  
 Ser tu propio editor no es fácil; cada frase, cada página debe ser
 leíble.  Sería una lástima estropear un buen contenido por una mala
 presentación o una tipografía deficiente.  La única salida es utilizar
@@ -78,28 +76,25 @@ un formato que se encargue él mismo de la presentación final.  Por
 este motivo no tiene mucho sentido utilizar un procesador de texto
 para escribir un libro.  Los requisitos dicho formato son los
 siguientes:
-  
-      
-1. Capacidad para exportar a la mayor cantidad de formatos posibles
+
+\begin{enumerate}      
+\item Capacidad para exportar a la mayor cantidad de formatos posibles
    tanto impresos como para su lectura online.
       
-2. La fuente del documento debe ser editable en algún formato de
+\item La fuente del documento debe ser editable en algún formato de
    texto convencional para que puedan utilizarse sistemas de control
    de versiones.
       
-3. Debe conseguir una gran calidad tipográfica en todos los aspectos:
+\item Debe conseguir una gran calidad tipográfica en todos los aspectos:
    texto, cabeceras, ecuaciones, gráficos...
       
-4. Debe ser escalable, es decir, que a medida que el documento crezca
+\item Debe ser escalable, es decir, que a medida que el documento crezca
    no se haga más difícil de editar ni que el resultado final pierda
    calidad.
+\end{enumerate}
+
       
 El objetivo es entonces crear un *metadocumento* que sea capaz de
 convertir el texto en cualquier formato ya sea de impresión o de
-lectura online. Los tres candidatos que he considerado son LaTeX,
-`XML/docbook` y `restructuredtext` resultando vencedor el último, un
-lenguaje de marcas ligero parte de `docutils` que a su vez es un
-proyecto asociado a Python, uno de los lenguajes de programación
-utilizados en el libro.
-  
+lectura online. De todos los formatos posibles el que mejor cumplía todos los requerimientos para el tratamiento de un texto complejo es \LaTeX , un viejo conocido.
 

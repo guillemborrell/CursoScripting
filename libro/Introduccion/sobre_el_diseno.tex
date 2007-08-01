@@ -1,3 +1,5 @@
+\section{Diseño de aplicaciones de simulación}
+
 Este libro no es una guía de cómo escribir aplicaciones de
 simulación.  Trata más sobre el conocimiento de las herramientas
 que sobre cómo utilizarlas.  Sin embargo no está vacío de
@@ -41,28 +43,22 @@ La tesis de esta monografía es que el mínimo común denominador de
 todas estas posibles técnicas es la unión de un lenguaje interpretado
 con uno compilado.  De todas las posibles parejas se tratarán sólo:
 
-* Python y C
-
-* Octave y C++
+\begin{itemize}
+ \item Python y C
+ \item Octave y C++
+\end{itemize}
 
 Además, para adaptar código ya escrito y probado se les unirá Fortran
 al ser un lenguaje de uso común en el Cálculo Numérico y la simulación.
 
 
-El paradigma de la optimización prematura
------------------------------------------
-
-.. epigraph::
-
-  La optimización prematura es el orígen de todos los males.
-
-  -- Donald E. Knuth, [KNU]_
+\subsection{El paradigma de la optimización prematura}
 
 Los algoritmos asociados al análisis numérico requieren tiempos de
 computación elevados, tanto que algunos problemas necesitarían una
 potencia de cálculo infinita para ser resueltos satisfactoriamente.
 
-Existen **unos pocos** casos patológicos el los que desde la primera linea
+Existen \textbf{unos pocos} casos patológicos el los que desde la primera linea
 de código debe buscarse la optimización por delante de todo.  En ellas
 se evita cualquier bucle que recorra posiciones de memoria no
 contiguas o cualquier escritura innecesaria en disco a toda costa. Un
@@ -71,11 +67,11 @@ Navier Stokes. Son tan pocos que puede generalizarse en su contra.
 
 Partiendo del siguiente código de prioridades:
 
-1. Que el programa funcione.
-
-2. Que el programa funcione bien y en todos los casos.
-
-3. Que el programa sea rápido.
+\begin{itemize}
+ \item Que el programa funcione.
+ \item Que el programa funcione bien y en todos los casos.
+ \item Que el programa sea rápido.
+\end{itemize}
 
 Es importante llegar a una solución lo antes posible aunque su
 rendimiento sea inaceptable.
@@ -94,16 +90,8 @@ El paradigma de optimización de las técnicas propuestas es la
 para paliar problemas de rendimiento flagrantes.  En muchos casos la
 experiencia hará que el diseño evite estos cuellos de botella.
 
-Metodologías de programación
-----------------------------
+\subsection{Metodologías de programación}
 
-.. epigraph::
-
-  Ley de Corbató. La cantidad de lineas de código que un programador
-  es capaz de escribir en un tiempo dado es independiente del lenguaje
-  de programación.
-
-  -- Fernando J. Corbató, [COR]_
 
 Cuando un investigador necesita simular la naturaleza ve, y es
 completamente comprensible, el código escrito como una herramienta
@@ -132,7 +120,3 @@ desarrollo.  La ley de Corbató parte del hecho que un programador
 tiene una capacidad dada, esto hace que su productividad dependa
 de las herramientas. 
 
-
-.. [KNU] http://www.acm.org/ubiquity/views/v7i24_fallacy.html
-
-.. [COR] http://larch-www.lcs.mit.edu:8001/~corbato/
