@@ -6,7 +6,8 @@
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
 \usepackage{tikz}
-\usepackage{xcolor}
+
+
 
 \title{Python}
 \author{
@@ -42,12 +43,13 @@ ETSIA, Octubre 2007
   \item \emph{Zen of Python}
  \end{itemize}
  \item ¿Por qué Python y no otro lenguaje?
+ \item ¿Qué puede ofrecer Python al HPC?
  \begin{itemize}
+   \item Inconvenientes de Python
+ \end{itemize}
   \item Ejemplos
  \end{itemize}
 
- \item ¿Qué puede ofrecer Python al HPC?
- \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -174,9 +176,113 @@ Pymol
 
 \end{itemize}
 
+\end{frame}
 
+\begin{frame}
+ \frametitle{¿Por qué Python y no otro lenguaje?}
+\begin{itemize}
+ \item[Java] Menos problemas de licencias y más productividad.
+ \item[Smalltalk] Más extendido.
+ \item[Perl] Para seres humanos
+ \item[Ruby] Más simple.
+ \item[C\#] Libre, multiplataforma.
+\end{itemize}
 
 \end{frame}
 
+
+\begin{frame}
+ \frametitle{¿Qué puede ofrecer Python al HPC?}
+\begin{center}
+ \begin{Huge}
+  Binding Language
+ \end{Huge} 
+\end{center}
+Wrappers, Interfaces, Prototipado, Scripting...
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Inconvenientes de Python (para HPC)}
+\begin{itemize}
+ \item Diseño \emph{Single Thread} \textcolor{red}{(GIL)}
+ \item Implementación limpia vs. optimizada
+ \item Librería estándar escrita en python (20\%-30\%  C)
+ \item Versatilidad vs. potencia.
+ \item No hay una implementación propia de Arrays y Buffers
+ \item Es interpretado (¿?)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+ \frametitle{Soluciones a los inconvenientes}
+\begin{itemize}
+ \item Inlining (Weave)
+ \item Extending (ctypes)
+ \item Paralelo (PyMPI, ctypes, ParallelPython)
+ \item \textcolor{red}{PyPy}
+ \item Stackless
+ \item Numpy, Scipy...
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[containsverbatim]
+ \frametitle{Un wrapper sencillo}
+\begin{verbatim}
+from ctypes import c_int, POINTER #1
+import numpy as np
+from numpy.ctypeslib import load_library,ndpointer #1
+
+def dgesv(N,A,B):
+    A = np.asfortranarray(A.astype(np.float64)) #2
+    B = np.asfortranarray(B.astype(np.float64))
+
+    cN=c_int(N)
+    NRHS=c_int(1)
+    LDA=c_int(N)
+    IPIV=(c_int * N)()
+    LDB=c_int(N)
+    INFO=c_int(1)
+
+    lapack=load_library('liblapack.so','/usr/lib/')#3
+...
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[containsverbatim]
+ \begin{verbatim}
+     lapack.dgesv_.argtypes=[POINTER(c_int),
+             POINTER(c_int),
+             ndpointer(dtype=np.float64,
+             ndim=2,
+             flags='FORTRAN'),
+             POINTER(c_int), POINTER(c_int),
+             ndpointer(dtype=np.float64,
+                       ndim=2,
+                       flags='FORTRAN'),
+             POINTER(c_int),POINTER(c_int)]#4
+
+    lapack.dgesv_(cN,NRHS,A,LDA,IPIV,B,LDB,INFO)#5
+    return B
+
+print dgesv(2,np.array([[1,2],[1,4]]),np.array([[1,3]]))
+
+\end{verbatim}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{center}
+
+ \begin{Huge}
+  Continuará...
+ \end{Huge}
+ 
+\end{center}
+
+\end{frame}
 
 \end{document}
