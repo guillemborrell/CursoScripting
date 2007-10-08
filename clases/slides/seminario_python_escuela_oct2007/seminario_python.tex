@@ -1,13 +1,13 @@
 \documentclass{beamer}
 
-
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
 \usepackage{tikz}
 
-
+\renewcommand\shorthandsspanish{}
+\noextrasspanish
 
 \title{Python}
 \author{
@@ -21,6 +21,11 @@ Guillem Borrell i Nogueras\\
 \begin{center}
  \includegraphics[width=9cm]{files/python-logo-generic.pdf}\\
  % python-logo-generic.pdf: 389x115 pixel, 72dpi, 13.72x4.06 cm, bb=0 0 389 115
+\begin{large}
+\textbf{Python en Supercomputación}
+\end{large}\\
+Charla introductoria\\
+
 Guillem Borrell i Nogueras\\
 
 ETSIA, Octubre 2007
@@ -39,9 +44,6 @@ ETSIA, Octubre 2007
   \item Principales características de Python
  \end{itemize}
  \item ¿Por qué Python se está volviendo tan popular?
- \begin{itemize}
-  \item \emph{Zen of Python}
- \end{itemize}
  \item ¿Por qué Python y no otro lenguaje?
  \item ¿Qué puede ofrecer Python al HPC?
  \begin{itemize}
@@ -141,51 +143,16 @@ Pymol
 
 \end{frame}
 
-\begin{frame}[containsverbatim]
-\frametitle{\emph{Zen of Python, by Tim Peters}}
-
-\begin{verbatim}
->>> import this
-\end{verbatim}
-
-\begin{itemize}
- \item Beautiful is better than ugly.
- \item Explicit is better than implicit.
- \item Simple is better than complex.
- \item Complex is better than complicated.
- \item Flat is better than nested.
- \item Sparse is better than dense.
- \item Readability counts.
- \item Special cases aren't special enough to break the rules.
- \item Although practicality beats purity.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\begin{itemize}
- \item Errors should never pass silently.
- \item Unless explicitly silenced.
- \item In the face of ambiguity, refuse the temptation to guess.
- \item \textcolor{red}{There should be one --and preferably only one-- obvious way to do it.}
- \item Although that way may not be obvious at first unless you're Dutch.
- \item Now is better than never.
- \item Although never is often better than *right* now.
- \item If the implementation is hard to explain, it's a bad idea.
- \item If the implementation is easy to explain, it may be a good idea.
- \item Namespaces are one honking great idea -- let's do more of those!
-
-\end{itemize}
-
-\end{frame}
-
 \begin{frame}
  \frametitle{¿Por qué Python y no otro lenguaje?}
 \begin{itemize}
- \item[Java] Menos problemas de licencias y más productividad.
- \item[Smalltalk] Más extendido.
- \item[Perl] Para seres humanos
- \item[Ruby] Más simple.
- \item[C\#] Libre, multiplataforma.
+ \item Fácilmente extensible
+ \begin{itemize}
+ \item CPython, escrito en ANSI C
+\end{itemize}
+ \item Duck Typing (VS. Java y C++)
+ \item Software Libre
+ \item Excelente documentación
 \end{itemize}
 
 \end{frame}
@@ -193,7 +160,11 @@ Pymol
 
 \begin{frame}
  \frametitle{¿Qué puede ofrecer Python al HPC?}
+Python es lento, $\sim 10 \times$C; Python pretende completar C y Fortran, no sustituirlos.
+\vspace{1cm}
 \begin{center}
+Python es un...\\
+\vspace{1cm}
  \begin{Huge}
   Binding Language
  \end{Huge} 
@@ -205,11 +176,11 @@ Wrappers, Interfaces, Prototipado, Scripting...
 \begin{frame}
  \frametitle{Inconvenientes de Python (para HPC)}
 \begin{itemize}
- \item Diseño \emph{Single Thread} \textcolor{red}{(GIL)}
+ \item Diseño \emph{Single Thread} \textcolor{red}{(GIL)!}
  \item Implementación limpia vs. optimizada
  \item Librería estándar escrita en python (20\%-30\%  C)
  \item Versatilidad vs. potencia.
- \item No hay una implementación propia de Arrays y Buffers
+ \item \textcolor{red}{No hay una implementación propia de Arrays y Buffers}
  \item Es interpretado (¿?)
 \end{itemize}
 \end{frame}
@@ -224,11 +195,253 @@ Wrappers, Interfaces, Prototipado, Scripting...
  \item Stackless
  \item Numpy, Scipy...
 \end{itemize}
+\end{frame}
 
+\begin{frame}
+\begin{center}
+\begin{LARGE}
+¿Qué pinta tiene código escrito en Python?
+\end{LARGE} 
+\end{center}
 \end{frame}
 
 \begin{frame}[containsverbatim]
- \frametitle{Un wrapper sencillo}
+ \frametitle{Todo es un objeto}
+\begin{verbatim}
+guillem@aiguaviva ~ $ python
+Python 2.4.4 (#1, Sep 25 2007, 21:44:53)
+[GCC 4.1.2 (Gentoo 4.1.2)] on linux2
+Type "help", "copyright", "credits" or "license" ...
+>>> import cmath
+>>> i=cmath.sqrt(-1) #Los namespaces son objetos
+>>> i.conjugate() #Los números son objetos
+-1j
+>>> i.imag
+1.0
+>>> i.real
+0.0
+>>> i+=3 
+>>> i
+(3+1j)
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[containsverbatim]
+ \frametitle{Definir funciones es muy fácil}
+\begin{verbatim}
+>>> def sumauno(numero):
+...     return numero+1
+...
+>>> sumauno(i)
+(4+1j)
+\end{verbatim}
+\begin{itemize}
+ \item No hay llaves ni ends, los niveles se definen por el sangrado.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[containsverbatim]
+ \frametitle{Documentación a la Matlab}
+\begin{verbatim}
+>>> def docfunc():
+...     """Esta es una función documentada, a diferencia
+...     de Matlab la documentación de las funciones de
+...     Python es extraíble y formateable"""
+...     pass
+...
+>>> help(docfunc)
+Help on function docfunc in module __main__:
+
+docfunc()
+    Esta es una función documentada, a diferencia de
+    Matlab la documentación de las funciones de Python
+    es extraíble y formateable
+\end{verbatim}
+\end{frame}
+
+
+\begin{frame}[containsverbatim]
+\frametitle{Una clase llamada pato}
+\begin{verbatim}
+ >>> class pato:
+...     cantidad = 1
+...     def haz_cua(self):
+...           print "cua!"
+...
+...     def reproducete(self):
+...           cantidad += 1
+...
+>>> estoesunpato=pato() #instancia de pato
+>>> estoesunpato.cantidad
+1
+>>> estoesunpato.haz_cua()
+cua!
+\end{verbatim} 
+\end{frame}
+
+\begin{frame}[containsverbatim]
+ \frametitle{Duck Typing}
+Si algo anda como un pato y hace cua como un pato para mi va a ser un pato.
+\begin{verbatim}
+>>> estoesunpato=pato() #instancia de pato
+>>> cuaqueador(estoesunpato)
+cua!
+>>> class guillem:
+...     def haz_cua(self):
+...             print "cua!"
+...
+>>> falsopato=guillem() #ese soy yo
+>>> cuaqueador(falsopato)
+cua!
+>>> isinstance(falsopato,pato)
+False
+\end{verbatim}
+Para la función cuaqueador yo soy tan pato como un pato.
+\end{frame}
+
+\begin{frame}
+ \begin{center}
+ \begin{Huge}
+  Y mucho más...
+ \end{Huge}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Numpy}
+Es una extensión de Python que soporta arrays n-dimensionales\\
+\vspace{2cm}
+\begin{large}
+Es una maravilla, verdad verdadera. Lástima que no se pueda demostrar en una transparencia 
+\end{large}
+\end{frame}
+
+\begin{frame}[containsverbatim]
+ \frametitle{Una pequeña introducción}
+\begin{verbatim}
+>>> import numpy as N
+>>> x=N.array([[1,2,3,2],[2,3,4,3],
+               [2,3,4,3],[3,2,3,4]],'d')
+>>> N.fft.rfft2(x)
+array([[ 44.+0.j,  -6.+2.j,   0.+0.j],
+       [ -4.+0.j,  -2.+2.j,   0.+0.j],
+       [ -4.+0.j,  -2.-2.j,   0.+0.j],
+       [ -4.+0.j,   2.-2.j,   0.+0.j]])
+>>> x.transpose()
+array([[ 1.,  2.,  2.,  3.],
+       [ 2.,  3.,  3.,  2.],
+       [ 3.,  4.,  4.,  3.],
+       [ 2.,  3.,  3.,  4.]])
+\end{verbatim}
+\end{frame}
+
+\begin{frame}
+ \frametitle{¿Cuál es la idea entonces?}
+Introducir Python en HPC $\Leftrightarrow$ Crear una aplicación multilenguaje.
+
+\begin{center}
+ \begin{tikzpicture}
+  \draw[->,thick] (0,0) -- (4.5,0) node[right] {complejidad};
+  \draw[->,thick] (0,0) -- (0,4.5) node[above] {rendimiento};
+  \fill[green,semitransparent] (0,0) rectangle (2.25,2.25);
+  \fill[magenta,semitransparent] (2,0) rectangle (4,2);
+  \fill[cyan,semitransparent] (0,2) rectangle (2,4);
+  \fill[yellow,semitransparent] (1.75,1.75) rectangle (4,4);
+  \draw (5,1.25) node[draw,right] (matlab) {Matlab};
+  \draw (5,2.25) node[draw,right] (python) {Python};
+  \draw (5,3.25) node[draw,right] (fc) {Fortran, C};
+  \draw (5,4.25) node[draw,right] (pfc) {Python + Fortran,C};
+  \draw[->] (pfc) -- (3,3);
+  \draw[->] (matlab) -- (1,1);
+  \draw[->] (python) -- (3,1);
+  \draw[->] (fc) -- (1,3);
+ \end{tikzpicture}
+
+\end{center}
+
+% \begin{itemize}
+%  \item Si algo funciona, no lo toques, mejor un wrapper.
+%  \item Si la aplicación es muy simple probablemente no sea necesario usar Python
+%  \item Si la aplicación se complica
+% \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+ \frametitle{¿Qué se gana añadiendo Python a C, Fortran?}
+\begin{itemize}
+ \item Namespaces
+ \item Abstracción (Modularidad, OO)
+ \item Añadir interactividad
+ \item Autodocumentación
+ \item Crear cajas negras
+ \begin{itemize}
+  \item Si no tengo que saberlo no me lo cuentes
+  \item Si no tengo que verlo no me lo enseñes
+  \item Si algo funciona bien, recíclalo
+ \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+ \frametitle{¿Cómo se añade Python a C y Fortran?}
+\begin{center}
+ Haciendo Wrappers\\
+\vspace{1cm}
+\begin{tikzpicture}
+ \draw (0,0) node[draw] (cf) {C, Fortran};
+ \draw (2,0) node (wrapper) {Wrapper};
+ \draw (4,0) node[draw] (python) {Python};
+ \draw[->] (cf) -- (wrapper);
+ \draw[->] (wrapper) -- (python);
+\end{tikzpicture}
+\\
+\end{center}
+Objetivo: crear un Matlab $\copyright$ muy personalizado.
+\begin{itemize}
+ \item Ventajas
+ \begin{itemize}
+ \item Añaden interactividad, potencia, versatilidad...
+ \item No hay que repetirlos
+ \end{itemize}
+ \item Inconvenientes
+ \begin{itemize}
+ \item Más decisiones de diseño
+ \item Requieren más esfuerzo
+ \end{itemize}
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+ \begin{center}
+  \begin{Huge}
+   ¿Por qué Python?
+  \end{Huge}
+\end{center}
+\end{frame}
+
+\begin{frame}
+ Porque en muchos casos:
+\begin{itemize}
+ \item Los wrappers ya estarán hechos (lapack, blas, fftpack, mpi)
+ \item Hacerlos requerirá un esfuerzo mínimo
+\end{itemize}
+Gracias a:
+\begin{itemize}
+ \item \textbf{ctypes}
+ \item \textbf{f2py} (Fortran)
+ \item SWIG (C, C++)
+ \item weave
+ \item ...
+\end{itemize}
+
+
+\end{frame}
+
+
+\begin{frame}[containsverbatim]
+ \frametitle{Un wrapper sencillo con ctypes}
 \begin{verbatim}
 from ctypes import c_int, POINTER #1
 import numpy as np
@@ -248,7 +461,6 @@ def dgesv(N,A,B):
     lapack=load_library('liblapack.so','/usr/lib/')#3
 ...
 \end{verbatim}
-
 \end{frame}
 
 \begin{frame}[containsverbatim]
@@ -268,21 +480,31 @@ def dgesv(N,A,B):
     return B
 
 print dgesv(2,np.array([[1,2],[1,4]]),np.array([[1,3]]))
-
 \end{verbatim}
-
 \end{frame}
-
 
 \begin{frame}
 \begin{center}
-
  \begin{Huge}
   Continuará...
  \end{Huge}
- 
 \end{center}
+\end{frame}
+
+\begin{frame}
+ \frametitle{Charla técnica}
+\begin{itemize}
+ \item Más sobre los wrappers.
+ \item Arrays en C, Fortran y Python.
+ \item GIL.
+ \item Uso de F2Py.
+ \item ctypes.
+ \item Python en paralelo.
+\end{itemize}
 
 \end{frame}
+
+
+
 
 \end{document}
