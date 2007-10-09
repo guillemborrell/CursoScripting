@@ -39,10 +39,10 @@ ETSIA, Octubre 2007
  \item Python Vs. Matlab.
  \item Más sobre los wrappers.
  \item Arrays en C, Fortran y Python.
- \item GIL.
- \item Uso de F2Py.
  \item ctypes.
+ \item F2Py.
  \item Python en paralelo.
+ \item GIL.
 \end{itemize}
 
 \end{frame}
@@ -52,13 +52,15 @@ ETSIA, Octubre 2007
 \begin{center}
  ¿Ayuda Matlab a manejar la complejidad?
 \end{center}
-\begin{itmeize}
+\begin{itemize}
  \item Cada función es un archivo
  \item No existe la modularidad
  \item Orientación a objetos inútil
  \item No existen los namespaces
  \item wrapper $eq$ mex
-\end{itmeize}
+\end{itemize}
+\end{frame}
+
 
 \begin{frame}
 \frametitle{Más sobre los wrappers}
@@ -70,14 +72,187 @@ ETSIA, Octubre 2007
 \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[containsverbatim]
  \frametitle{Arrays}
+El objetivo es encajar
+\begin{verbatim}
+ double array[ ];
+\end{verbatim}
+en:
+\begin{verbatim}
+typedef struct PyArrayObject { 
+    PyObject HEAD
+    char * data;
+    int nd;
+    intp * dimensions;
+    intp * strides;
+    PyObject * base;
+    PyArray Descr * descr;
+    int flags;
+    PyObject * weakreflist;
+} PyArrayObject ; };
+\end{verbatim}
+\end{frame}
+
+\begin{frame}
+ \frametitle{Posibles problemas}
+\begin{itemize}
+ \item Hacerlo manualmente requiere C medio
+ \item Conocimiento del intérprete
+ \item Problemas de alineación (strides)
+ \item ¿Como Fortran o como C?
+\end{itemize}
 \begin{center}
- El objetivo es comunicar Arrays en C, Fortran con los arrays de \emph{numpy}.
+ ¿No era tan fácil?
 \end{center}
+\end{frame}
+
+\begin{frame}
+ \frametitle{Es fácil gracias a...}
+\begin{itemize}
+ \item ctypes
+ \item f2py
+\end{itemize}
 
 \end{frame}
 
+\begin{frame}
+ \frametitle{ctypes}
+Permite enlazar en tiempo de ejecución una librería al intérprete
+\end{frame}
+
+\begin{frame}[containsverbatim]
+ \frametitle{Un wrapper inútil.}
+\begin{verbatim}
+from ctypes import c_int, POINTER #1
+import numpy as np
+from numpy.ctypeslib import load_library,ndpointer #1
+
+def dgesv(N,A,B):
+    A = np.asfortranarray(A.astype(np.float64)) #2
+    B = np.asfortranarray(B.astype(np.float64))
+
+    cN=c_int(N)
+    NRHS=c_int(1)
+    LDA=c_int(N)
+    IPIV=(c_int * N)()
+    LDB=c_int(N)
+    INFO=c_int(1)
+
+    lapack=load_library('liblapack.so','/usr/lib/')#3
+...
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[containsverbatim]
+ \begin{verbatim}
+     lapack.dgesv_.argtypes=[POINTER(c_int),
+             POINTER(c_int),
+             ndpointer(dtype=np.float64,
+             ndim=2,
+             flags='FORTRAN'),
+             POINTER(c_int), POINTER(c_int),
+             ndpointer(dtype=np.float64,
+                       ndim=2,
+                       flags='FORTRAN'),
+             POINTER(c_int),POINTER(c_int)]#4
+
+    lapack.dgesv_(cN,NRHS,A,LDA,IPIV,B,LDB,INFO)#5
+    return B
+
+print dgesv(2,np.array([[1,2],[1,4]]),np.array([[1,3]]))
+\end{verbatim}
+\end{frame}
+
+\begin{frame}
+ \begin{center}
+  \begin{huge}
+   ¡No hay que programar en C!
+  \end{huge}
+ \end{center}
+\vspace{2cm}
+\begin{itemize}
+ \item FORTRAN (trailing underscore)
+ \item Conversión de arrays
+ \item Llamadas por referencia
+ \item Toda subrutina puede ser una librería, sólo hay que compilarla de otra manera.
+ \item Velocidad de ejecución $\sim$ Fortran
+ \item Reciclaje
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+ \frametitle{f2py}
+Es una aplicación que es capaz de entender la mayoría del código en Fortran y lo convierte automáticamente en un módulo de Python
+\end{frame}
+
+
+\begin{frame}[containsverbatim]
+ \frametitle{Aún más fácil con f2py}
+\begin{verbatim}
+!t.f90
+subroutine withCallback(a, b, ipar, rpar, callback)
+  real a,b, rpar(*)
+  integer ipar(*)
+  external callback
+  print*, 'The parameters are', a,b, ipar(:3), rpar(:3)
+  call callback(rpar, ipar)
+end subroutine withCallback
+
+subroutine theCallback(rpar, ipar)
+  real rpar(*)
+  integer ipar(*)
+  print*, 'Here the callback is called', ipar(:3), rpar(:3)
+end subroutine theCallback
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[containsverbatim]
+ \frametitle{Y funciona...}
+\begin{verbatim}
+$ f2py -c -m callback t.f90 --fcompiler=gnu95
+
+>>> from numpy import *
+>>> import callback
+>>> ipar=array([4,5,6])
+>>> rpar=array([1.,2.,3.])
+>>> callback.withcallback(8,9,ipar,rpar,
+...    callback.thecallback)
+ The parameters are   8.000000       9.000000    4      5 
+         6   1.000000       2.000000       3.000000
+ Here the callback is called           4       5     6  
+1.000000       2.000000       3.000000
+>>>
+\end{verbatim}
+\end{frame}
+
+\begin{frame}
+ \begin{center}
+ \begin{huge}
+  Ahora sí parece más fácil.
+ \end{huge}
+\end{center}
+\end{frame}
+
+\begin{frame}
+ \frametitle{Python en paralelo}
+\begin{itemize}
+ \item Se lanza Python como proceso
+ \item La comunicación entre los intérpretes puede hacerse mediante MPI
+ \begin{itemize}
+  \item No hay wrappers para blacs pero pueden hacerse
+ \end{itemize}
+\end{itemize}
+Por ejemplo:
+\end{frame}
+
+\begin{frame}
+ \frametitle{GIL}
+\begin{itemize}
+ \item Cpython no es thread safe
+\end{itemize}
+
+\end{frame}
 
 
 \end{document}
