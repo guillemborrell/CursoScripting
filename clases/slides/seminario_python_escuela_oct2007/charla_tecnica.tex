@@ -1,0 +1,83 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{tikz}
+
+\renewcommand\shorthandsspanish{}
+\noextrasspanish
+
+\title{Python}
+\author{
+Guillem Borrell i Nogueras\\
+\texttt{guillemborrell@gmail.com}
+}
+
+\begin{document}
+
+\begin{frame}
+\begin{center}
+ \includegraphics[width=9cm]{files/python-logo-generic.pdf}\\
+ % python-logo-generic.pdf: 389x115 pixel, 72dpi, 13.72x4.06 cm, bb=0 0 389 115
+\begin{large}
+\textbf{Python en Supercomputación}
+\end{large}\\
+Charla Técnica\\
+
+Guillem Borrell i Nogueras\\
+
+ETSIA, Octubre 2007
+\end{center}
+
+\end{frame}
+
+\begin{frame}
+ \frametitle{Charla técnica}
+\begin{itemize}
+ \item Python Vs. Matlab.
+ \item Más sobre los wrappers.
+ \item Arrays en C, Fortran y Python.
+ \item GIL.
+ \item Uso de F2Py.
+ \item ctypes.
+ \item Python en paralelo.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+ \frametitle{Python vs. Matlab}
+\begin{center}
+ ¿Ayuda Matlab a manejar la complejidad?
+\end{center}
+\begin{itmeize}
+ \item Cada función es un archivo
+ \item No existe la modularidad
+ \item Orientación a objetos inútil
+ \item No existen los namespaces
+ \item wrapper $eq$ mex
+\end{itmeize}
+
+\begin{frame}
+\frametitle{Más sobre los wrappers}
+\begin{itemize}
+ \item Un wrapper es un adaptador entre los tipos de C, Fortran y los del lenguaje interpretado.
+ \item En un lenguaje interpretado los tipos siempre son structs.
+ \item En python los tipos tienen $\sim$ 30 elementos.
+ \item El intérprete tiene su propio modelo de stack.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+ \frametitle{Arrays}
+\begin{center}
+ El objetivo es comunicar Arrays en C, Fortran con los arrays de \emph{numpy}.
+\end{center}
+
+\end{frame}
+
+
+
+\end{document}

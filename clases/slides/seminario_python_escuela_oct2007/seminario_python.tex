@@ -159,45 +159,6 @@ Pymol
 
 
 \begin{frame}
- \frametitle{¿Qué puede ofrecer Python al HPC?}
-Python es lento, $\sim 10 \times$C; Python pretende completar C y Fortran, no sustituirlos.
-\vspace{1cm}
-\begin{center}
-Python es un...\\
-\vspace{1cm}
- \begin{Huge}
-  Binding Language
- \end{Huge} 
-\end{center}
-Wrappers, Interfaces, Prototipado, Scripting...
-\end{frame}
-
-
-\begin{frame}
- \frametitle{Inconvenientes de Python (para HPC)}
-\begin{itemize}
- \item Diseño \emph{Single Thread} \textcolor{red}{(GIL)!}
- \item Implementación limpia vs. optimizada
- \item Librería estándar escrita en python (20\%-30\%  C)
- \item Versatilidad vs. potencia.
- \item \textcolor{red}{No hay una implementación propia de Arrays y Buffers}
- \item Es interpretado (¿?)
-\end{itemize}
-\end{frame}
-
-\begin{frame}
- \frametitle{Soluciones a los inconvenientes}
-\begin{itemize}
- \item Inlining (Weave)
- \item Extending (ctypes)
- \item Paralelo (PyMPI, ctypes, ParallelPython)
- \item \textcolor{red}{PyPy}
- \item Stackless
- \item Numpy, Scipy...
-\end{itemize}
-\end{frame}
-
-\begin{frame}
 \begin{center}
 \begin{LARGE}
 ¿Qué pinta tiene código escrito en Python?
@@ -309,6 +270,44 @@ Para la función cuaqueador yo soy tan pato como un pato.
 
 
 \begin{frame}
+ \frametitle{¿Qué puede ofrecer Python al HPC?}
+Python es lento, $\sim 10 \times$C; Python pretende completar C y Fortran, no sustituirlos.
+\vspace{1cm}
+\begin{center}
+Sirve para...\\
+\vspace{1cm}
+ \begin{Huge}
+  Manejar la Complejidad
+ \end{Huge} 
+\end{center}
+Wrappers, Interfaces, Prototipado, Scripting...
+\end{frame}
+
+\begin{frame}
+ \frametitle{Inconvenientes de Python (para HPC)}
+\begin{itemize}
+ \item Diseño \emph{Single Thread} \textcolor{red}{(GIL)!}
+ \item Implementación limpia vs. optimizada
+ \item Librería estándar escrita en python (20\%-30\%  C)
+ \item Versatilidad vs. potencia.
+ \item \textcolor{red}{No hay una implementación propia de Arrays y Buffers}
+ \item Es interpretado (¿?)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+ \frametitle{Soluciones a los inconvenientes}
+\begin{itemize}
+ \item Inlining (Weave)
+ \item Extending (ctypes)
+ \item Paralelo (PyMPI, ctypes, ParallelPython)
+ \item \textcolor{red}{PyPy}
+ \item Stackless
+ \item Numpy, Scipy...
+\end{itemize}
+\end{frame}
+
+\begin{frame}
  \frametitle{Numpy}
 Es una extensión de Python que soporta arrays n-dimensionales\\
 \vspace{2cm}
@@ -359,12 +358,6 @@ Introducir Python en HPC $\Leftrightarrow$ Crear una aplicación multilenguaje.
  \end{tikzpicture}
 
 \end{center}
-
-% \begin{itemize}
-%  \item Si algo funciona, no lo toques, mejor un wrapper.
-%  \item Si la aplicación es muy simple probablemente no sea necesario usar Python
-%  \item Si la aplicación se complica
-% \end{itemize}
 
 \end{frame}
 
@@ -494,6 +487,7 @@ print dgesv(2,np.array([[1,2],[1,4]]),np.array([[1,3]]))
 \begin{frame}
  \frametitle{Charla técnica}
 \begin{itemize}
+ \item Python Vs. Matlab.
  \item Más sobre los wrappers.
  \item Arrays en C, Fortran y Python.
  \item GIL.
@@ -503,7 +497,6 @@ print dgesv(2,np.array([[1,2],[1,4]]),np.array([[1,3]]))
 \end{itemize}
 
 \end{frame}
-
 
 
 
