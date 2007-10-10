@@ -236,11 +236,19 @@ $ f2py -c -m callback t.f90 --fcompiler=gnu95
 
 \begin{frame}
  \frametitle{Python en paralelo}
+\begin{center}
+
+\end{center}
+
+\end{frame}
+
+\begin{frame}
+ \frametitle{Python en paralelo II}
 \begin{itemize}
  \item Se lanza Python como proceso
  \item La comunicación entre los intérpretes puede hacerse mediante MPI
  \begin{itemize}
-  \item No hay wrappers para blacs pero pueden hacerse
+  \item No hay wrappers para \textbf{blacs} pero pueden hacerse
  \end{itemize}
 \end{itemize}
 Por ejemplo:
@@ -250,8 +258,14 @@ Por ejemplo:
  \frametitle{GIL}
 \begin{itemize}
  \item Cpython no es thread safe
+ \item No aprovecha los multiple core
+ \item Programación concurrente (Threading)
+ \begin{itemize}
+ \item No hay ganancia respecto a C
+ \item ¿Esperar a stackless o pypy?
 \end{itemize}
-
+ \item Lo más seguro sigue siendo usar procesos
+\end{itemize}
 \end{frame}
 
 
