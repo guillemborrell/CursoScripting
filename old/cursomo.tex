@@ -69,7 +69,7 @@
 
 %   Hyperref package to automatically generate hyperlinks
 \usepackage{hyperref}
-%\usepackage{indentverbatim}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -89,14 +89,71 @@
 \author{Guillem Borrell i Nogueras\\
   \href{mailto:guillemborrell@gmail.com}
   {\texttt{guillemborrell@gmail.com}}\\
-  \texttt{\url{http://torroja.dmt.upm.es:9673/Guillem\_Site/}}\\
+  \texttt{\url{http://torroja.dmt.upm.es/guillem/blog/}}\\
 }
 
 \maketitle
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter*{Prólogo}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter*{Ultimas palabras}
+
+Los libros envejecen como el tema del que tratan.  Si un libro habla
+sobre la vida, el amor, o política probablemente mantenga su vigencia
+durante siglos.  Por desgracia el software es un mundo en constante
+cambio y este libro empezaba a notar el paso del tiempo de forma
+peligrosa. Octave ha cambiado; también lo ha hecho Matlab, sin duda
+para mejorar.
+
+Era consciente de este peligro mientras lo escribía pero aún más
+durante el año y medio en el que no he hecho ningún cambio por falta
+de tiempo e interés. Las circunstancias que me llevaron a tomarme el
+tiempo necesario para sentarme a escribir han pasado; vuelvo a ser el
+tío siempre ocupado con mil cosas distintas en la cabeza.  No puedo
+vivir sin algún desafío intelecutal, no por instinto de superación
+sino por puro entretenimiento. Mi profesión es la Ingeniería
+Aeronáutica y Octave me mantuvo ocupado cuando me vi obligado a
+aparcarla durante un tiempo.  He vuelto a mi carrera, he encontrado
+otras preocupaciones y Octave ha sido el primer damnificado.
+
+Es por este motivo que he decidido ceder el texto a la Oficina de
+Software Libre de la Universidad de Cádiz (OSLUCA) que ha mostrado un
+sincero interés en continuar y sin duda mejorar este libro.  No tiene
+ningún sentido que siga en mis manos donde no tiene futuro
+alguno. Seguro que ellos podrán destinarle los recursos de los que
+ahora carezco.
+
+No tengo la sensación de haber completado el texto.  Obviando las
+erratas y los posibles errores no he ni mucho menos completado el que
+creo que es el capítulo más importante: el uso de Octave en
+aplicaciones multilenguaje.  Tampoco he podido dedicarle el tiempo
+necesario a describir las funciones de representación gráfica,
+estadística y matrices sparse. Además creo que el libro requiere un
+giro en su planteamiento. Muchas de las explicaciones matemáticas son
+prescindibles porque este no es un libro de texto ni pretende enseñar
+Cálculo Numérico. Lo abandono con la sensación de dejar mucho por
+hacer pero también con la satisfacción del trabajo bien hecho.
+
+No me gustaría terminar sin dar mi agradecimiento a todos los que me
+han demostrado su apoyo en una etapa bastante difícil de mi vida.  A
+mis compañeros de departamento Oscar, Mark, Juan Carlos, Miguel,
+Sergio, Álvaro, Leo, Isabel, Samuel, Jorge, Mario y Yoshi. A Javier
+Jiménez por confiar en mí sin darle motivos para ello, a Rafa por
+darme trabajo y a Vassilis por aguantarme. A Juanjo por invitarme a la
+Universidad de La Rioja, a la Delegación de Alumnos de Aeronáuticos
+por su confianza y a Nico (en paz descanse) por ser el único profesor
+de mi escuela en felicitarme por el libro. Tampoco quiero olvidarme de
+Pedro, Virginia, Jose, Miguel, Juan Pedro y Alberto; compañeros a los
+que aprecio tantísimo.  Por último y los más importantes: mis padres,
+mi abuela, mi hermana y Jaime; ojalá mi sobrina Sara pueda leer este
+libro y pueda sentirse orgullose del trabajo que un día su tío empezó.
+
+\vspace{2cm}
+\begin{flushright}
+Guillem Borrell i Nogueras\\
+Madrid, 10 de Noviembre de 2007
+\end{flushright}
+
+\chapter*{Prólogo de la primera edición}
 
 Hay muchos libros de Matlab, algunos muy buenos, pero en ninguno es
 tratado como un lenguaje de programación. El enfoque habitual es
@@ -106,9 +163,7 @@ defectos respecto a otros lenguajes de programación. No son libros,
 son manuales.  Creo que es muy importante aplicar el sentido crítico a
 cualquier herramienta y todo lo editado hasta a hora no es de gran
 ayuda. Octave es un programa magnífico, lo he usado durante años. No
-llega a la magnitud de Matlab pero debe ser tenido en cuenta. En este
-libro los dos intérpretes se analizan en igualdad de condiciones y se
-apunta cuál puede ser la mejor opción en cada caso.
+llega a la magnitud de Matlab pero debe ser tenido en cuenta.
 
 Estos apuntes empezaron como material adicional mal escrito para un
 curso de seis horas; con tiempo y dedicación han crecido hasta lo que
@@ -128,11 +183,13 @@ que quien lo sostenga en sus manos aprecie esta pequeña muestra de
 altruismo y decida colaborar; estaré siempre abierto a sugerencias y
 correcciones. Incluso si alguien propone una reescritura o la
 inclusión de un capítulo no tengo ningún reparo en otorgarle la
-coautoría.\\
-\\
-\begin{flushright} Guillem Borrell i Nogueras \\
-  Calella, 13 de Agosto de 2005
+coautoría.
 
+\vspace{2cm}
+
+\begin{flushright} 
+Guillem Borrell i Nogueras \\
+Calella, 13 de Agosto de 2005
 \end{flushright}
 
 \pagebreak
@@ -172,33 +229,7 @@ Escrito en Kubuntu GNU/Linux y Gentoo GNU/Linux. No ha sido necesaria
 ninguna herramienta comercial para preparar este texto, sirva como
 demostración que el software no por ser más caro debe ser mejor.
 
-pdf en \url{http://torroja.dmt.upm.es:9673/Guillem_Site/CursoMatlab/cursomo.pdf}
-
-
-\chapter*{Notas y agradecimientos}
-\subsection*{Versión 0.10}
-Las puntualizaciones para esta versión son más una fe de erratas que
-un conjunto de aclaraciones.  Marian me puntualizó que en algunos
-casos confundía el concepto de rango con el de dimensión de una
-matriz.  Esta confusión está diseminada por todo el libro y de momento
-no tengo tiempo para releerlo entero.  Es un error que por conocido no
-deja de ser grave.
-
-Otro error que debe ser subsanado es la afirmación, sobre todo en los
-apéndices, de que Matlab no tiene ningún método de optimización
-automática y que todos los bucles son lentos.  Mientras esto sigue
-siendo cierto para Octave, Matlab cuenta con dos herramientas muy
-interesantes; son el \emph{profiler} y el optimizador JIT (Just In
-Time).  Con un uso inteligente de la optimización automática la
-velocidad de los códigos simples se acerca a la obtenida con un
-lenguaje compilado.
-
-Sin embargo no deja de ser cierto que la mejor manera de acelerar
-código en Matlab es vectorizar y que obligar al usuario a optimizar
-manualmente en vez de generar bytecode a partir de las funciones no es
-camino a seguir.  En eso Python sigue siendo un ejemplo de mejor
-diseño.
-
+pdf en \url{http://torroja.dmt.upm.es/guillem/libros/}
 
 \tableofcontents{}
 
