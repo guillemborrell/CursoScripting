@@ -5,9 +5,9 @@ dia=['Diagram1','Diagram2','Diagram3','Diagram4','Diagram6',
      'Diagram13']
 octave=['figuraejemplo1','figuraejemplo2','calor','calorevol',
         'bodeplot','nyquistplot','excontour','excontour2',
-        'exrandsparse']
+        'exrandsparse','fitting','interpeq','chebyshevnodes']
 python=['figuraejemplo3','figuraejemplo4','figuraejemplo5',
-        'figuraejemplo6','figuraejemplo7']
+        'figuraejemplo6','figuraejemplo7','fzero']
 
 for diagram in dia:
     try:
@@ -22,7 +22,7 @@ for diagram in dia:
 
 for script in octave:
     try:
-        system('octave %s.m'%(script))
+        system('octave -q %s.m'%(script))
         system('epstopdf %s.eps'%(script))
         system('rm %s.eps'%(script))
         print('*****************')
