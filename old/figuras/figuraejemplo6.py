@@ -16,7 +16,7 @@ plot(x, y, linewidth=1)
 ix = arange(a, b, 0.01)
 iy = func(ix)
 verts = [(a,0)] + zip(ix,iy) + [(b,0)]
-poly = Polygon(verts, facecolor=0.8, edgecolor='k')
+poly = Polygon(verts, facecolor='0.8', edgecolor='k')
 ax.add_patch(poly)
 
 text(0.5 * (a + b), 30,
@@ -24,12 +24,10 @@ text(0.5 * (a + b), 30,
      fontsize=20)
 
 axis([0,10, 0, 180])
-#figtext(0.9, 0.05, 'x')
-#figtext(0.1, 0.90, 'f(x)')
-xlabel(r'$x$')
-ylabel(r'$f(x)$')
+figtext(0.9, 0.05, r'$x$',fontsize=20)
+figtext(0.1, 0.90, r'$f(x)$',fontsize=20)
 
 xticks((a,b), ('a','b'))
 yticks([])
+savefig('figuraejemplo6.pdf',format='pdf')
 
-show()

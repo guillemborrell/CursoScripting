@@ -3,8 +3,11 @@ from os import system
 dia=['Diagram1','Diagram2','Diagram3','Diagram4','Diagram6',
      'Diagram7','Diagram8','Diagram9','Diagram10','Diagram12',
      'Diagram13']
-octave=['figuraejemplo1','figuraejemplo2','calor','calorevol']
-python=['figuraejemplo3','figuraejemplo4']
+octave=['figuraejemplo1','figuraejemplo2','calor','calorevol',
+        'bodeplot','nyquistplot','excontour','excontour2',
+        'exrandsparse']
+python=['figuraejemplo3','figuraejemplo4','figuraejemplo5',
+        'figuraejemplo6','figuraejemplo7']
 
 for diagram in dia:
     try:
