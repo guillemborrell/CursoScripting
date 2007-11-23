@@ -1,0 +1,84 @@
+============
+Introducción
+============
+
+Los objetivos iniciales de este libro son los siguientes:
+
+* Describir el lenguaje de programación Matlab
+
+* Dar una descripción extensa del funcionamiento del intérprete libre
+  Octave y sus ventajas e inconvenientes respecto a la implementación
+  propietaria del lenguaje.
+
+* Presentar ejemplos inspirados en el cálculo numérico para dar una
+  introducción aplicada de la programación con matlab y octave.
+
+* Realizar las explicaciones de cálculo numérico pertinentes para que
+  el lector sea capaz de entender los ejemplos con el mínimo
+  conocimiento previo posible.
+
+Estos objetivos no son inmutables, pueden cambiarse y añadirse otros
+según los escritores del texto.
+
+La filosofía del libro es la siguiente:
+
+  Este libro es un proyecto participativo y abierto, por este motivo
+  se ha optado por una licencia libre en su distribución.  Su espíritu
+  es el de compartir el conocimiento y aceptar cualquier ayuda por
+  pequeña que sea.
+
+
+Cómo generar el pdf a partir de la fuente del documento
+=======================================================
+
+Requisitos
+----------
+
+La construcción del texto es automatizada, esto hace que los
+requisitos de software sean un poco más exigentes de lo normal.
+
+Para poder compilar el documento es necesario contar con lo siguiente:
+
+* Sistema operativo GNU/Linux o *BSD
+
+* Octave, preferiblemente la última versión disponible.  Se sabe que
+  funciona la versión 2.9.15
+
+* gnuplot.
+
+* Python.
+
+  * numpy.
+
+  * matplotlib (utilizado para generar algunas figuras con
+    características aún no disponibles en
+    octave). http://matplotlib.sourceforge.net/
+
+  * scons. http://www.scons.org/
+
+* dia (para generar algunos diagramas)http://www.gnome.org/projects/dia/
+
+Generar las figuras
+-------------------
+
+Las figuras se crean a partir de los scripts para que sirvan también
+de ejemplo.  El texto no compilará correctamente sin sus figuras. Para
+ello es necesario ir al directorio correspondiente a las figuras y teclear::
+
+  $ python generatefigs.py
+
+Generar el documento
+--------------------
+
+En el directorio raíz ejecutar::
+
+  $ scons
+
+Si se ha limpiado los archivos auxiliares será necesario ejecutarlo
+dos veces para que se creen los índices y los enlaces.
+
+NOTAS
+=====
+
+Los archivos están codificados en utf-8.  NUNCA jamés utilizar
+codificación latin-1 en el editor.
