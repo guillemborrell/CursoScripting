@@ -42,3 +42,9 @@ axis([-1,0]);
 title('Error de las soluciones')
 hold off
 print('error.eps','-deps')
+
+figure(3)
+plot(log(abs(solM30)),'k.')
+ylabel('log|a_n|')
+xlabel('n')
+print('convergencia.eps','-deps')
