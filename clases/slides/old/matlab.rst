@@ -11,7 +11,7 @@ Primera sesión
 
 Guillem Borrell i Nogueras
 
-Curso 2006-2007
+18-12-2007
 
 
 ¿Qué es Matlab?
@@ -75,7 +75,7 @@ Es una *consola* o *SHELL*
 Algunas mentiras
 ================
 
-* Para ser ingeniero aeronático no es necesario saber programar
+* Para ser ingeniero aeronáutico no es necesario saber programar
 
 * Programar es difícil
 
@@ -136,7 +136,7 @@ El resultado(1)
        end
   >> plot(x,z);
 
-No os preocupeis si de momento no entendeis nada.  Se requieren
+No os preocupéis si de momento no entendéis nada.  Se requieren
 varios años de experiencia para programar así
 
 El resultado(2)
@@ -450,14 +450,14 @@ Y para extraer |mat|?
 Otros tipos
 ===========
 
-:Números complejos: El número imaginario en Matlab es como cualqier
+:Números complejos: El número imaginario en Matlab es como cualquier
  otro y se expresa con *i*, *I*, *j*, *J*
 
 :Cadenas de texto: Se introducen entre comillas.  Cualquier otro texto
  se tomará como el nombre de una variable
 
 :Argumentos lógicos: Son *true* y *false*.  0 es falso y cualquier
- otro número es verdaero.
+ otro número es verdadero.
 
 Estructuras de datos
 ====================
@@ -663,7 +663,7 @@ Otras sentencias
 
 :while: Bucle controlado por condición lógica
 
-:try: Sentencia de control para probar errores
+:try: Sentencia de control de excepciones
 
 :break: Clave para el control de bucles
 
@@ -741,7 +741,7 @@ Usando también la función *diag*
 Resolución de SEL
 =================
 
-Para resolver sistemas de eucuaciones lineales contamos con un
+Para resolver sistemas de ecuaciones lineales contamos con un
 operador universal::
 
   >> A=[1,0;2,1];y=[2;4];

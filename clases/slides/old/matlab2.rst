@@ -9,6 +9,8 @@ Introducción informal a Matlab y Octave
 Segunda sesión
 ^^^^^^^^^^^^^^
 
+19-12-2007
+
 Cálculo simbólico
 =================
 
