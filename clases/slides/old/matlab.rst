@@ -194,7 +194,7 @@ El lenguaje Matlab
 
 * Funciones y scripts
 
-* Argumentos
+* Valores
 
 * Variables
 
@@ -334,13 +334,13 @@ consultar la ayuda disponemos de la función help::
 
   >> help eig
 
-Argumentos
-==========
+Valores
+=======
 
 En cualquier lenguaje de programación es muy importante separar los
-conceptos de argumento y variable.
+conceptos de valor y variable.
 
-:Argumento: Es cualquier elemento manipulable. En Matlab son los
+:Valor: Es cualquier elemento manipulable. En Matlab son los
  escalares, matrices funciones...
 
 :Variable: es un contenedor que se utiliza para dar nombre a un
@@ -401,7 +401,7 @@ de otros 3 modos posibles
 Secuencias
 ==========
 
-Son argumentos dedicados a contar.  Aparecen siempre que necesitemos
+Sirven para contar.  Aparecen siempre que necesitemos
 un contador en bucles, intervalos.  Su sintaxis es::
 
   inicio:salto:final
@@ -456,7 +456,7 @@ Otros tipos
 :Cadenas de texto: Se introducen entre comillas.  Cualquier otro texto
  se tomará como el nombre de una variable
 
-:Argumentos lógicos: Son *true* y *false*.  0 es falso y cualquier
+:Valores lógicos: Son *true* y *false*.  0 es falso y cualquier
  otro número es verdadero.
 
 Estructuras de datos
