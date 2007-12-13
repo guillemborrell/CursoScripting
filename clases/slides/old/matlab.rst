@@ -598,17 +598,17 @@ calcular
 
   `A \cdot b`
 
-* |op2|
-
-.. |op2| raw:: html
-
-  `\sum_i A_{ij}c_i`
-
 * |op3|
 
 .. |op3| raw:: html
 
   `b \cdot c`
+
+* |op2|
+
+.. |op2| raw:: html
+
+  `\sum_i A_{ij}c_i`
 
 luego aplicar al resultado de cada operación la función |func|
 
