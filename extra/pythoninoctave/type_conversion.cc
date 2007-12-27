@@ -70,25 +70,35 @@ octave_value octave_type(octave_value *value){
   return retval;
 }
 
-PyObject *oct_double2numpy(octave_value *octave_double){
+PyObject *oct2buffer(octave_value *oct){
+  PyObject *buffer;
+  PyObject *dims_list;
+  PyObject *ituple;
+  dim_vector dims=oct->dims();
+  int ndims=oct->ndims();
   int i;
-  PyObject *numpy_array;
-  int ndims = octave_double->ndims();
-  npy_intp c_dims[ndims];
-  dim_vector dims = octave_double->dims();
-  /*
-    Silly copy because octave_double.dims() returns a custom type
-    called dim_vector that must be copied to a int array.
-   */
-  for (i=0; i<ndims; i++){
-    c_dims[i]=dims(i);
+
+  dims_list = PyList_New(ndims);
+  ituple = PyTuple_New(3);
+
+  for(i=0;i<ndims;i++){
+    PyList_Append(dims_list,PyInt_FromLong(dims.elem(i)));
+    std::cout << i << dims.elem(i) << std::endl;//debug
   }
-  std::cout << c_dims[0] << c_dims[1] << std::endl;
+  
+  buffer = PyBuffer_FromReadWriteMemory(oct->mex_get_data(),
+					oct->numel()*oct->byte_size());
 
-  numpy_array = PyArray_SimpleNew(ndims,c_dims,PyArray_DOUBLE);
+  PyTuple_SET_ITEM(ituple,0,dims_list);
+  PyTuple_SET_ITEM(ituple,1,PyInt_FromLong(oct->byte_size()));
+  PyTuple_SET_ITEM(ituple,2,buffer);
 
-  std::cout << "not more than here" << std::endl;
-  return numpy_array;
+  std::cout << ndims << std::endl;//debug
+  std::cout << oct->numel() << std::endl;//debug
+  std::cout << oct->byte_size() << std::endl;//debug
+
+
+  return ituple;
 }
 
 DEFUN_DLD (type_conversion,args, ,
@@ -98,6 +108,9 @@ DEFUN_DLD (type_conversion,args, ,
   octave_value typechar;
   std::string typechar_string;
   PyObject *test;
+
+  Py_Initialize();
+
   for(i=0;i<args.length();i++){//for every argument...
     /*
       ... get the type and load it into the octave_value typechar.
@@ -108,13 +121,11 @@ DEFUN_DLD (type_conversion,args, ,
     retlist.append(typechar);
     typechar_string = typechar.string_value();
     std::cout << typechar_string.c_str() << std::endl;
-    if ((typechar_string.c_str())[0] == 'd'){
-      test = oct_double2numpy(&args(i));
-      std::cout << "made the conversion" << std::endl;
-    }
+    test = oct2buffer(&args(i));
+    std::cout << "made the conversion" << std::endl;
   }
-//   Py_Initialize();
-//   PyRun_SimpleString(s.c_str());
-//   Py_Finalize();
+  
+  
   return retlist;
+  Py_Finalize();
 }
