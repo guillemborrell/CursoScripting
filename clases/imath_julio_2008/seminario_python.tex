@@ -6,14 +6,14 @@
 \usepackage{graphicx}
 \usepackage{tikz}
 
-\usepackage{pgfpages}
-\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
+% \usepackage{pgfpages}
+% \pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
 
 
 \renewcommand\shorthandsspanish{}
 \noextrasspanish
 
-\title{Python}
+\title{Python como Entorno Científico de Desarrollo}
 \author{
 Guillem Borrell i Nogueras\\
 \texttt{guillemborrell@gmail.com}
@@ -26,37 +26,61 @@ Guillem Borrell i Nogueras\\
  \includegraphics[width=9cm]{files/python-logo-generic.pdf}\\
  % python-logo-generic.pdf: 389x115 pixel, 72dpi, 13.72x4.06 cm, bb=0 0 389 115
 \begin{large}
-\textbf{Python en Supercomputación}
+\textbf{Python como Entorno Científico de Desarrollo}
 \end{large}\\
-Charla introductoria\\
 
 Guillem Borrell i Nogueras\\
 
-ETSIA, Octubre 2007
+Curso i-MATH, Julio-Septiembre de 2008
 \end{center}
 
 \end{frame}
 
 
 \begin{frame}
- \frametitle{Preguntas...}
- \begin{itemize}
- \item ¿Por qué se llama Python?
- \item ¿Quién usa Python?
- \item ¿Para qué sirve Python?
- \begin{itemize}
-  \item Principales características de Python
- \end{itemize}
- \item ¿Por qué Python se está volviendo tan popular?
- \item ¿Por qué Python y no otro lenguaje?
- \item ¿Qué puede ofrecer Python al HPC?
- \begin{itemize}
-   \item Inconvenientes de Python
- \end{itemize}
-  \item Ejemplos
- \end{itemize}
-
+ \frametitle{Dos mundos distintos}
+\begin{center}
+ \begin{tabular}[h]{cc}
+   \includegraphics[width=5cm]{files/nigerian-machine.jpg} &
+   \includegraphics[width=5cm]{files/marenostrum.jpg}\\
+   Pequeño & Grande
+ \end{tabular}
+\end{center}
 \end{frame}
+
+\begin{frame}
+\frametitle{Scripts}
+\begin{itemize}
+\item 1 Procesador
+\item 1 Thread
+\item ejecución $\sim$ segundos
+\item GUI
+\item Normalmente < $10^3$ lineas de código.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{HPC}
+\begin{itemize}
+\item > 8 Procesadores
+\item > 8 Procesos o Threads
+\item ejecución $\sim$ horas
+\item no GUI
+\item Quizás > $10^3$ líneas de código.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+ \frametitle{Dos mundos distintos}
+\begin{center}
+ \begin{tabular}[h]{cc}
+   \includegraphics[width=5cm]{files/huevo.jpg} &
+   \includegraphics[width=5cm]{files/castana.jpg}\\
+   Huevo & Castaña
+ \end{tabular}
+\end{center}
+\end{frame}
+
 
 \begin{frame}
  \frametitle{¿Por qué se llama Python?}
@@ -267,7 +291,7 @@ Para la función cuaqueador yo soy tan pato como un pato.
 \begin{frame}
  \begin{center}
  \begin{Huge}
-  Y mucho más...
+  hasta aquí
  \end{Huge}
 \end{center}
 \end{frame}
