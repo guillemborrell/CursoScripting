@@ -26,7 +26,7 @@ Guillem Borrell i Nogueras\\
  \includegraphics[width=9cm]{files/python-logo-generic.pdf}\\
  % python-logo-generic.pdf: 389x115 pixel, 72dpi, 13.72x4.06 cm, bb=0 0 389 115
 \begin{large}
-\textbf{Python como Entorno Científico de Desarrollo}
+\textbf{Python como Entorno de Desarrollo Científico}
 \end{large}\\
 
 Guillem Borrell i Nogueras\\
@@ -149,7 +149,8 @@ Pymol
   \item Orientado a Objetos
  \end{itemize}
  \item Multiplataforma
- \item Especificación especialmente corta (IronPython, Jython, PyPy, Stackless)
+ \item Especificación especialmente corta (IronPython, Jython, PyPy,
+   tinypy ...)
  \item \emph{Incluye las pilas}
  \item ...
 \end{itemize}
@@ -168,19 +169,18 @@ Pymol
 \begin{center}
  Porque es divertido
 \end{center}
-
 \end{frame}
 
 \begin{frame}
  \frametitle{¿Por qué Python y no otro lenguaje?}
 \begin{itemize}
- \item Fácilmente extensible
+ \item Fácilmente extensible.
  \begin{itemize}
- \item CPython, escrito en ANSI C
+ \item CPython, escrito en ANSI C.
 \end{itemize}
- \item Duck Typing (VS. Java y C++)
- \item Software Libre
- \item Excelente documentación
+ \item Dinámico.
+ \item Software Libre.
+ \item Excelente documentación.
 \end{itemize}
 
 \end{frame}
@@ -288,236 +288,78 @@ False
 Para la función cuaqueador yo soy tan pato como un pato.
 \end{frame}
 
-\begin{frame}
- \begin{center}
- \begin{Huge}
-  hasta aquí
- \end{Huge}
-\end{center}
-\end{frame}
-
+%%%%%%%%%%%%%%%% Scripting %%%%%%%%%%%%%%%%%%
 
 \begin{frame}
- \frametitle{¿Qué puede ofrecer Python al HPC?}
-Python es lento, $\sim 10 \times$C; Python pretende completar C y Fortran, no sustituirlos.
-\vspace{1cm}
-\begin{center}
-Sirve para...\\
-\vspace{1cm}
- \begin{Huge}
-  Manejar la Complejidad
- \end{Huge} 
-\end{center}
-Wrappers, Interfaces, Prototipado, Scripting...
-\end{frame}
-
-\begin{frame}
- \frametitle{Inconvenientes de Python (para HPC)}
-\begin{itemize}
- \item Diseño \emph{Single Thread} \textcolor{red}{(GIL)!}
- \item Implementación limpia vs. optimizada
- \item Librería estándar escrita en python (20\%-30\%  C)
- \item Versatilidad vs. potencia.
- \item \textcolor{red}{No hay una implementación propia de Arrays y Buffers}
- \item Es interpretado (¿?)
-\end{itemize}
-\end{frame}
-
-\begin{frame}
- \frametitle{Soluciones a los inconvenientes}
-\begin{itemize}
- \item Inlining (Weave)
- \item Extending (ctypes)
- \item Paralelo (PyMPI, ctypes, ParallelPython)
- \item \textcolor{red}{PyPy}
- \item Stackless
- \item Numpy, Scipy...
-\end{itemize}
-\end{frame}
-
-\begin{frame}
- \frametitle{Numpy}
-Es una extensión de Python que soporta arrays n-dimensionales\\
-\vspace{2cm}
-\begin{large}
-Es una maravilla, verdad verdadera. Lástima que no se pueda demostrar en una transparencia 
-\end{large}
-\end{frame}
-
-\begin{frame}[containsverbatim]
- \frametitle{Una pequeña introducción}
-\begin{verbatim}
->>> import numpy as N
->>> x=N.array([[1,2,3,2],[2,3,4,3],
-               [2,3,4,3],[3,2,3,4]],'d')
->>> N.fft.rfft2(x)
-array([[ 44.+0.j,  -6.+2.j,   0.+0.j],
-       [ -4.+0.j,  -2.+2.j,   0.+0.j],
-       [ -4.+0.j,  -2.-2.j,   0.+0.j],
-       [ -4.+0.j,   2.-2.j,   0.+0.j]])
->>> x.transpose()
-array([[ 1.,  2.,  2.,  3.],
-       [ 2.,  3.,  3.,  2.],
-       [ 3.,  4.,  4.,  3.],
-       [ 2.,  3.,  3.,  4.]])
-\end{verbatim}
-\end{frame}
-
-\begin{frame}
- \frametitle{¿Cuál es la idea entonces?}
-Introducir Python en HPC $\Leftrightarrow$ Crear una aplicación multilenguaje.
-
-\begin{center}
- \begin{tikzpicture}
-  \draw[->,thick] (0,0) -- (4.5,0) node[right] {complejidad};
-  \draw[->,thick] (0,0) -- (0,4.5) node[above] {rendimiento};
-  \fill[green,semitransparent] (0,0) rectangle (2.25,2.25);
-  \fill[magenta,semitransparent] (2,0) rectangle (4,2);
-  \fill[cyan,semitransparent] (0,2) rectangle (2,4);
-  \fill[yellow,semitransparent] (1.75,1.75) rectangle (4,4);
-  \draw (5,1.25) node[draw,right] (matlab) {Matlab};
-  \draw (5,2.25) node[draw,right] (python) {Python};
-  \draw (5,3.25) node[draw,right] (fc) {Fortran, C};
-  \draw (5,4.25) node[draw,right] (pfc) {Python + Fortran,C};
-  \draw[->] (pfc) -- (3,3);
-  \draw[->] (matlab) -- (1,1);
-  \draw[->] (python) -- (3,1);
-  \draw[->] (fc) -- (1,3);
- \end{tikzpicture}
-
-\end{center}
-
-\end{frame}
-
-\begin{frame}
- \frametitle{¿Qué se gana añadiendo Python a C, Fortran?}
-\begin{itemize}
- \item Namespaces
- \item Abstracción (Modularidad, OO)
- \item Añadir interactividad
- \item Autodocumentación
- \item Crear cajas negras
- \begin{itemize}
-  \item Si no tengo que saberlo no me lo cuentes
-  \item Si no tengo que verlo no me lo enseñes
-  \item Si algo funciona bien, recíclalo
- \end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
- \frametitle{¿Cómo se añade Python a C y Fortran?}
-\begin{center}
- Haciendo Wrappers\\
-\vspace{1cm}
-\begin{tikzpicture}
- \draw (0,0) node[draw] (cf) {C, Fortran};
- \draw (2,0) node (wrapper) {Wrapper};
- \draw (4,0) node[draw] (python) {Python};
- \draw[->] (cf) -- (wrapper);
- \draw[->] (wrapper) -- (python);
-\end{tikzpicture}
-\\
-\end{center}
-Objetivo: crear un Matlab $\copyright$ muy personalizado.
-\begin{itemize}
- \item Ventajas
- \begin{itemize}
- \item Añaden interactividad, potencia, versatilidad...
- \item No hay que repetirlos
- \end{itemize}
- \item Inconvenientes
- \begin{itemize}
- \item Más decisiones de diseño
- \item Requieren más esfuerzo
- \end{itemize}
- \end{itemize}
-\end{frame}
-
-\begin{frame}
- \begin{center}
-  \begin{Huge}
-   ¿Por qué Python?
-  \end{Huge}
+ \frametitle{python para huevos (pequeños)}
+  \begin{center}
+ \begin{tabular}[h]{ccc}
+   \includegraphics[width=5cm]{files/huevo.jpg} & &
+   \includegraphics[width=5cm]{files/nigerian-machine.jpg}\\
+   Huevo & = &Pequeño
+ \end{tabular}
 \end{center}
 \end{frame}
 
 \begin{frame}
- Porque en muchos casos:
-\begin{itemize}
- \item Los wrappers ya estarán hechos (lapack, blas, fftpack, mpi)
- \item Hacerlos requerirá un esfuerzo mínimo
-\end{itemize}
-Gracias a:
-\begin{itemize}
- \item \textbf{ctypes}
- \item \textbf{f2py} (Fortran)
- \item SWIG (C, C++)
- \item weave
- \item ...
-\end{itemize}
+  \frametitle{Somos insaciables.}
+Queremos un lenguaje de programación...
+  \begin{itemize}
+  \item Que sea completo según Turing.
+  \item Que lo haga \textbf{todo}
+  \item Que lo haga \textbf{bien}
+  \item Que no me cueste
+  \item Que no tenga que mirar el manual
+  \item Que ejecute en cualquier sitio.
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
-\begin{center}
- \begin{Huge}
-  Continuará...
- \end{Huge}
+  \frametitle{¿Java?}
+  \begin{itemize}
+  \item ¿Matemáticas con Java?
+  \item ¿Ganancia respecto a C++?
+  \item ¿Existe una comunidad de usuarios?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Matlab}
+  \begin{itemize}
+  \item Uno de los lenguajes de programación más patéticos que he
+    visto
+  \item ¿Por qué pagar $\sim$ 10000 Euros por algo que no lo vale?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Mathematica, Maple...}
+  \begin{center}
+    DSL. He dicho lenguaje de programación.
+  \end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%% HPC %%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+ \frametitle{python para castañas (grandes)}
+  \begin{center}
+ \begin{tabular}[h]{ccc}
+   \includegraphics[width=5cm]{files/castana.jpg}& &
+   \includegraphics[width=5cm]{files/marenostrum.jpg}\\
+   Castaña & = & Grande
+ \end{tabular}
 \end{center}
 \end{frame}
 
 \begin{frame}
- \frametitle{Charla técnica}
-\begin{itemize}
- \item Python Vs. Matlab.
- \item Más sobre los wrappers.
- \item Arrays en C, Fortran y Python.
- \item GIL.
- \item Uso de F2Py.
- \item ctypes.
- \item Python en paralelo.
-\end{itemize}
-
-\end{frame}
-
-
-\begin{frame}
- \frametitle{Charla técnica}
-\begin{itemize}
- \item Python Vs. Matlab.
- \item Más sobre los wrappers.
- \item Arrays en C, Fortran y Python.
- \item ctypes.
- \item F2Py.
- \item Python en paralelo.
- \item GIL.
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}
- \frametitle{Python vs. Matlab}
-\begin{center}
- ¿Ayuda Matlab a manejar la complejidad?
-\end{center}
-\begin{itemize}
- \item Cada función es un archivo
- \item No existe la modularidad
- \item Orientación a objetos inútil
- \item No existen los namespaces
- \item wrapper $eq$ mex
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Más sobre los wrappers}
-\begin{itemize}
- \item Un wrapper es un adaptador entre los tipos de C, Fortran y los del lenguaje interpretado.
- \item En un lenguaje interpretado los tipos siempre son structs.
- \item En python los tipos tienen $\sim$ 30 elementos.
- \item El intérprete tiene su propio modelo de stack.
-\end{itemize}
+  \frametitle{Same old story}
+  \begin{center}
+    \begin{Huge}
+      \textbf{HPC = Fortran, C}
+    \end{Huge}
+  \end{center}
 \end{frame}
 
 \begin{frame}[containsverbatim]
@@ -538,7 +380,7 @@ typedef struct PyArrayObject {
     PyArray Descr * descr;
     int flags;
     PyObject * weakreflist;
-} PyArrayObject ; };
+};
 \end{verbatim}
 \end{frame}
 
