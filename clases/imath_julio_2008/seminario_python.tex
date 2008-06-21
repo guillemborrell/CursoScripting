@@ -38,6 +38,34 @@ Curso i-MATH, Julio-Septiembre de 2008
 
 
 \begin{frame}
+  \frametitle{Yo.}
+  \begin{itemize}
+  \item Guillem Borrell i Nogueras.
+  \item Ingeniero Aeronáutico (aunque no me gustan los aviones).
+  \item Becario del Grupo de Investigación de Mecánica de Fluidos
+    Computacional de la Universidad Politécnica de Madrid.
+  \item Consultor Senior de Englobe Technologies.
+  \item \textit{I Have Become Comfortably Numb},
+    \url{http://torroja.dmt.upm.es/guillem/blog/}
+  \item \textit{Introducción Informal a Matlab y Octave},
+    \url{http://iimyo.forja.rediris.es/}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Mis manías}
+  \begin{itemize}
+  \item Para hacer una chapuza me quedo en casa.
+  \item Me enciende ver algo que no vale nada y te obligan a pagar por
+    ello.
+  \item Usar la herramienta adecuada para cada trabajo.
+  \item Si veo algo estropeado y se que puedo arreglarlo no puedo
+    evitar intentarlo.
+  \end{itemize}
+Esto es útil si te dedicas al diseño de software (modestia a parte).
+\end{frame}
+
+\begin{frame}
  \frametitle{Dos mundos distintos}
 \begin{center}
  \begin{tabular}[h]{cc}
@@ -102,7 +130,7 @@ Monty Python
 \begin{center}
  \includegraphics[width=3cm]{files/google.jpg}
  \includegraphics[width=3cm]{files/Industrial_Light_and_Magic.jpg}
- \includegraphics[width=3cm]{files/NASA_Logo.jpg}
+ \includegraphics[width=3cm]{files/NASA_Logo.jpg}\\
  \includegraphics[width=3cm]{files/honeywell_logo.jpg}
 \end{center}
 \end{frame}
@@ -249,45 +277,6 @@ docfunc()
 \end{frame}
 
 
-\begin{frame}[containsverbatim]
-\frametitle{Una clase llamada pato}
-\begin{verbatim}
- >>> class pato:
-...     cantidad = 1
-...     def haz_cua(self):
-...           print "cua!"
-...
-...     def reproducete(self):
-...           cantidad += 1
-...
->>> estoesunpato=pato() #instancia de pato
->>> estoesunpato.cantidad
-1
->>> estoesunpato.haz_cua()
-cua!
-\end{verbatim} 
-\end{frame}
-
-\begin{frame}[containsverbatim]
- \frametitle{Duck Typing}
-Si algo anda como un pato y hace cua como un pato para mi va a ser un pato.
-\begin{verbatim}
->>> estoesunpato=pato() #instancia de pato
->>> cuaqueador(estoesunpato)
-cua!
->>> class guillem:
-...     def haz_cua(self):
-...             print "cua!"
-...
->>> falsopato=guillem() #ese soy yo
->>> cuaqueador(falsopato)
-cua!
->>> isinstance(falsopato,pato)
-False
-\end{verbatim}
-Para la función cuaqueador yo soy tan pato como un pato.
-\end{frame}
-
 %%%%%%%%%%%%%%%% Scripting %%%%%%%%%%%%%%%%%%
 
 \begin{frame}
@@ -339,6 +328,8 @@ Queremos un lenguaje de programación...
   \end{center}
 \end{frame}
 
+
+
 %%%%%%%%%%%%%%%% HPC %%%%%%%%%%%%%%%%%%
 
 
@@ -362,201 +353,264 @@ Queremos un lenguaje de programación...
   \end{center}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Ganaremos}
+  \begin{itemize}
+  \item Velocidad
+  \item Gestión directa de la memoria
+  \item ¿Algo más?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Perderemos:}
+  \begin{itemize}
+  \item Interactividad
+  \item Garbage collection
+  \item Versatilidad
+  \item Sencillez
+  \item Librerías
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+    \begin{LARGE}
+    ¿Podemos quedarnos con lo mejor de los dos mundos?      
+    \end{LARGE}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{¿Por qué los lenguajes interpretados son lentos?}
+  Porque son dinámicos.
+  \begin{center}
+    \begin{tikzpicture}      
+      \node (lexer) at (0,0) [draw=black, thick, fill=black!10]
+      {Lexer};
+
+      \node (parser) at (2,0) [draw=black, thick, fill=black!10]
+      {Parser};
+
+      \node (encoder) at (4,0) [draw=black, thick, fill=black!10]
+      {Encoder};
+
+      \node (vm) at (7,0) [draw=black, very thick, fill=black!10]
+      {VM};
+
+      \node (codigo) at (0,1) [draw=blue,rounded
+      corners,thick,fill=blue!20] {Codigo};
+
+      \node (tokens) at (1,-1) [draw=blue,rounded
+      corners,thick,fill=blue!20]
+      {Tokens};
+
+      \node (tokensp) at (3,1) [draw=blue,rounded
+      corners,thick,fill=blue!20]
+      {Tokens'};
+
+      \node (bytecode) at (5.5,-1) [draw=blue,rounded
+      corners,thick,fill=blue!20]
+      {Bytecode};
+
+      \node (assembler) at (8.5,1) [draw=blue,rounded
+      corners,thick,fill=blue!20]
+      {Assembler};
+      
+      \draw[->] (codigo.south) -- (lexer.north);
+
+      \draw[->] (lexer.south) |- (tokens.west);
+
+      \draw[->] (tokens.east) -| (parser.south);
+
+      \draw[->] (parser.north) |- (tokensp.west);
+
+      \draw[->] (tokensp.east) -| (encoder.north);
+
+      \draw[->] (encoder.south) |- (bytecode.west);
+
+      \draw[->] (bytecode.east) -| (vm.south);
+      
+      \draw[->] (vm.north) |- (assembler.west);
+    \end{tikzpicture}
+  \end{center}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Lenguajes dinámicos}
+  \begin{itemize}
+  \item El tipo de las variables sólo se sabe en tiempo de ejecución.
+  \item El bytecode mueve un \textit{objectspace} o \textit{stack}
+  \item El ensamblador de la máquina virtual hace lo que le dice el
+    bytecode.
+  \item La máquina virtual es incapaz de generar ensamblador
+    optimizado.
+  \item Dos planteamientos para lenguajes dinámicos
+    \begin{itemize}
+    \item Duck typing
+    \item Type inference
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
 \begin{frame}[containsverbatim]
- \frametitle{Arrays}
-El objetivo es encajar
+\frametitle{Duck typing}
 \begin{verbatim}
- double array[ ];
-\end{verbatim}
-en:
-\begin{verbatim}
-typedef struct PyArrayObject { 
-    PyObject HEAD
-    char * data;
-    int nd;
-    intp * dimensions;
-    intp * strides;
-    PyObject * base;
-    PyArray Descr * descr;
-    int flags;
-    PyObject * weakreflist;
-};
-\end{verbatim}
-\end{frame}
-
-\begin{frame}
- \frametitle{Posibles problemas}
-\begin{itemize}
- \item Hacerlo manualmente requiere C medio
- \item Conocimiento del intérprete
- \item Problemas de alineación (strides)
- \item ¿Como Fortran o como C?
-\end{itemize}
-\begin{center}
- ¿No era tan fácil?
-\end{center}
-\end{frame}
-
-\begin{frame}
- \frametitle{Es fácil gracias a...}
-\begin{itemize}
- \item ctypes
- \item f2py
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}
- \frametitle{ctypes}
-Permite enlazar en tiempo de ejecución una librería al intérprete
-\end{frame}
-
-\begin{frame}[containsverbatim]
- \frametitle{Un wrapper inútil.}
-\begin{verbatim}
-from ctypes import c_int, POINTER #1
-import numpy as np
-from numpy.ctypeslib import load_library,ndpointer #1
-
-def dgesv(N,A,B):
-    A = np.asfortranarray(A.astype(np.float64)) #2
-    B = np.asfortranarray(B.astype(np.float64))
-
-    cN=c_int(N)
-    NRHS=c_int(1)
-    LDA=c_int(N)
-    IPIV=(c_int * N)()
-    LDB=c_int(N)
-    INFO=c_int(1)
-
-    lapack=load_library('liblapack.so','/usr/lib/')#3
+ >>> class pato:
+...     cantidad = 1
+...     def haz_cua(self):
+...           print "cua!"
 ...
-\end{verbatim}
+...     def reproducete(self):
+...           cantidad += 1
+...
+>>> estoesunpato=pato() #instancia de pato
+>>> estoesunpato.cantidad
+1
+>>> estoesunpato.haz_cua()
+cua!
+\end{verbatim} 
 \end{frame}
 
 \begin{frame}[containsverbatim]
- \begin{verbatim}
-     lapack.dgesv_.argtypes=[POINTER(c_int),
-             POINTER(c_int),
-             ndpointer(dtype=np.float64,
-             ndim=2,
-             flags='FORTRAN'),
-             POINTER(c_int), POINTER(c_int),
-             ndpointer(dtype=np.float64,
-                       ndim=2,
-                       flags='FORTRAN'),
-             POINTER(c_int),POINTER(c_int)]#4
-
-    lapack.dgesv_(cN,NRHS,A,LDA,IPIV,B,LDB,INFO)#5
-    return B
-
-print dgesv(2,np.array([[1,2],[1,4]]),np.array([[1,3]]))
-\end{verbatim}
-\end{frame}
-
-\begin{frame}
- \begin{center}
-  \begin{huge}
-   ¡No hay que programar en C!
-  \end{huge}
- \end{center}
-\vspace{2cm}
-\begin{itemize}
- \item FORTRAN (trailing underscore)
- \item Conversión de arrays
- \item Llamadas por referencia
- \item Toda subrutina puede ser una librería, sólo hay que compilarla de otra manera.
- \item Velocidad de ejecución $\sim$ Fortran
- \item Reciclaje
-\end{itemize}
-\end{frame}
-
-\begin{frame}
- \frametitle{f2py}
-Es una aplicación que es capaz de entender la mayoría del código en Fortran y lo convierte automáticamente en un módulo de Python
-\end{frame}
-
-
-\begin{frame}[containsverbatim]
- \frametitle{Aún más fácil con f2py}
+ \frametitle{Duck typing}
+Si algo anda como un pato y hace cua como un pato para mi va a ser un pato.
 \begin{verbatim}
-!t.f90
-subroutine withCallback(a, b, ipar, rpar, callback)
-  real a,b, rpar(*)
-  integer ipar(*)
-  external callback
-  print*, 'The parameters are', a,b, ipar(:3), rpar(:3)
-  call callback(rpar, ipar)
-end subroutine withCallback
-
-subroutine theCallback(rpar, ipar)
-  real rpar(*)
-  integer ipar(*)
-  print*, 'Here the callback is called', ipar(:3), rpar(:3)
-end subroutine theCallback
+>>> estoesunpato=pato() #instancia de pato
+>>> cuaqueador(estoesunpato)
+cua!
+>>> class guillem:
+...     def haz_cua(self):
+...             print "cua!"
+...
+>>> falsopato=guillem() #ese soy yo
+>>> cuaqueador(falsopato)
+cua!
+>>> isinstance(falsopato,pato)
+False
 \end{verbatim}
-\end{frame}
-
-\begin{frame}[containsverbatim]
- \frametitle{Y funciona...}
-\begin{verbatim}
-$ f2py -c -m callback t.f90 --fcompiler=gnu95
-
->>> from numpy import *
->>> import callback
->>> ipar=array([4,5,6])
->>> rpar=array([1.,2.,3.])
->>> callback.withcallback(8,9,ipar,rpar,
-...    callback.thecallback)
- The parameters are   8.000000       9.000000    4      5 
-         6   1.000000       2.000000       3.000000
- Here the callback is called           4       5     6  
-1.000000       2.000000       3.000000
->>>
-\end{verbatim}
+Para la función cuaqueador yo soy tan pato como un pato.
 \end{frame}
 
 \begin{frame}
- \begin{center}
- \begin{huge}
-  Ahora sí parece más fácil.
- \end{huge}
-\end{center}
+  \frametitle{Type inference}
+  \begin{itemize}
+  \item Intenta descubrir los tipos de cada variable en tiempo de
+    compilación.
+  \item El lenguaje es dinámico en apariencia pero estático en
+    memoria.
+  \item Menos dinámico que el Duck typing.
+    \begin{itemize}
+    \item Errores en tiempo de compilación
+    \item Casting automático.
+    \end{itemize}
+  \item Mejor rendimiento.
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
- \frametitle{Python en paralelo}
-\begin{center}
-\input{files/diagrama_par}
-\end{center}
-
+  \frametitle{JIT}
+  Just In Time
+  \begin{itemize}
+  \item Método para optimizar el bytecode.
+    \begin{itemize}
+    \item Analiza el bytecode.
+    \item Hace type inference.
+    \item Genera ensamblador optimizado para la arquitectura.
+    \end{itemize}
+  \item Matlab lo utiliza para los bucles.
+  \item Octave va detrás de ello.
+  \item Python no tiene... PyPy sí, aunque muy verde.
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
- \frametitle{Python en paralelo II}
-\begin{itemize}
- \item Se lanza Python como proceso
- \item La comunicación entre los intérpretes puede hacerse mediante MPI
- \begin{itemize}
-  \item No hay wrappers para \textbf{blacs} pero pueden hacerse
- \end{itemize}
-\end{itemize}
-Por ejemplo:
+  \frametitle{Global Interpreter Lock}
+  Otro problema de python (y otros).
+  \begin{itemize}
+  \item La máquina virtual sólo puede ejecutar un thread.
+  \item No tendremos multithreading por muy trivial que quede en el
+    bytecode.
+  \item Si queremos threads tendremos que pedirlos
+  \item Estensiones con propia gestión de threads.
+  \item Con un poco de suerte se arreglará, de otra forma python
+    morirá.
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
- \frametitle{GIL}
-\begin{itemize}
- \item Cpython no es thread safe
- \item No aprovecha los multiple core
- \item Programación concurrente (Threading)
- \begin{itemize}
- \item No hay ganancia respecto a C
- \item ¿Esperar a stackless o pypy?
-\end{itemize}
- \item Lo más seguro sigue siendo usar procesos
-\end{itemize}
+  \frametitle{La solución}
+  \begin{center}
+    \begin{Huge}
+      Optimización Selectiva
+    \end{Huge}
+  \end{center}
+  \vspace{1cm}
+  \begin{flushright}
+    \textit{We should forget about small efficiencies, say about 97\%
+      of the time: premature optimization is the root of all evil. Yet
+      we should not pass up our opportunities in that critical 3\%}. Knuth
+  \end{flushright}
 \end{frame}
 
+\begin{frame}
+  \frametitle{La regla del 80-20}
+  \begin{itemize}
+  \item El 80\% del código se escribe en el 20\% de tiempo.
+  \item El 80\% del código es para tareas triviales, sólo el 20\%
+    calcula algo de verdad.
+  \item Del anterior, sólo el 20\% es realmente intensivo.
+  \item Ergo sólo tendremos que optimizar un 5\% del código.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Estrategia a seguir}
+  \begin{flushright}
+    \textit{Bottlenecks occur in surprising places, so don't try to
+      second guess and put in a speed hack until yo have proven that's
+      where the bottleneck is}. Rob Pike
+  \end{flushright}
+  \vspace{1cm}
+  \begin{itemize}
+  \item Hacer un buen profiling del código.
+  \item Descubrir los cuellos de botella.
+  \item \textbf{Eliminar el componente dinámico del lenguaje donde sea
+    estrictamente necesario.}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+    \begin{Huge}
+      Siempre que no tengamos que paralelizar.
+    \end{Huge}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Para ello...}
+  \begin{itemize}
+  \item Escribir extensiones a la Máquina virtual con C (Python.h)
+  \item Escribir módulos en Fortran (f2py)
+  \item Enlazar al intérprete bibliotecas en C o Fortran (ctypes,
+    swig)
+  \item Utilizar un lenguaje de extensión (pyrex, cython)
+  \item Crear nuestra propia versión de python (PyPy)
+  \item[$\rightarrow$] Utilizar un intérprete preparado para el cálculo paralelo
+    (ipython1)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+    \begin{Huge}
+      ¿Pero es que nos hemos vuelto todos locos?
+    \end{Huge}
+  \end{center}
+\end{frame}
 
 \end{document}
