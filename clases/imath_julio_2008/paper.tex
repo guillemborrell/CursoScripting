@@ -142,20 +142,48 @@ ensayo es \emph{demostrar que Python dispone en la actualidad de una
 \subsection{Un enfoque distinto para cada problema}
 
 Las aplicaciones de simulación pueden dividirse en dos grandes grupos
-según sus necesidades computacionales.  En primer lugar encontramos
-los pequeños programas de entre una decena y el millar de líneas de
-código con la misión de realizar un cálculo relativamente simple. A
-continuación están las grandes simulaciones de computación de alto
-rendimiento con tiempos de ejecución largos en superordenadores y
-ciclos de vida de décadas. Parece imposible que el mismo lenguaje de
-programación pueda encajar en ambos patrones. La estrategia a seguir
-es cambiar las herramientas mientras se mantiene el lenguaje en la
-medida de lo posible.
+según sus necesidades computacionales.
 
-La distinción anterior sirve para fijar el índice temático de este
-artículo, el \emph{scripting} o pequeños programas que no tienen en
-cuenta el rendimiento y las aplicaciones de \emph{HPC}\footnote{High
-  Performance Computing} se analizarán por separado.
+\begin{itemize}
+\item Los pequeños programas de entre una decena y el millar de líneas
+  de código con la misión de realizar un cálculo relativamente simple
+  llamados guiones o \emph{scripts}.
+\item Las grandes simulaciones de computación de alto rendimiento con
+  tiempos de ejecución largos en superordenadores y ciclos de vida de
+  años o décadas.
+\end{itemize}
+
+Los \emph{scripts} suelen implementarse en lenguajes interpretados
+especializados en matemáticas e ingeniería, la mayoría de ellos
+propietarios, que permiten un acceso sencillo y directo a una enorme
+biblioteca de funciones especializadas\footnote{Los lenguajes de
+  \emph{nicho} o diseñados específicamente para un sector reciben el
+  nombre de \emph{Domain Specific Languages}, a partir de ahora DSL}.
+En este ámbito Python compite directamente con Matlab, Mathematica,
+Maple, IDL... En estos casos Python es ya una alternativa a este
+software ya que ofrece funcionalidades muy parecidas a coste
+cero. Esto significa que Python debe disponer de una colección de
+bibliotecas considerable y comparable con los productos comerciales
+actuales. Las primeras secciones de este artículo se dedicarán a
+listar de un modo poco detallado todas las bibliotecas y aplicaciones
+que han sido escritas en Python o utilizan el intérprete de Python de
+utilidad en Matemáticas, Física o Ingeniería.
+
+En el otro extremo, tradicionalmente se ha argumentado que debido a
+que los programas más exigentes desde un punto de vista computacional
+deben programarse en el lenguaje que asegure una máxima velocidad en
+la ejecución prescindiendo de ciertas propiedades deseables. Si bien
+existen unos pocos casos patológicos en los que la velocidad es la
+única variable a tener en cuenta\footnote{Algunos códigos de Mecánica
+  de Fluidos Computacional tienen tiempos de ejecución de meses o
+  incluso años y ciclos de desarrollo de entre dos y cuatro años.  Es
+  comprensible que en estos casos no se tengan en cuenta muchas de las
+  técnicas que se proponen en este artículo.}, en la mayoría la parte
+del código que explota al máximo hardware se reduce a unas pocas
+líneas. Este artículo dedicará sus últimas sesiones a comentar las
+distintas técnicas de optimización de código y qué posibilidades
+ofrece Python para ello.
+
 
 \section{Scripting en Python}
 
