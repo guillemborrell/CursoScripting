@@ -1,0 +1,230 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{mathptmx}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{listings}
+
+\lstset{language=Python,
+  backgroundcolor=\color{black!20},
+  numbers=left,
+  extendedchars=true,
+  inputencoding=utf8,
+  basicstyle=\small\ttfamily,
+  numberstyle=\tiny,
+  keywordstyle=\color{blue},
+  showstringspaces=false,
+  showspaces=false}
+
+
+\renewcommand\shorthandsspanish{}
+\noextrasspanish
+
+\author{Guillem Borrell Nogueras}
+\title{Python como entorno de desarrollo científico.}
+
+
+\begin{document}
+
+\section{Introducción}
+Existe cierta confusión con los conceptos de lenguaje y
+herramienta. Mientras una herramienta nace como respuesta a una
+necesidad funcional los lenguajes sirven para dar sentido a la
+realidad; se encuentran en planos completamente distintos. Los
+lenguajes de programación tienen más en común con las lenguas o el
+lenguaje matemático que con un mecanismo o un motor. Sin embargo uno
+puede ahogarse en libros donde se analiza sistemáticamente un lenguaje
+de programación como si de una herramienta se tratara.
+
+Los parámetros para juzgar un lenguaje son ajenos a un ingeniero o un
+matemático y más cercanos a un filósofo: aprendizaje, incertidumbre,
+consistencia o formalismo. La programación es la creación de
+literatura con un lenguaje específico y tiene ingredientes como la
+sintaxis, el léxico... ¡Incluso faltas de ortografía! Un ingeniero
+tiende a valorar según parámetros como la eficiencia, la simplicidad o
+la rapidez.  Pocas veces constatamos el error que estos conceptos no
+pueden aplicarse a un lenguaje porque son propios de los mecanismos.
+Es algo bastante común: cuando sólo tienes un martillo todo te parece
+un clavo.
+
+Los lenguajes de programación evolucionan como las lenguas naturales.
+Nacen a partir de lenguas primitivas y siguen uno de los dos caminos
+posibles: la evolución o la muerte. Existen en ambos casos lenguas
+muertas.  Podría compararse COBOL con el latín, a pocos se les
+ocurriría aprenderlos hoy en día sin embargo los programas que
+controlan las transacciones bancarias se escriben en COBOL al igual
+que en el Vaticano se siguen analizando textos en latín.
+
+Los lenguajes sirven para comunicar significado.  Utilizar el
+castellano para una crónica futbolística es equivalente a formular un
+teorema mediante un lenguaje matemático. Los lenguajes de programación
+sirven para comunicar algoritmos a ordenadores. Aquí aparece otro
+concepto crucial: comunicación.  Es una acción que requiere un
+interlocutor y en la programación siempre es el mismo: un
+ordenador. 
+
+La comunicación con los ordenadores ha evolucionado rápidamente desde
+la construcción del primer ordenador programable. Una anécdota
+posiblemente apócrifa cuenta que Seymour
+Cray\footnote{\url{http://en.wikipedia.org/wiki/Seymour_Cray}} era capaz
+de arrancar el sistema operativo de un CDC7600 manipulando la memoria
+de este ordenador primitivo a mano. Ahora los lenguajes de
+programación son tan simples que hasta un niño de ocho años es capaz
+de aprenderlos\footnote{Un texto clásico sobre la evolución de los
+  lenguajes de programación es \emph{Real men don't use
+    Pascal}: \url{http://www.pbm.com/~lindahl/real.programmers.html}}. ¿Quién
+se esforzaría hoy en depurar un programa a partir del volcado de
+memoria? Hablarle a los ordenadores es más sencillo porque se han
+vuelto más listos, han evolucionado.
+
+Python es fruto de esta evolución.  Es un lenguaje de programación de
+quinta o sexta generación nacido cuando los ordenadores eran ya tan
+potentes como para no tener que estar continuamente pensando en la
+memoria y la velocidad de ejecución.  Es uno de los primeros lenguajes
+de programación en los que su propia naturaleza no se ha visto
+coartada por las limitaciones del ordenador. Es, en consecuencia, uno
+de los lenguajes más humanos con los que se puede programar. Hoy pocos
+discuten que una herramienta más cercana al programador ayuda a
+implementar algoritmos más complejos en menos tiempo y a cometer menos
+errores. Esto es fundamental para que quienes no disponen de una
+formación específica en la programación, como científicos e
+ingenieros, escriban programas sin tener que aprender más allá de lo
+fundamental.
+
+Los lenguajes de programación de alto nivel deben traducirse mediante
+compilador o un intérprete. Este es el punto donde se crea la
+confusión: el compilador o el intérprete sí son herramientas desde el
+punto de vista técnico. La naturaleza de un lenguaje de programación
+influye significativamente en el diseño y posibilidades del compilador
+o del intérprete.  Por ejemplo, en los lenguajes dinámicos como Python
+el tipo de las variables se conoce en tiempo de ejecución.  Esto añade
+ciertas posibilidades al lenguaje como el hecho de no tener que
+declarar las variables.  Muchos de estos lenguajes no pueden ser
+compilados lo que ya impone que la comunicación nunca podrá efectuarse
+con un compilador sino que tendrá que ser con un intérprete.
+
+Un ingeniero no tiene la formación necesaria para analizar un lenguaje
+pero sí puede entrar en la discusión sobre qué maquinaria, ya sea
+interprete o compilador, es más adecuada en cada caso.  Es en este
+punto donde el lenguaje pasa a un segundo plano, por ejemplo: utilizar
+las posibilidades de optimización de un compilador de C, aparcando por
+ello Python, a pesar de sus peores características como lenguaje. Es
+la suma todas las herramientas necesarias para resultar productivo lo
+que influye en el proceso de decisión.
+
+\emph{Este artículo pretende analizar cada una de las ventajas de utilizar
+Python en un entorno científico y técnico, describir los posibles
+inconvenientes y proponer soluciones para minimizar su efecto}.
+
+Programar en Python es más efectivo porque es más potente sin ser más
+complejo.  Las razones por las que no se ha impuesto aún en un entorno
+científico y técnico son las siguientes:
+
+\begin{itemize}
+\item El desconocimiento.
+\item Que el intérprete no se comporte de la manera adecuada.
+\end{itemize}
+
+Si ya estamos convencidos de la superioridad como lenguaje de Python
+¿Es realmente necesario desperdiciar sus bondades como lenguaje por
+culpa de las características del intérprete?  El objetivo de este
+ensayo es \emph{demostrar que Python dispone en la actualidad de una
+  colección de herramientas suficientes como para minimizar la mayoría
+  de los inconvenientes que podrían descartar su uso}.
+
+\subsection{Un enfoque distinto para cada problema}
+
+Las aplicaciones de simulación pueden dividirse en dos grandes grupos
+según sus necesidades computacionales.  En primer lugar encontramos
+los pequeños programas de entre una decena y el millar de líneas de
+código con la misión de realizar un cálculo relativamente simple. A
+continuación están las grandes simulaciones de computación de alto
+rendimiento con tiempos de ejecución largos en superordenadores y
+ciclos de vida de décadas. Parece imposible que el mismo lenguaje de
+programación pueda encajar en ambos patrones. La estrategia a seguir
+es cambiar las herramientas mientras se mantiene el lenguaje en la
+medida de lo posible.
+
+La distinción anterior sirve para fijar el índice temático de este
+artículo, el \emph{scripting} o pequeños programas que no tienen en
+cuenta el rendimiento y las aplicaciones de \emph{HPC}\footnote{High
+  Performance Computing} se analizarán por separado.
+
+\section{Scripting en Python}
+
+Python fue diseñado como un lenguaje de scripting para uso
+general. El principal criterio de diseño se resume en una frase:
+\emph{en Python sólo debe existir una manera elegante y lógica de
+  hacer cualquier cosa}. Esta condición de diseño tan poco precisa se
+complementa con lo siguiente:
+
+\begin{itemize}
+\item Ser lo suficientemente simple como para que pueda recordarse
+  fácilmente.
+\item Soportar todos los paradigmas modernos de programación.
+\item Ofrecer una librería estándar amplia que responda a la mayoría
+  de las necesidades.
+\item Forzar una sintaxis clara y un código leíble y fácilmente
+  modificable.
+\end{itemize}
+
+La programación en Python se ha convertido paulatinamente en la
+expresión del minimalismo en la programación y queda reflejada en el
+código \emph{zen} de Python. Es una buena oportunidad para ejecutar el
+primer comando dentro de una consola de python\footnote{Para ejecutar
+  este comando debe disponerse de un intérprete de Python. Si no está
+  instalado en el sistema puede seguirse el tutorial del apéndice
+  \ref{sec:instalar}.}.
+
+\begin{lstlisting}
+>>> import this
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+\end{lstlisting}
+
+Estas características han convertido Python en el entorno de
+desarrollo ideal para quienes no tienen conocimientos específicos
+sobre entornos de desarrollo como suele ser habitual entre científicos
+e ingenieros. Su crecimiento en el ámbito de la enseñanza es lento
+pero constante, 
+
+
+\appendix
+
+\section{Python 3.x}
+
+\emph{Esta sección deberá eliminarse en cuando la siguiente versión de
+Python, la 3.x se haya consolidado}
+
+\section{Cómo instalar Python}
+\label{sec:instalar}
+
+blah blah
+
+\end{document}

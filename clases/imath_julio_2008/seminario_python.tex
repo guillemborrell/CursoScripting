@@ -5,10 +5,10 @@
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
 \usepackage{tikz}
+\usepackage{listings}
 
 % \usepackage{pgfpages}
 % \pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
-
 
 \renewcommand\shorthandsspanish{}
 \noextrasspanish
@@ -20,6 +20,13 @@ Guillem Borrell i Nogueras\\
 }
 
 \begin{document}
+
+\lstset{language=Python,
+  backgroundcolor=\color{black!20},
+  numbers=left,
+  extendedchars=true,
+  inputencoding=utf8,
+  showspaces=false}
 
 \begin{frame}
 \begin{center}
@@ -50,19 +57,6 @@ Curso i-MATH, Julio-Septiembre de 2008
   \item \textit{Introducción Informal a Matlab y Octave},
     \url{http://iimyo.forja.rediris.es/}
   \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Mis manías}
-  \begin{itemize}
-  \item Para hacer una chapuza me quedo en casa.
-  \item Me enciende ver algo que no vale nada y te obligan a pagar por
-    ello.
-  \item Usar la herramienta adecuada para cada trabajo.
-  \item Si veo algo estropeado y se que puedo arreglarlo no puedo
-    evitar intentarlo.
-  \end{itemize}
-Esto es útil si te dedicas al diseño de software (modestia a parte).
 \end{frame}
 
 \begin{frame}
@@ -210,7 +204,6 @@ Pymol
  \item Software Libre.
  \item Excelente documentación.
 \end{itemize}
-
 \end{frame}
 
 
@@ -222,16 +215,15 @@ Pymol
 \end{center}
 \end{frame}
 
-\begin{frame}[containsverbatim]
- \frametitle{Todo es un objeto}
-\begin{verbatim}
+\defverbatim[colored]\testcode{
+\begin{lstlisting}
 guillem@aiguaviva ~ $ python
 Python 2.4.4 (#1, Sep 25 2007, 21:44:53)
 [GCC 4.1.2 (Gentoo 4.1.2)] on linux2
 Type "help", "copyright", "credits" or "license" ...
 >>> import cmath
 >>> i=cmath.sqrt(-1) #Los namespaces son objetos
->>> i.conjugate() #Los números son objetos
+>>> i.conjugate() #Los numeros son objetos
 -1j
 >>> i.imag
 1.0
@@ -240,40 +232,52 @@ Type "help", "copyright", "credits" or "license" ...
 >>> i+=3 
 >>> i
 (3+1j)
-\end{verbatim}
+\end{lstlisting}
+}
+
+\begin{frame}
+\frametitle{Todo es un objeto}
+\testcode
 \end{frame}
 
-\begin{frame}[containsverbatim]
- \frametitle{Definir funciones es muy fácil}
-\begin{verbatim}
+\defverbatim[colored]\testcode{
+\begin{lstlisting}
 >>> def sumauno(numero):
 ...     return numero+1
 ...
 >>> sumauno(i)
 (4+1j)
-\end{verbatim}
+\end{lstlisting}
+}
+\begin{frame}
+\frametitle{Definir funciones es muy fácil}
+\testcode
 \begin{itemize}
  \item No hay llaves ni ends, los niveles se definen por el sangrado.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[containsverbatim]
- \frametitle{Documentación a la Matlab}
-\begin{verbatim}
+
+\defverbatim[colored]\testcode{
+\begin{lstlisting}
 >>> def docfunc():
-...     """Esta es una función documentada, a diferencia
-...     de Matlab la documentación de las funciones de
-...     Python es extraíble y formateable"""
+...     """Esta es una funcion documentada, a diferencia
+...     de Matlab la documentacion de las funciones de
+...     Python es extraible y formateable"""
 ...     pass
 ...
 >>> help(docfunc)
 Help on function docfunc in module __main__:
 
 docfunc()
-    Esta es una función documentada, a diferencia de
-    Matlab la documentación de las funciones de Python
-    es extraíble y formateable
-\end{verbatim}
+    Esta es una funcion documentada, a diferencia de
+    Matlab la documentacion de las funciones de Python
+    es extraible y formateable
+\end{lstlisting}}
+
+\begin{frame}
+\frametitle{Documentaci\'on a la Matlab}
+\testcode
 \end{frame}
 
 
@@ -407,7 +411,7 @@ Queremos un lenguaje de programación...
 
       \node (tokensp) at (3,1) [draw=blue,rounded
       corners,thick,fill=blue!20]
-      {Tokens'};
+      {Tree};
 
       \node (bytecode) at (5.5,-1) [draw=blue,rounded
       corners,thick,fill=blue!20]
@@ -454,10 +458,8 @@ Queremos un lenguaje de programación...
   \end{itemize}
 \end{frame}
 
-
-\begin{frame}[containsverbatim]
-\frametitle{Duck typing}
-\begin{verbatim}
+\defverbatim[colored]\testcode{
+\begin{lstlisting}
  >>> class pato:
 ...     cantidad = 1
 ...     def haz_cua(self):
@@ -471,13 +473,16 @@ Queremos un lenguaje de programación...
 1
 >>> estoesunpato.haz_cua()
 cua!
-\end{verbatim} 
+\end{lstlisting} 
+}
+
+\begin{frame}
+\frametitle{Duck typing}
+\testcode
 \end{frame}
 
-\begin{frame}[containsverbatim]
- \frametitle{Duck typing}
-Si algo anda como un pato y hace cua como un pato para mi va a ser un pato.
-\begin{verbatim}
+\defverbatim[colored]\testcode{
+\begin{lstlisting}
 >>> estoesunpato=pato() #instancia de pato
 >>> cuaqueador(estoesunpato)
 cua!
@@ -490,7 +495,12 @@ cua!
 cua!
 >>> isinstance(falsopato,pato)
 False
-\end{verbatim}
+\end{lstlisting}
+}
+\begin{frame}
+ \frametitle{Duck typing}
+Si algo anda como un pato y hace cua como un pato para mi va a ser un pato.
+
 Para la función cuaqueador yo soy tan pato como un pato.
 \end{frame}
 
