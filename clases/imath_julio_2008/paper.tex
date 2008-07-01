@@ -180,7 +180,7 @@ existen unos pocos casos patológicos en los que la velocidad es la
   comprensible que en estos casos no se tengan en cuenta muchas de las
   técnicas que se proponen en este artículo.}, en la mayoría la parte
 del código que explota al máximo hardware se reduce a unas pocas
-líneas. Este artículo dedicará sus últimas sesiones a comentar las
+líneas. Este artículo dedicará sus últimas scciones a comentar las
 distintas técnicas de optimización de código y qué posibilidades
 ofrece Python para ello.
 
@@ -238,10 +238,161 @@ Namespaces are one honking great idea -- let's do more of those!
 
 Estas características han convertido Python en el entorno de
 desarrollo ideal para quienes no tienen conocimientos específicos
-sobre entornos de desarrollo como suele ser habitual entre científicos
-e ingenieros. Su crecimiento en el ámbito de la enseñanza es lento
-pero constante, 
+sobre entornos de desarrollo pero sí saben programar como suele ser
+habitual entre científicos e ingenieros. Su crecimiento en el ámbito
+de la enseñanza es lento pero constante y viene confirmado por la
+progresiva aparición de proyectos científicos que utilizan Python como
+lenguaje de programación.
 
+Aunque es muy adecuado para iniciarse en la programación aún no se ha
+popularizado lo suficiente como para que se enseñe en las
+universidades.  Consecuencia directa de ello es que la gran mayoría de
+quienes se interesan por Python lo hacen ya habiendo aprendido otros
+lenguajes.  Si se posee cierta experiencia programando Python es muy
+fácil de aprender, la documentación dispone de un tutorial que puede
+completarse en un par de horas y asimilarse en unos pocos días. La
+consola interactiva es completamente funcional y es de gran ayuda para
+probar cosas nuevas. Esta es, por ejemplo, la manera más sencilla de
+sacar por pantalla la serie de Fibonacci:
+
+\begin{lstlisting}
+>>> (a,b)=(0,1)
+>>> while b < 10:
+...     print b
+...     (a,b)=(b,a+b)
+...
+1
+1
+2
+3
+5
+8
+\end{lstlisting}
+
+Los programadores con cierta experiencia habrán distinguido las
+siguientes particularidades:
+
+\begin{itemize}
+\item El tipo definido entre paréntesis es un tuple y es una
+  generalización de las variables que funciona también en la
+  asignación.
+\item La definición de los bloques de ejecución, en este caso un bucle
+  lógico, se definen por el sangrado del propio bloque.  Esta
+  característica crea tantos adeptos como detractores.
+\item Representar en pantalla es tan sencillo como escribir la
+  variable tras el comando print.
+\end{itemize}
+
+Tan sencillo como este juego matemático es crear una ventana gráfica
+sobre la que empezar un interfaz de usuario
+
+\begin{lstlisting}
+>>> from Tkinter import *
+>>> t=Tk()
+\end{lstlisting}
+
+Acto seguido aparece la ventana representada en la figura \ref{fig:tk}
+
+\begin{figure}[h!]
+\label{fig:tk}
+  \centering
+  \pgfimage[width=4cm]{files/tk.jpg}
+  \caption{Ventana gracias al módulo Tkinter}
+\end{figure}
+
+También esta vez los programadores expertos habrán notado que el
+mecanismo para cargar en el intérprete nuevas funciones son los
+módulos y que a su vez cada módulo es un \emph{namespace}.
+
+La última particularidad digna de mención antes de empezar con las
+características del lenguaje es mencionar la ayuda interactiva.  Cada
+función de la biblioteca estándar, que analizaremos a continuación,
+está meticulosamente documentada para que cualquier sesión con el
+interprete pueda ser además una visita a la documentación.  Por
+ejemplo:
+
+\begin{lstlisting}
+>>> import cmath
+>>> help(cmath.acos)
+Help on built-in function acos in module cmath:
+
+acos(...)
+    acos(x)
+
+    Return the arc cosine of x.
+\end{lstlisting}
+
+Puede apreciarse que los módulos no sólo definen un \emph{namespace}
+sino que además cada módulo es un objeto.  A partir de la función
+\emph{help} puede consultarse la documentación de cada función a
+través del intérprete.
+
+\emph{Recuerda que en los lenguajes interpretados no hay tipos derivados}
+\subsection{El lenguaje de programación Python}
+
+Esta es sólo una breve introducción de las sentencias y la sintaxis
+del lenguaje Python.  Es una descripción deliberadamente incompleta de
+modo que el tutorial oficial del
+lenguaje\footnote{\url{http://docs.python.org/tut/tut.html}} se convierte a
+partir de ahora en una lectura obligada.
+
+Para dar un poco más de profundidad a este análisis tan breve todos
+los tipos y las sentencias se compararán con las del lenguaje de
+\emph{scripting} por excelencia dentro del entorno científico y
+técnico, Matlab.
+
+\subsubsection{Operaciones aritméticas}
+
+Python puede utilizarse como una calculadora algebraica para realizar
+las operaciones aritméticas usuales:
+
+\begin{lstlisting}
+>>> 2+2 #Suma
+4
+>>> 2-1 #Resta
+1
+>>> 2*4.5 #Multiplicacion
+9.0
+>>> 2/4.5 #Division
+0.44444444444444442
+
+\end{lstlisting}
+
+Las únicas diferencias entre Python y Matlab es que hasta la versión 3.x
+la divisón entre dos enteros devuelve otro entero:
+
+\begin{lstlisting}
+>>> 5/3
+1
+\end{lstlisting}
+
+Para conseguir en la versión 2.x el mismo comportamiento que en la 3.x
+bastará con introducir los siguientes comandos en el intérprete o con
+incluirlos en el código fuente.
+
+\begin{lstlisting}
+>>> from __future__ import division
+>>> 5/3
+1.6666666666666667
+\end{lstlisting}
+
+Y que el operador potencia obedece al doble asterisco como en Fortran
+mientras que el símbolo de acento circunflejo se reserva para el
+operador \emph{XOR}
+
+\begin{lstlisting}
+>>> 5**3
+125
+\end{lstlisting}
+
+
+Al igual que en Matlab la representación por omisión de los números en
+coma flotante es la de doble precisión, es decir, el \emph{double} de C.
+\section{Numpy}
+
+La consciencia minimalista del lenguaje obliga a que no haya ningún
+tipo dedicado a la manipulación de datos n-dimensionales. De todos los
+tipos disponibles las listas son 
 
 \appendix
 
@@ -250,9 +401,40 @@ pero constante,
 \emph{Esta sección deberá eliminarse en cuando la siguiente versión de
 Python, la 3.x se haya consolidado}
 
+Python es en la actualidad un lenguaje en plena transición a una nueva
+versión.  El gran objetivo de Python 3.x, anteriormente conocido como
+Python 3000, es eliminar ciertos errores cometidos en los primeros
+estadios del desarrollo del lenguaje y que se han mantenido en él por
+la voluntad de no romper todo el código escrito. El objetivo
+secundario es conseguir ahondar en la propia filosofía de Python como
+lenguaje sencillo, consistente y corto.
+
+A partir de la llegada de Python 3.x el código que ejecute en Python
+2.x debe escribirse teniendo en cuenta muy seriamente los avisos del
+intérprete en tiempo de ejecución.  En ellos se detallan problemas que
+pueden aparecer en un futuro proceso de migración.
+
+Es también una demostración de valentía.  Python es ya un lenguaje
+maduro y este cambio puede romper infinidad de código que hoy funciona
+sin ningún problema.  Lejos de ser algo que concierne sólo a unos
+pocos desarrolladores sitios como Google, YouTube, NASA y miles de
+empresas, sitios o proyectos de software tendrán que dedicar algo de
+tiempo ---esperemos que no mucho--- al cambio de versión.
+
 \section{Cómo instalar Python}
 \label{sec:instalar}
 
-blah blah
+CPython es el nombre que recibe habitualmente la implementación
+estándar en C y la más difundida. Ha sido portada a una veintena de
+sistemas operativos desde Windows a Symbian.
+
+Python se encuentra ya instalado en todas las distribuciones populares
+de GNU/Linux porque es un lenguaje de uso común para tareas de
+configuración y administración del sistema.  Para instalar módulos
+adicionales es recomendable utilizar el sistema de paquetes del propio
+sistema operativo para que las actualizaciones se produzcan
+automáticamente.
+
+En la página web \url{http://python.org/}
 
 \end{document}
