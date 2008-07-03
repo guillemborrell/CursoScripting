@@ -32,7 +32,7 @@
 
 
 \begin{document}
-
+\maketitle
 \section{Introducción}
 Existe cierta confusión con los conceptos de lenguaje y
 herramienta. Mientras una herramienta nace como respuesta a una
@@ -531,6 +531,20 @@ utilidades de la programación funcional como los decoradores.
 43
 \end{lstlisting}
 
+\subsection{Palabras clave}
+
+Una perfecta demostración que Python es un lenguaje \emph{pequeño} es
+la cantidad mínima de palabras clave que se reservan.
+
+\begin{lstlisting}
+and       del       for       is        raise    
+assert    elif      from      lambda    return   
+break     else      global    not       try      
+class     except    if        or        while    
+continue  exec      import    pass      yield    
+def       finally   in        print
+\end{lstlisting}
+
 \subsection{Tipos}
 
 Como todos los lenguajes modernos orientados a objetos como los tipos
@@ -600,8 +614,15 @@ creación mediante los \emph{list comprehensions}
   Crear una lista que contenga las cadenas de texto\texttt{uno},
   \texttt{dos}, \texttt{tres} y \texttt{cuatro}.  Mover los elementos
   que contienen la letra \emph{o} a una lista nueva. Primero hacerlo
-  con un bucle y luego mediante una copia y el comando \texttt{del}.
+  con un bucle y luego mediante un \emph{list comprehension}(una línea
+  de código).
 \end{small}
+
+% Solución:
+% >>> a=['uno','dos','tres','cuatro']
+% >>> b=[w for w in a if 'o' in w]
+% >>> b
+% ['uno', 'dos', 'cuatro']
 
 \subsection{La biblioteca estándar}
 
