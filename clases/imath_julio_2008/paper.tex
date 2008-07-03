@@ -28,7 +28,7 @@
 \noextrasspanish
 
 \author{Guillem Borrell Nogueras}
-\title{Python como entorno de desarrollo científico.}
+\title{Python como entorno de desarrollo científico.\\ Primera sesión}
 
 
 \begin{document}
@@ -420,6 +420,7 @@ Las funciones matemáticas báscias se encuentran en el módulo
 1285.5809221999864
 \end{lstlisting}
 
+
 En esta pequeña sección se muestran varias características de Python.
 
 \begin{itemize}
@@ -433,6 +434,102 @@ En esta pequeña sección se muestran varias características de Python.
 \item El carácter \emph{\_} es también una constante reservada que
   almacena el resultado del comando anterior.
 \end{itemize}
+
+\subsection{Control de flujo}
+
+La gran particularidad de Python para el control de flujo es esa
+peculiar manera de diferenciar los bloques de ejecución.
+
+\subsubsection{If}
+
+\begin{lstlisting}
+>>> x = int(raw_input("Por favor, introduzca un entero: "))
+>>> if x < 0:
+...      x = 0
+...      print 'Era negativo y lo he cambiado a cero'
+... elif x == 0:
+...      print 'Cero'
+... elif x == 1:
+...      print 'Uno'
+... else:
+...      print 'Mas'
+...
+\end{lstlisting}
+
+\subsubsection{for}
+
+Python, como en algunos lenguajes interpretados, las iteraciones no
+son específicamente un bucle sino que se trata de la secuenciación de
+un iterador.
+
+\begin{lstlisting}
+>>> a = ['gato', 'ventana', 'defenestrar']
+>>> for x in a:
+...     print x, len(x)
+... 
+gato 4
+ventana 7
+defenestrar 11
+>>> for x in a: # Haced esto y morid
+...    if len(x) > 6: a.insert(0, x)
+\end{lstlisting}
+
+Es importante no intentar modificar una lista mientras se está
+iterando sobre ella, hay que crear una copia temporal gracias al
+\emph{slicing}.
+
+Disponemos también de las sentencias \texttt{break} y
+\texttt{continue} para controlar el flujo de ejecución dentro del
+bucle.
+
+\subsubsection{La función \texttt{range}}
+
+Esta función devuelve el iterador más sencillo posible, un contador
+
+\begin{lstlisting}
+>>> range(4)
+[0, 1, 2, 3]
+>>> range(3,12,3)
+[3, 6, 9]
+\end{lstlisting}
+
+\subsubsection{Definición de funciones}
+
+Ahora modificamos la función que crea la serie de fibonacci para que
+devuelva una lista:
+
+\begin{lstlisting}
+def fib2(n): 
+    """Devuelve una lista con la serie de Fibonacci hasta n."""
+    result = []
+    (a, b) = (0, 1)
+    while b < n:
+        result.append(b)
+        (a, b) = (b, a+b)
+    return result
+\end{lstlisting}
+
+Si una función debe devolver más de una variable debe utilizarse un
+\emph{tuple}.  La palabra clave \emph{return} termina también con la
+ejecución de la función así que es una estrategia más para el control
+de flujo de ejecución.
+
+\subsubsection{Funciones lambda}
+
+
+Especialmente útiles en el caso que uno necesite devolver una función
+como argumento de un método.  Python también soporta algunas
+utilidades de la programación funcional como los decoradores.
+\begin{lstlisting}
+>>> def make_incrementor(n):
+...     return lambda x: x + n
+...
+>>> f = make_incrementor(42)
+>>> f(0)
+42
+>>> f(1)
+43
+\end{lstlisting}
 
 \subsection{Tipos}
 
@@ -482,6 +579,30 @@ anteriormente.  Mientras seguir con atención el tutorial es casi
 imprescindible para programar la referencia existe únicamente como
 herramienta de consulta.
 
+Quizás una de las cosas que más caracteriza las listas en Python es su
+creación mediante los \emph{list comprehensions}
+
+\begin{lstlisting}
+>>> [(x, x**2) for x in vec]
+[(2, 4), (4, 16), (6, 36)]
+>>> vec1 = [2, 4, 6]
+>>> vec2 = [4, 3, -9]
+>>> [x*y for x in vec1 for y in vec2]
+[8, 6, -18, 16, 12, -36, 24, 18, -54]
+>>> [x+y for x in vec1 for y in vec2]
+[6, 5, -7, 8, 7, -5, 10, 9, -3]
+>>> [vec1[i]*vec2[i] for i in range(len(vec1))]
+[8, 12, -54]
+\end{lstlisting}
+
+\begin{small}
+  \paragraph*{Ejercicio}
+  Crear una lista que contenga las cadenas de texto\texttt{uno},
+  \texttt{dos}, \texttt{tres} y \texttt{cuatro}.  Mover los elementos
+  que contienen la letra \emph{o} a una lista nueva. Primero hacerlo
+  con un bucle y luego mediante una copia y el comando \texttt{del}.
+\end{small}
+
 \subsection{La biblioteca estándar}
 
 Una de las particularidades de Python como lenguaje es la gran
@@ -518,62 +639,76 @@ Es una lista considerable para ser una biblioteca estandar si se
 compara con libc o la STL.  Esta lista no tiene en cuenta en ningún
 caso todos los módulos no oficiales que pueden encontrarse en el
 Python Package Index \url{http://pypi.python.org/pypi}.
-\section{Numpy}
 
-La consciencia minimalista del lenguaje obliga a que no haya ningún
-tipo dedicado a la manipulación de datos n-dimensionales. De todos los
-tipos disponibles las listas son 
+\begin{small}
+  \paragraph*{Ejercicio}
+  A partir del módulo os ejecutar la orden \texttt{ls} para ver el
+  contenido del directorio actual.
+\end{small}
 
-\section{Scipy}
+\begin{small}
+  \paragraph*{Ejercicio}
+  A partir del módulo sys conseguir que un programa escrito en Python
+  devuelva una ayuda al pasarle el argumento \emph{-h}
+\end{small}
 
-\section{SAGE}
 
-\section{Técnicas y herramientas para eliminar cuellos de botella}
+% \section{Numpy}
 
-\section{Supercomputación con Python}
+% La consciencia minimalista del lenguaje obliga a que no haya ningún
+% tipo dedicado a la manipulación de datos n-dimensionales. De todos los
+% tipos disponibles las listas son 
 
-\appendix
+% \section{Scipy}
 
-\section{Python 3.x}
+% \section{SAGE}
 
-\emph{Esta sección deberá eliminarse en cuando la siguiente versión de
-Python, la 3.x se haya consolidado}
+% \section{Técnicas y herramientas para eliminar cuellos de botella}
 
-Python es en la actualidad un lenguaje en plena transición a una nueva
-versión.  El gran objetivo de Python 3.x, anteriormente conocido como
-Python 3000, es eliminar ciertos errores cometidos en los primeros
-estadios del desarrollo del lenguaje y que se han mantenido en él por
-la voluntad de no romper todo el código escrito. El objetivo
-secundario es conseguir ahondar en la propia filosofía de Python como
-lenguaje sencillo, consistente y corto.
+% \section{Supercomputación con Python}
 
-A partir de la llegada de Python 3.x el código que ejecute en Python
-2.x debe escribirse teniendo en cuenta muy seriamente los avisos del
-intérprete en tiempo de ejecución.  En ellos se detallan problemas que
-pueden aparecer en un futuro proceso de migración.
+% \appendix
 
-Es también una demostración de valentía.  Python es ya un lenguaje
-maduro y este cambio puede romper infinidad de código que hoy funciona
-sin ningún problema.  Lejos de ser algo que concierne sólo a unos
-pocos desarrolladores sitios como Google, YouTube, NASA y miles de
-empresas, sitios o proyectos de software tendrán que dedicar algo de
-tiempo ---esperemos que no mucho--- al cambio de versión.
+% \section{Python 3.x}
 
-\section{Cómo instalar Python}
-\label{sec:instalar}
+% \emph{Esta sección deberá eliminarse en cuando la siguiente versión de
+% Python, la 3.x se haya consolidado}
 
-CPython es el nombre que recibe habitualmente la implementación
-estándar en C y la más difundida. Ha sido portada a una veintena de
-sistemas operativos desde Windows a Symbian.
+% Python es en la actualidad un lenguaje en plena transición a una nueva
+% versión.  El gran objetivo de Python 3.x, anteriormente conocido como
+% Python 3000, es eliminar ciertos errores cometidos en los primeros
+% estadios del desarrollo del lenguaje y que se han mantenido en él por
+% la voluntad de no romper todo el código escrito. El objetivo
+% secundario es conseguir ahondar en la propia filosofía de Python como
+% lenguaje sencillo, consistente y corto.
 
-Python se encuentra ya instalado en todas las distribuciones populares
-de GNU/Linux porque es un lenguaje de uso común para tareas de
-configuración y administración del sistema.  Para instalar módulos
-adicionales es recomendable utilizar el sistema de paquetes del propio
-sistema operativo para que las actualizaciones se produzcan
-automáticamente.
+% A partir de la llegada de Python 3.x el código que ejecute en Python
+% 2.x debe escribirse teniendo en cuenta muy seriamente los avisos del
+% intérprete en tiempo de ejecución.  En ellos se detallan problemas que
+% pueden aparecer en un futuro proceso de migración.
 
-En la página web \url{http://python.org/}
+% Es también una demostración de valentía.  Python es ya un lenguaje
+% maduro y este cambio puede romper infinidad de código que hoy funciona
+% sin ningún problema.  Lejos de ser algo que concierne sólo a unos
+% pocos desarrolladores sitios como Google, YouTube, NASA y miles de
+% empresas, sitios o proyectos de software tendrán que dedicar algo de
+% tiempo ---esperemos que no mucho--- al cambio de versión.
+
+% \section{Cómo instalar Python}
+% \label{sec:instalar}
+
+% CPython es el nombre que recibe habitualmente la implementación
+% estándar en C y la más difundida. Ha sido portada a una veintena de
+% sistemas operativos desde Windows a Symbian.
+
+% Python se encuentra ya instalado en todas las distribuciones populares
+% de GNU/Linux porque es un lenguaje de uso común para tareas de
+% configuración y administración del sistema.  Para instalar módulos
+% adicionales es recomendable utilizar el sistema de paquetes del propio
+% sistema operativo para que las actualizaciones se produzcan
+% automáticamente.
+
+% En la página web \url{http://python.org/}
 
 
 \begin{thebibliography}{99}
