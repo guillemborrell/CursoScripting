@@ -493,6 +493,55 @@ $ python -m profile main.py
   \end{center}
 \end{frame}
 
+\defverbatim[colored]\testcode{
+\begin{lstlisting}
+from ctypes import c_int, POINTER #1
+import numpy as np
+from numpy.ctypeslib import load_library,ndpointer #1
+
+def dgesv(N,A,B):
+    A = np.asfortranarray(A.astype(np.float64)) #2
+    B = np.asfortranarray(B.astype(np.float64))
+
+    cN=c_int(N)
+    NRHS=c_int(1)
+    LDA=c_int(N)
+    IPIV=(c_int * N)()
+    LDB=c_int(N)
+    INFO=c_int(1)
+
+    lapack=load_library('liblapack.so','/usr/lib/')#3
+\end{lstlisting}
+}
+\begin{frame}
+  \frametitle{ctypes}
+  \testcode
+\end{frame}
+
+
+\defverbatim[colored]\testcode{
+\begin{lstlisting}
+     lapack.dgesv_.argtypes=[POINTER(c_int),
+             POINTER(c_int),
+             ndpointer(dtype=np.float64,
+             ndim=2,
+             flags='FORTRAN'),
+             POINTER(c_int), POINTER(c_int),
+             ndpointer(dtype=np.float64,
+                       ndim=2,
+                       flags='FORTRAN'),
+             POINTER(c_int),POINTER(c_int)]#4
+
+    lapack.dgesv_(cN,NRHS,A,LDA,IPIV,B,LDB,INFO)#5
+    return B
+
+print dgesv(2,np.array([[1,2],[1,4]]),np.array([[1,3]]))
+\end{lstlisting}
+}
+\begin{frame}
+  \testcode
+\end{frame}
+
 \begin{frame}
   \frametitle{PyPy}
   \begin{center}
