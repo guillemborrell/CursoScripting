@@ -680,8 +680,281 @@ algoritmos ya no tan nuevo.  Es una estructura que puede contener a la
 vez variables y métodos propios y que dispone de ciertas propiedades
 como la herencia y el polimorfismo.
 
+Su origen proviene de la necesidad de acercar el lenguaje formal de la
+programación a la realidad.  Los tipos habituales como real, entero o
+cadena de caracteres describen elementos que habitan de forma natural
+en el ordenador, ninguno de ellos tiene sentido en la naturaleza.  Ni
+siquiera los caracteres puesto que los lenguajes naturales cuentan con
+una colección de símbolos mucho más rica que el código ASCII.  La
+realidad son palabras, coches, monitores, lamparas... Ninguno de ellos
+es fácilmente modelable a partir de un tipo derivado.
+
+La respuesta a esta necesidad fue crear un nuevo tipo mucho más
+potente que puede contener dos familias de elementos: datos y
+métodos. Los datos son representaciones a un nivel más cercano al
+ordenador del contenido de un objeto.  Por ejemplo, para describir el
+objeto bolígrafo se tomarían los datos capuchón, punta, tubo y tinta y
+podrían ser simples cadenas de caracteres. También son datos los
+estados, por ejemplo: lleno, vacío, tapado, roto... Se trata de, al
+igual que con un tipo derivado, describir con tipos propios de un
+ordenador la realidad.  Los métodos son acciones propias de este
+objeto que describen la \emph{interacción} del mismo con su entorno o
+consigo mismo.  Métodos asociados al bolígrafo podrían ser destapar,
+escribir, morder o voltear.
+
+La verdadera potencia de la orientación a objetos no es la de poder
+juntar datos y métodos en una misma construcción sino la capacidad de,
+mediante la herencia, crear nuevos objetos que modelen realidades más
+complejas.  Por ejemplo, para modelar una pluma estilográfica junto
+con el bolígrafo pueden seguirse dos estrategias, la primera es
+utilizar bolígrafo como clase padre y \emph{sobreescribir} el dato
+punta por plumilla.  Otra opción sería crear un objeto padre de ambos,
+bolígrafo y pluma estilográfica, llamado herramienta de escritura con
+los datos y métodos comunes.  Bolígrafo y pluma heredarían de
+herramienta de escritura y la ampliarían con los datos y métodos
+necesarios.
+
+En Python los objetos se definen a partir de clases, siendo esta la
+la expresión más común entre los lenguajes de programación para la
+ejecución de la programación orientada a objetos.  Una clase crea un
+tipo, tal como puede ser un entero, una lista o un diccionario; con la
+particularidad que ha sido formulada desde el inicio por el
+programador.  Cuando se asigna una clase a una variable esta no
+contiene un objeto sino una \emph{instancia} de la clase.  De este
+modo se deja el vocablo objeto para un uso mucho más general.  En
+Python las clases se definen de la siguiente manera:
+
+\begin{lstlisting}
+In [1]: import math as m
+
+In [2]: class Complex(object):
+   ...:     def __init__(self, realp, imagp):
+   ...:         self.r = realp
+   ...:         self.i = imagp
+   ...:
+   ...:     def abs(self):
+   ...:         return m.sqrt(self.r**2+self.i**2)
+   ...:
+\end{lstlisting}
+
+Ya se ha definido una clase mínima que modela un número complejo.  La
+función \texttt{\_\_init\_\_} es un método especial que describe la
+función a ejecutar durante la \emph{instanciación} de la clase.  Esto
+significa que al ejecutarse la clase \texttt{Complex} tendrá que
+hacerse con dos argumentos, la parte real y la parte imaginaria del
+número. \texttt{self} es una palabra clave que sirve para referirse a
+la clase en sí y se pasa como argumento para reforzar la consistencia
+sintáctica de Python.  Cada método puede utilizar los datos definidos
+en la propia clase, como \texttt{self} define a la clase estos datos
+podrán utilizarse a partir de la clase como raíz tal como se aprecia
+en \texttt{self.r} y \texttt{self.i}.  Sucede exactamente lo mismo con
+los métodos. Se denota la accesibilidad de la propia clase en el
+método pasando \texttt{self} como argumento.
+
+\begin{lstlisting}
+In [3]: nc = Complex(3,4)#instancia de clase
+
+In [4]: nc.r
+Out[4]: 3
+
+In [5]: nc.i
+Out[5]: 4
+
+In [6]: nc.abs()
+Out[6]: 5.0
+\end{lstlisting} 
+
+Una vez creada la instancia del método ya puede accederse a sus datos
+y sus métodos.  La clase \texttt{Complex} hereda de la clase
+\texttt{object} lo que no es más que un abuso de notación para
+explicitar que se trata de una clase que modela un objeto.  A partir
+de la clase \texttt{Complex} se puede crear una clase
+\texttt{MoreComplex} que le añade un método a su progenitora:
+
+\begin{lstlisting}
+class MoreComplex(Complex):
+    def __init__(self, realp, imagp):
+        Complex.__init__(self,realp,imagp)
+
+    def arg(self):
+        return m.atan(self.i/self.r)
+
+In [7]: mc = MoreComplex(3,4)
+
+In [8]: mc.arg()
+Out[8]: 0.78539816339744828
+\end{lstlisting} 
+
+De todas las posibles implementaciones prácticas de la orientación a
+objetos la elección de Python es el \emph{duck typing}.  Se describe
+mediante una frase bastante curiosa: \emph{Si algo anda como un pato y
+  cuaquea como un pato yo lo llamaré pato}.  Esta elección es
+consistente con el hecho que en las funciones no es exige declarar el
+tipo de los argumentos.  Si no se exige para los enteros o las cadenas
+de caracteres los objetos no deben ser una excepción\footnote{Podemos
+  recordar ahora la importancia del \emph{zen de Python}}.  Esto
+significa que si se pasa una instancia de una clase como argumento de
+una función ésta no va a realizar ninguna comprobación sobre la
+verdadera naturaleza de esta instancia.  Se entenderá mejor este
+concepto con un ejemplo.  Se define la clase
+\emph{Pato}\footnote{Explicitar la herencia de la clase
+  \texttt{object} es estrictamente opcional, si no existe herencia
+  alguna proveniente de otras clases debe omitirse el paréntesis.  Se
+  deja al lector comprobar la inconsistencia sintáctica de dejar el
+  paréntesis vacío.} que contiene un dato y un par de métodos. Uno de
+ellos es \texttt{haz\_cua} que simplemente imprime \texttt{cua!} por
+pantalla.
+
+\begin{lstlisting}
+>>> class pato:
+...     cantidad = 1
+...     def haz_cua(self):
+...           print "cua!"
+...
+...     def reproducete(self):
+...           cantidad += 1
+...
+>>> estoesunpato=pato() #instancia de pato
+>>> estoesunpato.cantidad
+1
+>>> estoesunpato.haz_cua()
+cua!
+\end{lstlisting} 
+
+El paso siguiente es crear una función, en este caso
+\texttt{cuaqueador} que pregunte a un supuesto pato si lo es realmente
+pidiéndole que cuaquee.
+
+\begin{lstlisting}
+>>> estoesunpato=pato() #instancia de pato
+>>> def cuaqueador(supuestopato):
+...     supuestopato.haz_cua()
+...
+>>> cuaqueador(estoesunpato)
+cua!
+\end{lstlisting}
+
+Efectivamente, como el objeto \texttt{pato} dispone de la función
+\texttt{haz\_cua} no se produce ningún error.  Pero yo soy
+perfectamente capaz de decir \emph{cua!} si me piden que lo haga.
+
+\begin{lstlisting}
+>>> class guillem:
+...     def haz_cua(self):
+...             print "cua!"
+...
+>>> falsopato=guillem() #ese soy yo
+>>> cuaqueador(falsopato)
+cua!
+\end{lstlisting}
+
+Evidentemente yo no soy un pato como puede comprobarse mediante la
+función \texttt{isinstance}
+
+\begin{lstlisting}
+>>> isinstance(falsopato,pato)
+False
+\end{lstlisting}
+
+El \emph{duck typing} añade el máximo dinamismo posible a un lenguaje
+de programación pero puede también provocar grandes confusiones porque
+no existe ninguna imposición a nivel de interfaces entre objetos.
+Existen módulos que fuerzan la declaración de las clases cuando un
+argumento es un objeto, un ejemplo de ello es la clase
+\texttt{Interface} del popular entorno Zope3.
 
 \section{Numpy}
+
+Una de las primeras extensiones que se programaron para Python, quizás
+por ser una de las más necesarias, fue la que proporcionaba la clase
+de \emph{array n-dimensional}.  Un array es un tipo que puede
+describirse mediante dos características:
+
+\begin{itemize}
+\item Sus dimensiones
+\item El tipo de sus elementos
+\end{itemize}
+
+Esto implica que un \emph{array}, a diferencia de las listas o los
+tuples, es homogéneo en memoria.
+
+Un \emph{array} es gracias al módulo Numpy otra clase de Python:
+
+\begin{lstlisting}
+>>> from numpy import array
+>>> help(array)
+
+Help on built-in function array in module numpy.core.multiarray:
+
+array(...)
+    array(object, dtype=None, copy=1,order=None, subok=0,ndmin=0)
+
+    Return an array from object with the specified date-type.
+
+    Inputs:
+      object - an array, any object exposing the array interface, any
+                object whose __array__ method returns an array, or any
+                (nested) sequence.
+      dtype  - The desired data-type for the array.  If not given,
+                then the type will be determined as the minimum type
+                required
+   [...]
+\end{lstlisting}
+
+Junto con esta clase Numpy proporciona una colección mínima pero útil
+de funciones orientadas al cálculo numérico, más concretamente
+Transformadas Rápidas de Fourier y Álgebra Lineal.
+
+La clase \emph{array} en Python cuenta con más de ciento cincuenta
+métodos con, probablemente, todas las operaciones y acciones que
+puedan resultar de utilidad. Si se comparara con Matlab sin duda
+Python ganaría en el apartado de la versatilidad.
+
+Para empezar a jugar con Numpy y los arrays lo mejor es utilizar el
+atajo siguiente:
+
+\begin{lstlisting}
+>>> from numpy import *
+\end{lstlisting}
+
+Este comando carga las funciones usuales cuyos nombres en muchos casos
+provienen directamente de Matlab.  He aquí una breve sesión como
+ejemplo:
+
+\begin{lstlisting}
+>>> arange(5) #igual que range pero devuelve un array
+array([0, 1, 2, 3, 4])
+>>> array([0,1,2,3,4],'d') # array de doubles a partir de una lista
+array([ 0.,  1.,  2.,  3.,  4.])
+>>> array([0,1,2,3,4],'f') # array de floats a partir de una lista
+array([ 0.,  1.,  2.,  3.,  4.], dtype=float32)
+>>> array([0,1,2,3,4],dtype=complex64) # array de numeros complejos
+array([ 0.+0.j,  1.+0.j,  2.+0.j,  3.+0.j,  4.+0.j], dtype=complex64)
+>>> x = array([[1,2,3],[4,5,6],[7,8,9]],'d') 
+\end{lstlisting}
+
+Como puede apreciarse en el último ejemplo el método de introducción
+de arrays es encapsulado, es decir, el índice que se encuentra a un
+nivel menor es el primer índice.  No existe el concepto de fila y
+columna como en Matlab. 
+
+\begin{lstlisting}
+>>> x = array([[1,2,3],[4,5,6],[7,8,9]],'d')
+>>> y = array([1,0,0],'d')
+>>> dot(x,y)
+array([ 1.,  4.,  7.])
+\end{lstlisting}
+
+Como se puede apreciar se ha operado según el orden establecido de
+índices:
+
+\[x \cdot y = \sum_i x_{ij}y_i  \]
+
+donde $i$ era el primer índice y $j$ el segundo proporcionando una
+notación independiente de la geometría de la matriz y mucho más
+\emph{tensorial}
+
+\subsection{Indexing y Slicing}
 
 \section{Scipy}
 
