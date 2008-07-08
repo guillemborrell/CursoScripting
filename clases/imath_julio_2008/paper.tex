@@ -11,6 +11,7 @@
 \usepackage{hyperref}
 \usepackage{tikz}
 \usepackage{listings}
+\usepackage{embedfile}
 
 \lstset{language=Python,
   backgroundcolor=\color{black!20},
@@ -22,6 +23,41 @@
   keywordstyle=\color{blue},
   showstringspaces=false,
   showspaces=false}
+
+%Comentario
+\newcommand{\ejercicio}[1]{
+\vskip 0.2cm
+\begin{center}
+\begin{tikzpicture}
+\draw node[text width=0.9\textwidth, rounded corners, fill=blue!20,
+draw=blue]
+{
+\textbf{Ejercicio:}\\ 
+\vskip 0.2cm
+\begin{small}
+#1
+\end{small}
+};
+\end{tikzpicture}
+\end{center}
+\vskip 0.2cm
+}
+
+\newcommand{\warning}[1]{
+\vskip 0.2cm
+\begin{center}
+\begin{tikzpicture}
+\draw node[text width=0.9\textwidth, rounded corners, fill=red!20,
+draw=red]
+{
+\textbf{Atención!}\\ 
+\vskip 0.2cm
+#1
+};
+\end{tikzpicture}
+\end{center}
+\vskip 0.2cm
+}
 
 
 \renewcommand\shorthandsspanish{}
@@ -184,6 +220,8 @@ líneas. Este artículo dedicará sus últimas scciones a comentar las
 distintas técnicas de optimización de código y qué posibilidades
 ofrece Python para ello.
 
+\warning{Este documento en pdf contiene archivos adjuntos necesarios
+  para realizar los ejemplos descritos.}
 
 \section{Scripting en Python}
 
@@ -295,8 +333,11 @@ siguientes particularidades:
   generalización de las variables que funciona también en la
   asignación.
 \item La definición de los bloques de ejecución, en este caso un bucle
-  lógico, se definen por el sangrado del propio bloque.  Esta
-  característica crea tantos adeptos como detractores.
+  lógico, se definen por el sangrado del propio bloque. Se recomienda
+  que este sangrado esté formado por cuatro espacios para homogeneizar
+  todo el código existente aunque el intérprete pueda entender también
+  sangrados de dos espacios y tabulaciones. Esta característica crea
+  tantos adeptos como detractores.
 \item Representar en pantalla es tan sencillo como escribir la
   variable tras el comando print.
 \end{itemize}
@@ -440,7 +481,7 @@ En esta pequeña sección se muestran varias características de Python.
 La gran particularidad de Python para el control de flujo es esa
 peculiar manera de diferenciar los bloques de ejecución.
 
-\subsubsection{If}
+\subsubsection{\texttt{if}}
 
 \begin{lstlisting}
 >>> x = int(raw_input("Por favor, introduzca un entero: "))
@@ -456,7 +497,7 @@ peculiar manera de diferenciar los bloques de ejecución.
 ...
 \end{lstlisting}
 
-\subsubsection{for}
+\subsubsection{\texttt{for}}
 
 Python, como en algunos lenguajes interpretados, las iteraciones no
 son específicamente un bucle sino que se trata de la secuenciación de
@@ -484,7 +525,7 @@ bucle.
 
 \subsubsection{La función \texttt{range}}
 
-Esta función devuelve el iterador más sencillo posible, un contador
+Esta función devuelve el iterable más sencillo posible, un contador
 
 \begin{lstlisting}
 >>> range(4)
@@ -513,6 +554,10 @@ Si una función debe devolver más de una variable debe utilizarse un
 \emph{tuple}.  La palabra clave \emph{return} termina también con la
 ejecución de la función así que es una estrategia más para el control
 de flujo de ejecución.
+
+El intérprete sabe que la definición de la función se ha acabado
+porque, al igual que con las otras estructuras de código descritas
+hasta ahora, termina su nivel de sangrado propio.
 
 \subsubsection{Funciones lambda}
 
@@ -609,20 +654,12 @@ creación mediante los \emph{list comprehensions}
 [8, 12, -54]
 \end{lstlisting}
 
-\begin{small}
-  \paragraph*{Ejercicio}
-  Crear una lista que contenga las cadenas de texto\texttt{uno},
-  \texttt{dos}, \texttt{tres} y \texttt{cuatro}.  Mover los elementos
+\ejercicio{
+  Crear una lista que contenga las cadenas de texto \texttt{uno},
+  \texttt{dos}, \texttt{tres} y \texttt{cuatro}.  Copiar los elementos
   que contienen la letra \emph{o} a una lista nueva. Primero hacerlo
   con un bucle y luego mediante un \emph{list comprehension}(una línea
-  de código).
-\end{small}
-
-% Solución:
-% >>> a=['uno','dos','tres','cuatro']
-% >>> b=[w for w in a if 'o' in w]
-% >>> b
-% ['uno', 'dos', 'cuatro']
+  de código).  }
 
 \subsection{La biblioteca estándar}
 
@@ -661,17 +698,15 @@ compara con libc o la STL.  Esta lista no tiene en cuenta en ningún
 caso todos los módulos no oficiales que pueden encontrarse en el
 Python Package Index \url{http://pypi.python.org/pypi}.
 
-\begin{small}
-  \paragraph*{Ejercicio}
+\ejercicio{
   A partir del módulo os ejecutar la orden \texttt{ls} para ver el
   contenido del directorio actual.
-\end{small}
+}
 
-\begin{small}
-  \paragraph*{Ejercicio}
+\ejercicio{
   A partir del módulo sys conseguir que un programa escrito en Python
   devuelva una ayuda al pasarle el argumento \emph{-h}
-\end{small}
+}
 
 \section{Orientación a objetos}
 
@@ -934,8 +969,8 @@ array([ 0.+0.j,  1.+0.j,  2.+0.j,  3.+0.j,  4.+0.j], dtype=complex64)
 \end{lstlisting}
 
 Como puede apreciarse en el último ejemplo el método de introducción
-de arrays es encapsulado, es decir, el índice que se encuentra a un
-nivel menor es el primer índice.  No existe el concepto de fila y
+de arrays es encapsulado, es decir, el índice que se encuentra en un
+nivel más interior será el primero.  No existe el concepto de fila y
 columna como en Matlab. 
 
 \begin{lstlisting}
@@ -952,11 +987,171 @@ Como se puede apreciar se ha operado según el orden establecido de
 
 donde $i$ era el primer índice y $j$ el segundo proporcionando una
 notación independiente de la geometría de la matriz y mucho más
-\emph{tensorial}
+\emph{tensorial}.  Por ejemplo, si se invierte el orden de los
+factores se consigue el resultado esperado sin necesidad de trasponer
+el vector:
+
+\begin{lstlisting}
+>>> dot(y,x)
+array([ 1.,  2.,  3.])
+\end{lstlisting}
 
 \subsection{Indexing y Slicing}
 
+Numpy hereda de Python una característica que puede resultar
+desconcertante si no se entienden bien los conceptos de indexing y
+slicing. Los arrays son indexables de la manera usual \emph{teniendo
+  en cuenta que en Python, como en C, los índices se cuentan empezando
+  con el cero}:
+
+\begin{lstlisting}
+>>> x[0,1]
+2.0
+>>> x[0,:]
+array([ 1.,  2.,  3.])
+>>> x[0]
+array([ 1.,  2.,  3.])
+\end{lstlisting}
+
+Las diferencia se encuentra si queremos porciones (\emph{slices}) de
+la matriz:
+
+\begin{lstlisting}
+>>> x[0:3,0:3]
+array([[ 1.,  2.,  3.],
+       [ 4.,  5.,  6.],
+       [ 7.,  8.,  9.]])
+\end{lstlisting}
+
+Intuitivamente y teniendo en cuenta tal como indexa Python la
+secuencia debería ir de cero a dos y no de cero a tres.  Esto es así
+porque Python utiliza un criterio distinto para los índices y para las
+porciones.  Se esquematiza perfectamente en esta figura:
+
+
+
+El motivo de esta elección es que Python soporta los índices
+negativos, aunque no cíclicos ---no puede pasarse de una frontera a
+otra---.
+
+\begin{lstlisting}
+>>> x[-2:,-2:]
+array([[ 5.,  6.],
+       [ 8.,  9.]])
+>>> x[-2:1,-2:1]
+array([], shape=(0, 0), dtype=float64)
+\end{lstlisting}
+
 \section{Scipy}
+
+Al poco de su aparición se constató que por su naturaleza Python podía
+ser un lenguaje adecuado para aplicarse a ciencia e ingeniería. Muchos
+lo vieron como un lenguaje con una filosofía parecida a Matlab pero
+que no contaba con ninguno de sus inconvenientes. El precio que había
+que pagar era que no existía ninguna biblioteca de funciones y
+utilidades parecida a la proporcionada por Matlab.
+
+Afortunadamente el núcleo fundamental de Matlab, como el álgebra
+lineal o las transformadas de Fourier, es software libre. No hay
+ninguna diferencia esencial entre Matlab y su competencia a parte de
+los millares de pequeñas funciones que implementan pequeños
+algoritmos. Dotar a otro lenguaje de programación de la misma
+biblioteca de funciones es una tarea titánica pero técnicamente
+posible.
+
+Scipy es el un esfuerzo común para dotar a Python, que significa
+respecto a Matlab un gran avance como lenguaje de programación, de una
+biblioteca de funciones equivalente. Se constata que el espejo es
+Matlab en cuanto se advierte que muchas de las funciones de Scipy
+toman el mismo nombre.
+
+Scipy es una biblioteca basada en submódulos temáticos:
+
+\begin{lstlisting}
+Available subpackages
+---------------------
+ndimage          --- n-dimensional image package [*]
+stats            --- Statistical Functions [*]
+signal           --- Signal Processing Tools [*]
+lib              --- Python wrappers to external libraries [*]
+linalg           --- Linear algebra routines [*]
+linsolve.umfpack --- Interface to the UMFPACK library. [*]
+odr              --- Orthogonal Distance Regression [*]
+misc             --- Various utilities that don't have another home.
+sparse           --- Sparse matrix [*]
+interpolate      --- Interpolation Tools [*]
+optimize         --- Optimization Tools [*]
+cluster          --- Vector Quantization / Kmeans [*]
+linsolve         --- Linear Solvers [*]
+fftpack          --- Discrete Fourier Transform algorithms [*]
+io               --- Data input and output [*]
+maxentropy       --- Routines for fitting maximum entropy models [*]
+integrate        --- Integration routines [*]
+lib.lapack       --- Wrappers to LAPACK library [*]
+special          --- Airy Functions [*]
+lib.blas         --- Wrappers to BLAS library [*]
+  [*] - using a package requires explicit import (see pkgload)
+\end{lstlisting}
+
+Scipy está enteramente basada en Numpy que nació para solucionar un
+pequeño gran problema para Python: la existencia de dos tipos de
+arrays.
+
+Jim Hugunin desarrolló Numeric, la primera implementación de arrays
+para Python en 1995 cuando era estudiante del MIT.  Numeric estaba
+diseñado para ser rápido y obviaba muchas de las posibles necesidades
+de la clase array dentro de un entorno interactivo. Para paliar estos
+pequeños inconvenientes Perry Greenfield, Todd Miller y Rick White
+crearon numarray pero nunca consiguieron la misma velocidad de
+ejecución que Numeric.
+
+Esto provocó una gran incertidumbre dentro de la comunidad científica
+que se acercaba a Python.  La tendencia era pensar que numarray se
+consolidaría y apartaría Numeric paulatinamente pero eso nunca llegaba
+a suceder porque era mucho más lento.  Mientras para un programador
+era se trataba sólo de un dilema, para la creación de una gran
+biblioteca científica era sencillamente una herida sangrante.
+
+Travis Oliphant se tomó el problema como algo personal y juntó lo
+mejor de ambas implementaciones en Numpy dando finalmente la
+posibilidad a Scipy y a Python de crecer dentro de la comunidad
+científica y técnica.
+
+
+\ejercicio{
+  El gran punto débil de Scipy y por extensión, de Numpy, es la
+  documentación. Para saber cómo utilizar una determinada función es
+  más efectivo utilizar la ayuda interactiva del intérprete que buscar
+  por internet porque no existe ningún directorio.  Tampoco se
+  proporciona ninguna base de datos de funciones con Scipy, algo que
+  sería enormemente útil.
+
+  Afortunadamente parece que se está trabajando duramente en ello.
+  Parece que la política será escribir sólo una documentación que
+  pueda extraerse y moverse a distintos formatos gracias a un gestor
+  de documentación llamado \emph{sphinx}.  Este ejercico pretende que
+  el lector batalle un poco con la documentación resolviendo un
+  problema de mínimos cuadrados generalizados.
+
+  Dentro del módulo de scipy \emph{optimize} se encuentra la función
+  \texttt{leastsq} que implementa el algoritmo Levenberg-Marqardt de
+  mínimos cuadrados generalizados. Se trata de crear una serie de
+  datos y ajustarlos mediante la función objetivo
+
+  \[ f(x,\mathbf{p})=\frac{1}{p_1+p_2e^{-x}}  \]
+
+  Entonces el problema será minimizar, para una serie de datos
+  $(x_i,y_i)$ el funcional
+
+  \[ R(\mathbf{p}) = \sum_i (y_i-f(x_i,\mathbf{p}))^2 \]
+
+  Para crear los datos se tomará la función objetivo con $p_1=1$ y
+  $p_2=2$, y se generará una serie de cien puntos sumando a la función
+  un ruido aleatorio [\ref{sec:mcg}].
+
+  Una vez se ajusten los datos obtenidos mediante esta función el
+  resultado dería ser precisamente $p_1=1$ y $p_2=2$.
+}
 
 \section{SAGE}
 
@@ -965,6 +1160,37 @@ notación independiente de la geometría de la matriz y mucho más
 \section{Supercomputación con Python}
 
 \appendix
+
+\section{Utilidades y soluciones a los problemas}
+
+\subsection{Uso de los list comprehension}
+
+La solución al problema mediante un list comprehension en una sola
+línea es la siguiente:
+
+\begin{lstlisting}
+>>> a=['uno','dos','tres','cuatro']
+>>> b=[w for w in a if 'o' in w]
+>>> b
+['uno', 'dos', 'cuatro']
+\end{lstlisting}
+
+Esta sintaxis tiene sentido si se lee como si de una frase se tratara:
+\emph{la palabra para cada palabra en a si 'o' está en la palabra}.
+
+\subsection{Generador de datos para el ejercicio de mínimos cuadrados
+  generalizados}\label{sec:mcg}
+
+\embedfile{gendata.py}
+
+Este documento contiene el archivo \texttt{gendata.py} que contiene la
+función que genera los datos del ejercicio. Esta función devuelve un
+tuple de dos elementos y debe usarse como sigue:
+
+\begin{lstlisting}
+>>> from gendata import gendata
+>>> (x,y)=gendata()
+\end{lstlisting}
 
 \section{Python 3.x}
 
@@ -1025,6 +1251,10 @@ En la página web \url{http://python.org/}
 \bibitem[OCT]{OCT}
   Introducción Informal a Matlab y Octave; Guillem Borrell i Nogueras;
   \newblock \url{http://iimyo.forja.rediris.es}. ISBN: 978-8-4691-3626-3
+
+\bibitem[NUM]{NUM}
+  Guide to NumPy; Travis E. Oliphant; March 15, 2006;
+  \newblock \url{http://www.trelgol.com/}
 
 \end{thebibliography}
 
