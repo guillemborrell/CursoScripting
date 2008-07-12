@@ -1,4 +1,4 @@
-from numpy import zeros
+from numpy import zeros,ascontiguousarray
 from scipy.linalg import solve
 import ret
 

@@ -175,6 +175,13 @@ ensayo es \emph{demostrar que Python dispone en la actualidad de una
   colección de herramientas suficientes como para minimizar la mayoría
   de los inconvenientes que podrían descartar su uso}.
 
+\subsection{Arquitectura de un lenguaje dinámico}
+
+Esta sección pretende explicar de un modo informal por qué el
+funcionamiento interno de un lenguaje de programación dinámico, que
+conoce el tipo que contienen las variables en tiempo de ejecución, es
+por lo general dos órdenes de magnitud más lento que uno estático.
+
 \subsection{Un enfoque distinto para cada problema}
 
 Las aplicaciones de simulación pueden dividirse en dos grandes grupos
@@ -1181,7 +1188,7 @@ Esta sintaxis tiene sentido si se lee como si de una frase se tratara:
 \subsection{Generador de datos para el ejercicio de mínimos cuadrados
   generalizados}\label{sec:mcg}
 
-\embedfile{gendata.py}
+\embedfile{files/gendata.py}
 
 Este documento contiene el archivo \texttt{gendata.py} que contiene la
 función que genera los datos del ejercicio. Esta función devuelve un

@@ -219,7 +219,7 @@
 
 \defverbatim[colored]\testcode{
   \begin{lstlisting}
-    guillem@aiguaviva ~ $ python
+    guillem@aiguaviva ~> python
     Python 2.4.4 (#1, Sep 25 2007, 21:44:53)
     [GCC 4.1.2 (Gentoo 4.1.2)] on linux2
     Type "help", "copyright", "credits" or "license" ...
@@ -741,12 +741,82 @@ Para la función cuaqueador yo soy tan pato como un pato.
 
 \begin{frame}
   \frametitle{Numpy}
-  
+
+  \begin{itemize}
+  \item Proporciona a Puython el tipo \texttt{array}
+  \item Un \texttt{array} es un tipo:
+    \begin{itemize}
+    \item Homogéneo en memoria
+    \item Definido por sus dimensiones y el tipo de sus datos.
+    \item Pensado para operaciones vectoriales.
+    \end{itemize}
+  \item Funciones matemáticas básicas
+  \end{itemize}
+\end{frame}
+
+\defverbatim[colored]\testcode{
+\begin{lstlisting}
+>>> from numpy import array
+>>> help(array)
+
+Help on built-in function array in module numpy.core.multiarray:
+
+array(...)
+    array(object, dtype=None, copy=1,order=None, subok=0,ndmin=0)
+
+    Return an array from object with the specified date-type.
+
+    Inputs:
+      object - an array, any object exposing the array interface, any
+                object whose __array__ method returns an array, or any
+                (nested) sequence.
+      dtype  - The desired data-type for the array.  If not given,
+                then the type will be determined as the minimum type
+                required
+   [...]
+\end{lstlisting}
+}
+\begin{frame}
+  \frametitle{El tipo \texttt{array}}
+  \testcode
+\end{frame}
+
+\begin{frame}
+  \frametitle{Creación}
+  \begin{itemize}
+  \item A la Matlab
+    \begin{itemize}
+    \item \texttt{zeros}
+    \item \texttt{ones}
+    \item \texttt{linspace}
+    \end{itemize}
+  \item A la Python
+    \begin{itemize}
+    \item \texttt{array}
+    \item \texttt{empty}
+    \item \texttt{arange}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{slicing}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Métodos}
+\end{frame}
+
+\begin{frame}
+  \texttt{Ufuncs}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Almacenamiento}
 \end{frame}
 
 \begin{frame}
   \frametitle{Scipy}
-  
 \end{frame}
 
 
