@@ -16,14 +16,14 @@ import sys, os
 # If your extensions are in another directory, add it here. If the directory
 # is relative to the documentation root, use os.path.abspath to make it
 # absolute, like shown here.
-#sys.path.append(os.path.abspath('.'))
+sys.path.append(os.path.abspath('extensions'))
 
 # General configuration
 # ---------------------
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = []
+extensions = ['sphinx.ext.pngmath','only_directives','plot_directive']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['.templates']
@@ -92,10 +92,10 @@ html_style = 'default.css'
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-#html_title = None
+html_title = u'Lenguajes Interpretados para Cálculo en Ingeniería'
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
-#html_short_title = None
+html_short_title = u'LICI'
 
 # The name of an image file (within the static path) to place at the top of
 # the sidebar.
@@ -127,7 +127,7 @@ html_static_path = ['.static']
 #html_additional_pages = {}
 
 # If false, no module index is generated.
-#html_use_modindex = True
+html_use_modindex = False
 
 # If false, no index is generated.
 #html_use_index = True
@@ -147,22 +147,22 @@ html_static_path = ['.static']
 #html_file_suffix = ''
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'LenguajesInterpretadosparaClculoenIngenieradoc'
+htmlhelp_basename = 'LICI'
 
 
 # Options for LaTeX output
 # ------------------------
 
 # The paper size ('letter' or 'a4').
-#latex_paper_size = 'letter'
+latex_paper_size = 'a4'
 
 # The font size ('10pt', '11pt' or '12pt').
-#latex_font_size = '10pt'
+latex_font_size = '10pt'
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, document class [howto/manual]).
 latex_documents = [
-  ('index', 'LenguajesInterpretadosparaClculoenIngeniera.tex', u'Lenguajes Interpretados para Cálculo en Ingeniería Documentation',
+  ('index', 'lici.tex', u'Lenguajes Interpretados para Cálculo en Ingeniería Documentation',
    u'Guillem Borrell i Nogueras', 'manual'),
 ]
 
@@ -172,7 +172,7 @@ latex_documents = [
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
-#latex_use_parts = False
+latex_use_parts = False
 
 # Additional stuff for the LaTeX preamble.
 #latex_preamble = ''
@@ -181,4 +181,4 @@ latex_documents = [
 #latex_appendices = []
 
 # If false, no module index is generated.
-#latex_use_modindex = True
+latex_use_modindex = False
