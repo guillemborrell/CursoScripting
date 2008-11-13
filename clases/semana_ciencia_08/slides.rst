@@ -79,10 +79,6 @@ SW que hay que aprender
 
   Lo importante es el concepto
 
-SW que hay que aprender
-=======================
-
-Vídeo de manquiña
 
 No es sólo el concepto
 ======================
@@ -298,11 +294,6 @@ Yo he venido a hablar de...
 
 * Octave
 
-
-Pero...
-=======
-
-Video de Musical Mice y Gumbies. 
 
 Ruegos quejas y preguntas
 =========================
