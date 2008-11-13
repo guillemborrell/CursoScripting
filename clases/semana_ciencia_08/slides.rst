@@ -13,6 +13,21 @@ Sea lo que sea que signifique
   19 de Noviembre de 2008
   </div>
 
+Presentación
+============
+
+* Guillem Borrell i Nogueras
+
+* Englobe Technologies
+
+  * Supercomputación
+
+* Lab. MFC
+
+* Introducción Informal a Matlab y Octave
+
+* Python.
+
 Índice
 ======
 
@@ -69,10 +84,8 @@ SW que hay que aprender
 
 Vídeo de manquiña
 
-SW que hay que aprender
-=======================
-
-No sólo es el concepto
+No es sólo el concepto
+======================
 
 .. class:: rubric
 
@@ -93,6 +106,8 @@ SW que hay que aprender
 
 * ¿Solución?
 
+  * Cambio de actitud respecto al valor de las herramientas.
+
   * Ver el cambio como algo beneficioso y rentable a la larga
 
   * El SL tiene oferta de sobra en este sector
@@ -100,6 +115,8 @@ SW que hay que aprender
 * ¿Situación deseable?
 
   * Mi visión personal...
+
+  .. Puedo estar equivocado, por eso no la doy en público
 
 SW que hay que usar
 ===================
@@ -119,6 +136,9 @@ SW que hay que usar
   * Análisis de datos y visualización
 
   * CAD
+
+.. El 90% de los ingenieros no sabe cuándo se debe utilizar una base
+.. de datos y cuándo una hoja de cálculo.
 
 SW que hay que usar
 ===================
@@ -180,100 +200,46 @@ La Innovación Educativa es algo parecido al Infierno de Dante
 
   * Cada Universidad tiene una opinión distinta al respecto
 
-Perspectiva docente del SW
-==========================
+.. Los proyectos se adaptan a la financiación, no la financiación a
+.. los proyectos.
 
-La enseñanza de software en la Universidad española es un desastre.
+Innovación Educativa
+====================
 
-* Docencia
+*Todos los rectores están a favor de la Innovación Educativa, ninguno está dispuesto a dar un duro por ella.*
 
-  * Desconocimiento general de las herramientas útiles.
+..  class:: attribution
 
-  * La conversión no es una necesidad.
+  Anónimo profesor de la ETSIA
 
-  * Problemas económicos.  ¿Avaricia de las empresas de SW?
+La adaptación al sistema docente actual carece de:
 
-* Aprendizaje
-
-  * Déficit de horas dedicadas a la programación
-
-  * Falta de asesoramiento o motivación para convertirlo en una tarea
-    personal
-
-
-Perspectiva docente del SL
-==========================
-
-Si no usamos software adecuado, como para encima usar SL.
-
-.. class:: rubric
-
-  Hablar de las ventajas del SL ahora sería un poco repetitivo...
-
-La mayoría de profesores usan la herramienta que más rabia les da. Es
-fácil meterles un gol.
-
-Nuestros pichichis
-==================
-
-* Octave
-
-* Python
-
-¿Cómo se introducen las herramientas?
-=====================================
-
-.. class:: rubric
-
-  Haciendo el trabajo sucio
-
-* Escribiendo manuales
-
-* Enseñando a hacer los deberes
-
-* Convocando cursos gratuitos
-
-* ...
-
-Pero...
-=======
-
-.. class:: rubric
-
-  ¿Quién paga todo esto?
-
-Las respuestas al final...
-
-
-Carencias del sistema docente
-=============================
-
-*Todos los rectores están a favor de la innovación educativa, ninguno está dispuesto a dar un duro por ella.*
-
-.. class:: attribution
-
-  José Graña
-
-La adaptación del sistema docente actual carece de:
-
-* Herramientas.
+* Infraestructura
 
 * Dinero.
 
 * Compensación para las iniciativas innovadoras.
 
-Carencias del sistema docente
-=============================
+.. Si tienes una iniciativa de innovación docente siempre te contestan
+.. que lo hagas, pero nunca te proponen un sistema de retribución o
+.. retorno de inversión.
 
-*Ningún profesor va a modificar una sola coma de su asignatura a no ser que se le pague, se le obligue o le sobre tiempo.*
 
-.. class:: attribution
+¿Qué pinta el SL aquí?
+======================
 
-  Y es algo completamente comprensible.
+Es el caos y todos parten de cero. Se puede entrar convocando cursos
+que entren dentro de los programas de formación.  Se necesita:
 
-* La Universidad De Cádiz necesitó un profesor de Octave...
+* Oficialidad.
 
-* ETSI Aeronáuticos sigue recomendando Digital Visual Fortran.
+* Apoyo económico.
+
+* Personal remunerado.
+
+.. class:: rubric
+
+  ¿Quién paga todo esto?
 
 
 Solución
@@ -281,9 +247,8 @@ Solución
 
 .. class:: rubric
 
-  Que quienes realmente están interesados en la innovación educativa
-  se tomen la justicia por su mano y consigan sus objetivos mediante
-  la mentira y el chantaje.
+  Lo más importante es tener un despacho.  Un sito con un ordenador,
+  un par de mesas y unas sillas para tener reuniones.
 
 
 Pasos
@@ -305,6 +270,39 @@ Pasos
 
   * Pedir la denominación de cátedra o aula al rector.
 
+.. Para ello es necesario encontrar un profesor que quiera pringar y
+.. que quiera dejar de investigar, porque no va a tener tiempo para
+.. ello.
+
+
+¿Qué hemos conseguido?
+======================
+
+* Infraestructura
+
+* Oficialidad
+
+* Apoyo económico
+
+* Autocompensación.
+
+.. class:: rubric
+
+  Objetivos cumplidos.
+
+
+Yo he venido a hablar de...
+===========================
+
+* Python
+
+* Octave
+
+
+Pero...
+=======
+
+Video de Musical Mice y Gumbies. 
 
 Ruegos quejas y preguntas
 =========================
