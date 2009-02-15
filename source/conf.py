@@ -1,16 +1,3 @@
-# -*- coding: utf-8 -*-
-#
-# Lenguajes Interpretados para Cálculo en Ingeniería documentation build configuration file, created by
-# sphinx-quickstart on Fri Aug 29 11:57:58 2008.
-#
-# This file is execfile()d with the current directory set to its containing dir.
-#
-# The contents of this file are pickled, so don't put values in the namespace
-# that aren't pickleable (module imports are okay, they're removed automatically).
-#
-# All configuration values have a default; values that are commented out
-# serve to show the default.
-
 import sys, os
 
 # If your extensions are in another directory, add it here. If the directory
@@ -23,7 +10,7 @@ sys.path.append(os.path.abspath('extensions'))
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.pngmath','only_directives','plot_directive']
+extensions = ['sphinx.ext.pngmath','only_directives']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['.templates']
@@ -35,8 +22,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Lenguajes Interpretados para Cálculo en Ingeniería'
-copyright = u'2008, Guillem Borrell i Nogueras'
+project = u'Matemáticas en Ingeniería con Python'
+copyright = u'2008-2009, Guillem Borrell i Nogueras'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -92,10 +79,10 @@ html_style = 'default.css'
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-html_title = u'Lenguajes Interpretados para Cálculo en Ingeniería'
+html_title = u'Matemáticas en Ingeniería con Python'
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
-html_short_title = u'LICI'
+html_short_title = u'MICP'
 
 # The name of an image file (within the static path) to place at the top of
 # the sidebar.
@@ -147,7 +134,7 @@ html_use_modindex = False
 #html_file_suffix = ''
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'LICI'
+htmlhelp_basename = 'MICP'
 
 
 # Options for LaTeX output
@@ -162,7 +149,8 @@ latex_font_size = '10pt'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, document class [howto/manual]).
 latex_documents = [
-  ('index', 'lici.tex', u'Lenguajes Interpretados para Cálculo en Ingeniería Documentation',
+  ('index', 'micp.tex',
+   u'Matemáticas en Ingeniería con Python',
    u'Guillem Borrell i Nogueras', 'manual'),
 ]
 
