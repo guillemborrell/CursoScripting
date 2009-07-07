@@ -1,0 +1,102 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgf}
+
+\renewcommand\shorthandsspanish{}
+\noextrasspanish
+
+\title{Python}
+\author{
+Guillem Borrell i Nogueras\\
+\texttt{guillem@torroja.dmt.upm.es}
+}
+
+\begin{document}
+
+\begin{frame}
+\begin{center}
+ \includegraphics[width=9cm]{files/header.png}\\
+\begin{large}
+\textbf{Informe de Actividad}
+\end{large}\\
+Laboratorio de Mecánica de Fluidos Computacional\\
+ETSI Aeronáuticos. UPM\\
+\vspace{0.5cm}
+\textit{Guillem Borrell i Nogueras}\\
+\textit{Javier Jiménez Sendín}\\
+Barcelona, 10 de Junio de 2009
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Índice}
+\begin{itemize}
+\item Recursos y contrataciones
+\item Otros frentes abiertos
+\item Capa límite turbulenta
+\begin{itemize}
+\item Estado actual
+\item Recursos de cálculo
+\item Problemas con las nuevas arquitecturas
+\item Plan de trabajo
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Recursos y contrataciones}
+\begin{itemize}
+\item Técnico multimedia (3 meses)
+\item Ingeniero de sistemas (1 año)
+\begin{itemize}
+\item Gestión de la infraestructura del Laboratorio
+\item MPI+Infiniband
+\item OpenMP
+\end{itemize}
+\item Postdoc.
+\begin{itemize}
+\item Incorporada ayer
+\item Capa límite turbulenta
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Otros frentes abiertos}
+\begin{tikzpicture}
+  \node[draw=green, fill=green!20, rounded corners] (a) {
+    \begin{minipage}{6.5cm}
+      \begin{itemize}
+      \item Cell Processor
+        \begin{itemize}
+        \item Playstation Challenge
+        \end{itemize}
+      \item OpenCL
+        \begin{itemize}
+      \item Simulación de nubes de contaminante
+        \end{itemize}
+      \item Proyecto Piloto
+        \begin{itemize}
+        \item PIC
+        \item Red Española de e-Ciencia
+        \item Almacenamiento Cloud
+        \end{itemize}
+      \end{itemize}
+    \end{minipage}
+  };
+\draw (5.2,-3.5) node[draw] (cf) {
+  \pgfimage[width=0.45\linewidth]{files/nube}
+};
+\end{tikzpicture}
+\end{frame}
+
+
+\end{document}
