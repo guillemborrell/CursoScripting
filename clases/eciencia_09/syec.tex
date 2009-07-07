@@ -7,6 +7,9 @@
 \usepackage{tikz}
 \usepackage{pgf}
 
+\usepackage{pgfpages}
+\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
+
 \renewcommand\shorthandsspanish{}
 \noextrasspanish
 
@@ -72,31 +75,190 @@ Barcelona, 10 de Junio de 2009
 \begin{frame}
 \frametitle{Otros frentes abiertos}
 \begin{tikzpicture}
-  \node[draw=green, fill=green!20, rounded corners] (a) {
+  \node[draw=blue, fill=blue!20, rounded corners] (a) {
     \begin{minipage}{6.5cm}
       \begin{itemize}
       \item Cell Processor
         \begin{itemize}
         \item Playstation Challenge
+        \item ¿Opción de futuro?
         \end{itemize}
       \item OpenCL
         \begin{itemize}
-      \item Simulación de nubes de contaminante
+        \item GPGPU
+        \item Simulación de nubes de contaminante
         \end{itemize}
       \item Proyecto Piloto
         \begin{itemize}
         \item PIC
         \item Red Española de e-Ciencia
+        \item Datos de simulaciones MN
         \item Almacenamiento Cloud
         \end{itemize}
       \end{itemize}
     \end{minipage}
   };
-\draw (5.2,-3.5) node[draw] (cf) {
-  \pgfimage[width=0.45\linewidth]{files/nube}
-};
+  \draw (5.2,-3.0) node[draw=blue, rounded corners] (cf) {
+    \pgfimage[width=0.45\linewidth]{files/nube}
+  };
 \end{tikzpicture}
 \end{frame}
 
+
+\begin{frame}
+\frametitle{A ver quién la tiene más grande}
+\framesubtitle{(la capa límite)}
+
+\begin{itemize}
+\item[2009] Jiménez, Hoyas, Simens, Mizuno. $Re_\theta = 2100$
+  \begin{itemize}
+  \item Mare Nostrum
+  \end{itemize}
+  \pause
+\item[2009] Schlatter, Örlü, Li, Fransson, Johansson, Alfredsson,
+  Henningson. $Re_\theta = 2500$
+  \begin{itemize}
+  \item Mayor $Re_\theta$ pero menor resolución.
+  \end{itemize}
+  \pause
+\item[20??] $Re_\theta = 5500$
+  \begin{itemize}
+  \item $45 \times 10^9$ puntos (15 veces mayor)
+  \item No hay ningún recurso en España con esta capacidad.
+  \item Mare Nostrum en Nº60 Top500 (Junio 2009)
+  \end{itemize}
+\end{itemize}
+
+\pause
+
+\begin{center}
+  \begin{tikzpicture}
+    \node[draw=red, fill=red!20, rounded corners] (cf)
+    {Estamos obligados a buscar otros recursos.};
+  \end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Recursos disponibles}
+\begin{itemize}
+\item \textit{Intrepid}, $65 \times 10^6$ Horas
+  \begin{itemize}
+  \item Argonne National Laboratory (DoE)
+  \item Blue Gene/P
+  \item Texas A\&M
+  \end{itemize}
+\item DEISA, $20 \times 10^6$ Horas
+  \begin{itemize}
+  \item Forschungszentrum Jülich 
+  \item Blue Gene/P
+  \end{itemize}
+\item ¿Canadá?
+  \begin{itemize}
+  \item ???
+  \end{itemize}
+\item Centro de Supercomputación de Castilla y León
+  \begin{itemize}
+  \item Intel Xeon \textbf{5450}
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Blue Gene/P}
+\begin{Large}
+\begin{itemize}
+\item Única opción a corto-medio plazo
+\item Aún otra arquitectura
+\item ¿Adecuada para Turbulencia?
+\begin{itemize}
+\item{Cores lentos}
+\item{512 MB RAM / Core}
+\end{itemize}
+\end{itemize}
+\end{Large}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{problemas de memoria}
+\begin{tikzpicture}
+\node[draw=blue, rounded corners] (cf) {
+  \pgfimage[width=0.9\linewidth]{files/dominio}
+};
+\end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{problemas de memoria}
+\begin{tikzpicture}
+\node[draw=blue, rounded corners] (cf) {
+  \pgfimage[width=0.9\linewidth]{files/planosespectral}
+};
+\end{tikzpicture}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{problemas de memoria}
+\begin{tikzpicture}
+\node[draw=blue, rounded corners] (cf) {
+  \pgfimage[width=0.9\linewidth]{files/plano}
+};
+\end{tikzpicture}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{problemas de memoria}
+\begin{tikzpicture}
+\node[draw=blue, rounded corners] (cf) {
+  \pgfimage[width=0.9\linewidth]{files/esquemahilos}
+};
+\end{tikzpicture}
+\begin{center}
+\begin{tikzpicture}
+  \node[draw=red, fill=red!20, rounded corners] (cf)
+  {MPI + OpenMP};
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Paralelismo y concurrencia en el Blue Gene/P}
+\begin{figure}
+\label{fig:qtoctave-secciones}
+  \centering
+  \pgfimage[width=0.8\linewidth]{files/multicore}
+  \caption{Tiempos de comunicación en función del tamaño de mensaje
+    para 2 y 4 cores.}
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Paralelismo y concurrencia en el Blue Gene/P}
+\begin{figure}
+\label{fig:qtoctave-secciones}
+  \centering
+  \pgfimage[width=0.8\linewidth]{files/messtime}
+  \caption{Escalado del tiempo de comunicación en función del tamaño de mensaje
+    para 1, 2 y 4 cores.}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Conclusiones}
+\begin{itemize}
+\item nose
+\end{itemize}
+\end{frame}
 
 \end{document}
