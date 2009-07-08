@@ -7,8 +7,8 @@
 \usepackage{tikz}
 \usepackage{pgf}
 
-\usepackage{pgfpages}
-\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
+% \usepackage{pgfpages}
+% \pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
 
 \renewcommand\shorthandsspanish{}
 \noextrasspanish
@@ -106,11 +106,11 @@ Barcelona, 10 de Junio de 2009
 
 
 \begin{frame}
-\frametitle{A ver quién la tiene más grande}
+\frametitle{Buscando una capa límite asintótica}
 \framesubtitle{(la capa límite)}
 
 \begin{itemize}
-\item[2009] Jiménez, Hoyas, Simens, Mizuno. $Re_\theta = 2100$
+\item[2009] Simens, Jiménez, Hoyas, Mizuno. $Re_\theta = 2100$
   \begin{itemize}
   \item Mare Nostrum
   \end{itemize}
@@ -126,6 +126,7 @@ Barcelona, 10 de Junio de 2009
   \item $45 \times 10^9$ puntos (15 veces mayor)
   \item No hay ningún recurso en España con esta capacidad.
   \item Mare Nostrum en Nº60 Top500 (Junio 2009)
+  \item 3 meses en 32000 cores.
   \end{itemize}
 \end{itemize}
 
@@ -155,9 +156,9 @@ Barcelona, 10 de Junio de 2009
   \item Forschungszentrum Jülich 
   \item Blue Gene/P
   \end{itemize}
-\item ¿Canadá?
+\item Ottawa University
   \begin{itemize}
-  \item ???
+  \item Blue Gene/P
   \end{itemize}
 \item Centro de Supercomputación de Castilla y León
   \begin{itemize}
@@ -168,17 +169,25 @@ Barcelona, 10 de Junio de 2009
 
 \begin{frame}
 \frametitle{Blue Gene/P}
-\begin{Large}
 \begin{itemize}
 \item Única opción a corto-medio plazo
-\item Aún otra arquitectura
+\item Otra arquitectura más
 \item ¿Adecuada para Turbulencia?
 \begin{itemize}
-\item{Cores lentos}
-\item{512 MB RAM / Core}
+\item FSB estrecho ¿?
+\item 512 MB RAM / Core
 \end{itemize}
 \end{itemize}
-\end{Large}
+
+\pause
+\begin{center}
+  \begin{tikzpicture}
+    \node[draw=red, fill=red!20, rounded corners] (cf)
+    {Código MPI, un proceso por core.};
+  \end{tikzpicture}
+\end{center}
+
+
 \end{frame}
 
 
@@ -214,6 +223,33 @@ Barcelona, 10 de Junio de 2009
 \end{frame}
 
 
+
+\begin{frame}
+\frametitle{Paralelismo y concurrencia en el Blue Gene/P}
+\begin{figure}
+\label{fig:qtoctave-secciones}
+  \centering
+  \pgfimage[width=0.8\linewidth]{files/multicore}
+  \caption{Tiempos de comunicación en función del tamaño de mensaje
+    para 2 y 4 cores.}
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Paralelismo y concurrencia en el Blue Gene/P}
+\begin{figure}
+\label{fig:qtoctave-secciones}
+  \centering
+  \pgfimage[width=0.8\linewidth]{files/latencia}
+  \caption{Escalado del tiempo de comunicación en función del tamaño de mensaje
+    para 1, 2 y 4 cores.}
+\end{figure}
+
+\end{frame}
+
+
 \begin{frame}
 \frametitle{problemas de memoria}
 \begin{tikzpicture}
@@ -234,30 +270,28 @@ Barcelona, 10 de Junio de 2009
 \begin{figure}
 \label{fig:qtoctave-secciones}
   \centering
-  \pgfimage[width=0.8\linewidth]{files/multicore}
-  \caption{Tiempos de comunicación en función del tamaño de mensaje
-    para 2 y 4 cores.}
-\end{figure}
-
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Paralelismo y concurrencia en el Blue Gene/P}
-\begin{figure}
-\label{fig:qtoctave-secciones}
-  \centering
-  \pgfimage[width=0.8\linewidth]{files/messtime}
+  \pgfimage[width=0.8\linewidth]{files/latenciaopenmp}
   \caption{Escalado del tiempo de comunicación en función del tamaño de mensaje
     para 1, 2 y 4 cores.}
 \end{figure}
 
 \end{frame}
 
+
 \begin{frame}
 \frametitle{Conclusiones}
 \begin{itemize}
-\item nose
+\item En 1 año $Re_\theta = 5500$. Capa límite asintótica
+\begin{itemize}
+\item ¡Queremos los datos! Si es necesario que vengan a Barcelona a
+  usarlos.
+\item No nos fiamos de los suecos.
+\item $\sim$ 100 TBi.  ¿Traerlos de EEUU?
+\end{itemize}
+\item Blue Gene/P
+\begin{itemize}
+\item MPI + OpenMP
+\end{itemize}
 \end{itemize}
 \end{frame}
 
