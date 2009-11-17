@@ -21,7 +21,7 @@
 \begin{document}
 
 \lstset{language=Python,
-  backgroundcolor=\color{black!10},
+  backgroundcolor=\color{white},
   numbers=left,
   basicstyle=\small\ttfamily,
   keywordstyle=\color{blue},
@@ -192,18 +192,80 @@ Lenguaje de programación
 
 \begin{frame}
   \frametitle{Interactivo}
+  \begin{center}
+  \includegraphics[width=0.8\textwidth]{files/interprete.png}    
+  \end{center}
+\end{frame}
+
+\defverbatim[colored]\testcode{
+\begin{lstlisting}
+>>> 4.5*'hola'
+TypeError: can't multiply sequence by ...
+\end{lstlisting}
+}
+\begin{frame}
+  \frametitle{Dinámico}
+  \begin{itemize}
+  \item No es necesario declarar variables
+  \item No es necesario tipar argumentos
+  \item Las variables cambian de tipo por asignación
+\pause
+  \item No hay conversiones de tipo implícitas
+  \end{itemize}
+\testcode
 \end{frame}
 
 \begin{frame}
-  \frametitle{Dinámico}
+  \frametitle{Duck Typing}
+\begin{center}
+\begin{tikzpicture}
+\draw node[text width=0.9\textwidth, rounded corners, fill=red!20,
+draw=red]
+{
+Si algo anda como un pato y cuaquea como un pato para mí es un pato
+};
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}
+\item Creamos la clase \emph{pato}
+\item Creamos la clase \emph{guillem}
+\pause
+\item Ambos podemos decir ¡Quac!
+\pause
+\item Si una función llama al método \emph{cuaquea} le da igual que el
+  argumento sea \emph{pato} o \emph{guillem} mientras diga ¡Quac!
+\end{enumerate}
 \end{frame}
 
 \begin{frame}
   \frametitle{Modular}
+  \begin{itemize}
+  \item Cada archivo que contenga funciones es un módulo
+  \item Cada directorio que contenga el archivo \texttt{__init__.py}
+    es un módulo
+  \item Tenemos la palabra clave \texttt{import}
+  \item Necesaria también para la biblioteca estándar.
+  \end{itemize}
 \end{frame}
 
+\defverbatim[colored]\testcode{
+\begin{lstlisting}
+>>> from cmath import sqrt
+>>> i = sqrt(-1)
+>>> i.real
+0.0
+>>> i.imag
+1.0
+\end{lstlisting}
+}
 \begin{frame}
   \frametitle{Orientado a Objetos}
+  \begin{itemize}
+  \item Todo en Python es un objeto
+  \item Los módulos son objetos
+  \item Casi toda la biblioteca estándar es una biblioteca de clases.
+  \end{itemize}
+\testcode
 \end{frame}
 
 \begin{frame}
