@@ -299,7 +299,7 @@ Boundary Layer:
  
 \emph on
 Simens, Hoyas, Mizuno, Jiménez.
- 2008
+ 2009
 \end_layout
 
 \begin_layout Itemize
@@ -310,7 +310,7 @@ Boundary Layer:
 .
  
 \emph on
-Sillero, Borrell, Gungor, Jiménez, Moser.
+Sillero, Borrell, Gungor, Jiménez, Moser, Oliver.
  2010-11
 \end_layout
 
@@ -455,11 +455,95 @@ Big means...
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ecosystem1.pdf
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 I was told that orders of magnitude were important
 \end_layout
 
 \begin_layout BeginFrame
 A more realistic picture.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename pyramid.pdf
+	width 70text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
