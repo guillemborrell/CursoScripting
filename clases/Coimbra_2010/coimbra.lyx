@@ -1,0 +1,1269 @@
+#LyX 1.6.5 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass beamer
+\begin_preamble
+\usetheme{Pittsburgh}
+% or ...
+\beamertemplateshadingbackground{black!5}{black!20}
+\setbeamercovered{transparent}
+% or whatever (possibly just delete it)
+\end_preamble
+\use_default_options false
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\float_placement H
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_amsmath 2
+\use_esint 0
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Title
+The Path to Petascale and Back
+\end_layout
+
+\begin_layout Author
+Guillem Borrell
+\end_layout
+
+\begin_layout Institute
+School of Aeronautics.
+ UPM
+\end_layout
+
+\begin_layout Date
+Workshop on High Performance Computing,
+\begin_inset Newline newline
+\end_inset
+
+ November 
+\begin_inset Formula $3^{rd}$
+\end_inset
+
+, Coimbra
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+If you have a file called "institution-logo-filename.xxx", where xxx is a
+ graphic format that can be processed by latex or pdflatex, resp., then you
+ can add a logo by uncommenting the following:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+pgfdeclareimage[height=0.5cm]{institution-logo}{institution-logo-filename}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+logo{
+\backslash
+pgfuseimage{institution-logo}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+The following causes the table of contents to be shown at the beginning
+ of every subsection.
+ Delete this, if you do not want it.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+AtBeginSubsection[]{
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+frame<beamer>{ 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+frametitle{Outline}   
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+tableofcontents[currentsection,currentsubsection] 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+If you wish to uncover everything in a step-wise fashion, uncomment the
+ following command:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+beamerdefaultoverlayspecification{<+->}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+Who I am
+\end_layout
+
+\begin_layout Itemize
+Aerospace Engineer.
+\end_layout
+
+\begin_layout Itemize
+PhD candidate.
+ 
+\emph on
+Entrainment Effects in High Reynolds Number Boundary Layers.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+School of Aeronautics.
+ UPM
+\end_layout
+
+\begin_layout Itemize
+Advisor: Javier Jiménez
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Consultant at Englobe Technologies and Systems.
+\end_layout
+
+\begin_layout Itemize
+Supercomputing started as a hobby.
+\end_layout
+
+\begin_layout BeginFrame
+Where I work
+\end_layout
+
+\begin_layout Itemize
+Computational Fluid Dynamics Laboratory.
+\end_layout
+
+\begin_layout Itemize
+Direct Numerical Simulation of wall bounded turbulent flows.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Channel flow: 
+\begin_inset Formula $Re_{\tau}=2000$
+\end_inset
+
+.
+ 
+\emph on
+Hoyas, Jiménez.
+ 2006
+\end_layout
+
+\begin_layout Itemize
+Boundary Layer: 
+\begin_inset Formula $Re_{\mbox{\theta}}=2100$
+\end_inset
+
+.
+ 
+\emph on
+Simens, Hoyas, Mizuno, Jiménez.
+ 2008
+\end_layout
+
+\begin_layout Itemize
+Boundary Layer: 
+\begin_inset Formula $Re_{\theta}=6000$
+\end_inset
+
+.
+ 
+\emph on
+Sillero, Borrell, Gungor, Jiménez, Moser.
+ 2010-11
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+INCITE: 33.000.000 CPU hours on 32768 cores
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Rough Boundary Layer: 
+\begin_inset Formula $Re_{\theta}=4000$
+\end_inset
+
+.
+ 
+\emph on
+Borrell, Gungor, Jiménez.
+ 2011
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+PRACE: 40.000.000 CPU hours on 32768 cores.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout BeginFrame
+What this talk is not about.
+\end_layout
+
+\begin_layout Standard
+There are (mostly) two kind of talks about Supercomputing
+\end_layout
+
+\begin_layout Itemize
+Users
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+I have developed something that can do...
+\end_layout
+
+\begin_layout Itemize
+I will develop something that can do...
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Supercomputing centers and providers
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+I have a technology that can do...
+\end_layout
+
+\begin_layout Itemize
+I will have a techonology that can do...
+\end_layout
+
+\end_deeper
+\begin_layout BeginPlainFrame
+
+\end_layout
+
+\begin_layout Standard
+\align center
+Talks about interesting stuff they want to talk about.
+\end_layout
+
+\begin_layout BeginPlainFrame
+
+\end_layout
+
+\begin_layout Standard
+\align center
+What you should know to get into Supercomputing?
+\end_layout
+
+\begin_layout BeginPlainFrame
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size larger
+\color blue
+What we learned about supercomputing 
+\emph on
+the hard way 
+\emph default
+during the last ten years and you should know so you don't have to learn
+ everything from scratch.
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size large
+Guillem Borrell
+\begin_inset Newline newline
+\end_inset
+
+
+\size default
+School of Aeronautics...
+\end_layout
+
+\begin_layout BeginFrame
+My assumptions.
+\end_layout
+
+\begin_layout Itemize
+You have a problem that requires a remarkable amount of resources.
+\end_layout
+
+\begin_layout Itemize
+You just started at supercomputing.
+\end_layout
+
+\begin_layout Itemize
+You don't have a strong relationship with any supercomputing center.
+\end_layout
+
+\begin_layout Itemize
+Size matters.
+ Bigger simulations make better science.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Non linearity.
+\end_layout
+
+\end_deeper
+\begin_layout BeginFrame
+Big means...
+\end_layout
+
+\begin_layout Standard
+I was told that orders of magnitude were important
+\end_layout
+
+\begin_layout BeginFrame
+A more realistic picture.
+\end_layout
+
+\begin_layout Standard
+The supercomputing ecosystem is organised in layers.
+\end_layout
+
+\begin_layout BeginFrame
+Consequences
+\end_layout
+
+\begin_layout Itemize
+You 
+\emph on
+climb
+\emph default
+ the supercomputing ecosystem.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+To access the next level you must be in the previous one.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Every level is harder.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Complex architectures specific to supercomputing.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Competition.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+You are not climbing alone.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+You don't own the resource.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+You are invited once you deserve it.
+\end_layout
+
+\begin_layout Itemize
+Lobbying is important.
+\end_layout
+
+\end_deeper
+\begin_layout BeginFrame
+The Basecamp
+\end_layout
+
+\begin_layout Enumerate
+Proficient C/C++ and/or Fortran 2003.
+\end_layout
+
+\begin_layout Enumerate
+Proficient use of concurrency 
+\series bold
+and
+\series default
+ parallelism.
+\end_layout
+
+\begin_layout Enumerate
+Knowledge about bleeding edge high performance scalable libraries.
+\end_layout
+
+\begin_layout Enumerate
+Basic comprehension about computer architecture and operative systems.
+\end_layout
+
+\begin_layout Enumerate
+A pragmatic point of view
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+A Tier-3 resource
+\series default
+.
+\end_layout
+
+\begin_layout BeginFrame
+The non obvious.
+\end_layout
+
+\begin_layout Itemize
+Do I really need to spend 50K in a Tier-3 infrastructure?
+\end_layout
+
+\begin_layout Itemize
+Supercomputing centers were supposed to exist so I don't have to spend that
+ money.
+\end_layout
+
+\begin_layout Itemize
+Supercomputing centers (
+\color red
+not all of them
+\color inherit
+) tell me that I shouldn't.
+\end_layout
+
+\begin_layout Itemize
+You must 
+\emph on
+get
+\emph default
+ the money.
+\end_layout
+
+\begin_layout BeginFrame
+The Tier-3 issue
+\end_layout
+
+\begin_layout Itemize
+Tier-2 is 10 times bigger but has 10 times more users
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+You won't get more than 100 jobs and 0.5M cpu hours a year
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+If you make the math it's not their time divided by 10
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Tier-2 are systematically misused.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Tier-2 resources are crowded with debug jobs.
+\end_layout
+
+\begin_layout Itemize
+Queues are not designed to distribute thousands of small jobs.
+\end_layout
+
+\begin_layout Itemize
+Queue efficiency drops 
+\emph on
+dramatically
+\emph default
+ with debug jobs.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+They do a lot of trivial stuff like allocating or reading from disk.
+ Not computing.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+You need to debug and to develop.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Need for a realistic architecture.
+\end_layout
+
+\begin_layout Itemize
+10-20 jobs a day.
+\end_layout
+
+\end_deeper
+\begin_layout BeginFrame
+A Tier-3 infrastructure
+\end_layout
+
+\begin_layout Itemize
+For 50K€ you get:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+200 cores
+\end_layout
+
+\begin_layout Itemize
+400 GiB of memory
+\end_layout
+
+\begin_layout Itemize
+1.2 M cpu hours
+\end_layout
+
+\begin_layout Itemize
+1000 jobs a year
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Not that difficult to maintain.
+\end_layout
+
+\begin_layout Itemize
+You can plug it almost anywhere.
+\end_layout
+
+\begin_layout Itemize
+If you think you can climb to Tier-1 without this you are being naïve.
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout AlertBlock
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{Use Tier-2 properly}
+\end_layout
+
+\end_inset
+
+Use it for jobs too big for your Tier-3 resource.
+\end_layout
+
+\begin_layout BeginFrame
+Climbing to Tier-0
+\end_layout
+
+\begin_layout Itemize
+Scalability, scalability and scalability.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Scalability is even more important than performance.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Chebyshev polynomials
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Beware aggressive optimizations in your algorithm.
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Be sensible with the cpu hours you spend because they are not free.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Compile-time (static) and initial step optimizations.
+\end_layout
+
+\begin_layout Itemize
+Use parallel file systems where available.
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Thinking parallel is thinking collective.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+MPI-2 collective communications in fat tree networks.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+All2allv can be twice faster than its MPI-1 alternative for platform tuned
+ MPI implementations.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Don't rely on MPI-1 point to point primitives.
+ They can't be tuned.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Some tools can help you reduce complexity.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Formatted I/O: HDF5, pNetCDF.
+\end_layout
+
+\begin_layout Itemize
+
+\color red
+Source Code Management
+\color inherit
+: Git, Mercurial.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Subversion is not suitable because of security policies.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout BeginFrame
+Scalability
+\end_layout
+
+\begin_layout Itemize
+Strong scaling: How your code is able to reduce the runtime with a constant
+ problem size.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Scalability: 
+\begin_inset Formula $S(N)=t(N)/t(N_{0})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Efficiency: 
+\begin_inset Formula $E(N)=t(N)/Nt(N_{0})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+It tells how much you are able to reduce your runtime.
+\end_layout
+
+\begin_layout Itemize
+You can still choose your problem size.
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Weak scaling: How your code is able to reduce the runtime with a problem
+ size proportional to 
+\begin_inset Formula $N$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Scalability: 
+\begin_inset Formula $s(N)=t(N)/t(N_{0})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Efficiency: 
+\begin_inset Formula $e(N)=t(N)/Nt(N_{0})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+It tells you how much your problem can grow.
+\end_layout
+
+\begin_layout Itemize
+Once 
+\begin_inset Formula $e$
+\end_inset
+
+ falls below 0.9 you can't go further.
+\end_layout
+
+\end_deeper
+\begin_layout BeginFrame
+You climb with your scalability.
+\end_layout
+
+\begin_layout FrameSubtitle
+Scaling is the key to enter Tier-N+1
+\end_layout
+
+\begin_layout Itemize
+Scaling plots are what's missing in the rejected applications.
+\end_layout
+
+\begin_layout Itemize
+Take a 
+\begin_inset Formula $N_{0}$
+\end_inset
+
+ that makes sense and plot scalings with 
+\begin_inset Formula $N$
+\end_inset
+
+ in powers of 2.
+\end_layout
+
+\begin_layout Itemize
+Access comitees want to see where you want to run in 
+\series bold
+both
+\series default
+ curves.
+\end_layout
+
+\begin_layout Itemize
+Extrapolations are believed to a factor of 2 and only if 
+\begin_inset Formula $e\simeq1$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Tier-N+1
+\end_layout
+
+\end_deeper
+\begin_layout BeginFrame
+The Multicore issue
+\end_layout
+
+\begin_layout Itemize
+Scaling is broken by the latency of the network.
+\end_layout
+
+\begin_layout Itemize
+Scaling is based in the number of cores.
+ Be careful with the trend:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The cores/node ratio will increase.
+ 24 for CRAY XE6.
+\end_layout
+
+\begin_layout Itemize
+Memory per core will be constant.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+With node-based communications you are futureproof.
+\end_layout
+
+\begin_layout Block
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{Conclusion}
+\end_layout
+
+\end_inset
+
+MPI + (Threading model) is a need, not a feature.
+\end_layout
+
+\begin_layout BeginFrame
+And with a little luck...
+\end_layout
+
+\begin_layout Standard
+\align center
+You get to run on a Tier-0 resource.
+\end_layout
+
+\begin_layout BeginFrame
+And then...
+\end_layout
+
+\begin_layout FrameSubtitle
+You must come back from petascale.
+\end_layout
+
+\begin_layout Itemize
+You generated a lot of raw data.
+\end_layout
+
+\begin_layout Itemize
+File system quotas of supercomputing centers are not forever.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Some of them just don't understand that their whole mission is to generate
+ raw data.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+You must post process raw data, which is also a resource and time consuming
+ task.
+\end_layout
+
+\begin_layout BeginFrame
+Suddently...
+\end_layout
+
+\begin_layout Standard
+You need a whole new set of knowledge that has little to do with supercomputing.
+\end_layout
+
+\begin_layout Itemize
+How to move data.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Globus / GRID.
+\end_layout
+
+\begin_layout Itemize
+Checksumming.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+How to store data.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Parallel file systems, HSM, Tape libraries...
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+High throughput computing.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Memory mapping.
+\end_layout
+
+\begin_layout Itemize
+Parallel visualisation.
+\end_layout
+
+\end_deeper
+\begin_layout BeginFrame
+Yet again...
+ The Tier-3 issue
+\end_layout
+
+\begin_layout Standard
+If you think that computational resources of a Tier-2 system are scarce.
+ You haven't seen the storage.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+BSC is doing things right.
+ No question about their competence in this respect.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Be ready to spend 50K€ in storage.
+ This money would pay:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+100 TB of RAID5 or
+\end_layout
+
+\begin_layout Itemize
+40 TB of parallel storage.
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+A handful of headaches.
+\end_layout
+
+\end_deeper
+\begin_layout AlertBlock
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{Warning}
+\end_layout
+
+\end_inset
+
+ Storage is more difficult to get right than computing.
+ Reusing is important.
+\end_layout
+
+\begin_layout BeginFrame
+This is a cycle.
+\end_layout
+
+\begin_layout Itemize
+Once you have run one big simulation you need to run a bigger one.
+\end_layout
+
+\begin_layout Itemize
+You will buy a bigger Tier-3 resource.
+\end_layout
+
+\begin_layout Itemize
+You will ask for more cpu hours in a Tier-1/0 supercomputer.
+\end_layout
+
+\begin_layout Itemize
+You will need more storage space.
+\end_layout
+
+\begin_layout Itemize
+...
+\end_layout
+
+\begin_layout BeginFrame
+Conclusions
+\end_layout
+
+\begin_layout Itemize
+You climb to Tier-0.
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Scalability, scalability and scalability
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Tier-3 resources are necessary, but funding is needed.
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Postprocessing can be as resource consuming as developing your codes
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Ask for advice.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Go to courses, seminars, conferences...
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Technologies are changing fast.
+ I may be proven to be completely wrong in a couple of years
+\end_layout
+
+\begin_layout BeginFrame
+Thanks for your attention
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size largest
+\color red
+Questions?
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Email guillem@torroja.dmt.upm.es
+\end_layout
+
+\begin_layout Description
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{Website and blog}
+\end_layout
+
+\end_inset
+
+ http://guillemborrell.es
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\end_body
+\end_document
