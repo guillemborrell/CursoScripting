@@ -4,6 +4,8 @@
 \begin_header
 \textclass beamer
 \begin_preamble
+\usepackage{tikz}
+\usepackage{pgfmath}
 \usetheme{Pittsburgh}
 % or ...
 \beamertemplateshadingbackground{black!5}{black!20}
@@ -451,7 +453,7 @@ Non linearity.
 
 \end_deeper
 \begin_layout BeginFrame
-Big means...
+The 10.000ft picture...
 \end_layout
 
 \begin_layout Standard
@@ -465,24 +467,115 @@ status open
 begin{center}
 \end_layout
 
-\end_inset
+\begin_layout Plain Layout
 
+ 
+\backslash
+begin{tikzpicture}[scale=1.5]
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw[->,thick] (0,0) -- (6,0) node[below] {N};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+foreach 
+\backslash
+N in {0,1,2,3,4,5}
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+draw (
+\backslash
+N cm ,-1pt) -- (
+\backslash
+N cm ,1pt) node[above] {$10^
+\backslash
+N$};
+\end_layout
+
+\begin_layout Plain Layout
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Graphics
-	filename ecosystem1.pdf
-	width 100text%
+\begin_layout Plain Layout
 
-\end_inset
-
-
+  
+\backslash
+fill[blue,semitransparent] (0.1,-0.5) rectangle (0.9,0.5);
 \end_layout
 
-\begin_layout Standard
-\begin_inset ERT
-status open
+\begin_layout Plain Layout
+
+  
+\backslash
+fill[yellow,semitransparent] (1.1,-0.5) rectangle (2.9,0.5);
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+fill[red,semitransparent] (3.1,-0.5) rectangle (6.1,0.5);
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw (0.1,2) node[draw,right] (workstation) {Worksation};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw (2.1,2) node[draw,right] (datacenter) {Datacenter};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw (4.1,2) node[draw,right] (supercomputer) {Supercomputer};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw[->] (workstation) -- (0.5,0.5);
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw[->] (datacenter) -- (2.0,0.5);
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw[->] (supercomputer) -- (4.0,0.5);
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+end{tikzpicture}
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -515,24 +608,84 @@ status open
 begin{center}
 \end_layout
 
-\end_inset
+\begin_layout Plain Layout
 
+ 
+\backslash
+begin{tikzpicture}[scale=1]
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw[thick] (-3,0) -- (0,6);
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw[thick] (0,6) -- (3,0);
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw (-3,0) -- (3,0) node [right] {$10^0$};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw (-2.5,1) -- (2.5,1) node [right] {$10^1$};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw (-2,2) -- (2,2) node [right] {$10^2$};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw (-1.5,3) -- (1.5,3) node [right] {$10^3$};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw (-1,4) -- (1,4) node [right] {$10^4$};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw (-0.5,5) -- (0.5,5) node [right] {$10^5$};
+\end_layout
+
+\begin_layout Plain Layout
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Graphics
-	filename pyramid.pdf
-	width 70text%
+\begin_layout Plain Layout
 
-\end_inset
-
-
+ 
+\backslash
+end{tikzpicture}
 \end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
 
 \begin_layout Plain Layout
 
@@ -546,8 +699,135 @@ end{center}
 
 \end_layout
 
+\begin_layout BeginFrame
+Tiered systems.
+\end_layout
+
 \begin_layout Standard
-The supercomputing ecosystem is organised in layers.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+begin{tikzpicture}[scale=1]
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw[thick] (-3,0) -- (0,6);
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw[thick] (0,6) -- (3,0);
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw (-3,0) -- (3,0) node [right] {$10^0$};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw (-2.5,1) -- (2.5,1) node [right] {$10^1$};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw (-2,2) -- (2,2) node [right] {$10^2$};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw (-1.5,3) -- (1.5,3) node [right] {Tier-2};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw (-1,4) -- (1,4) node [right] {Tier-1};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw (-0.5,5) -- (0.5,5) node [right] {Tier-0};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+fill[red,semitransparent] (-0.6,4.9) rectangle (0.6,6.1);
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+fill[yellow,semitransparent] (-1.1,3.9) rectangle (1.1,5.1);
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+fill[blue,semitransparent] (-1.6,2.9) rectangle (1.6,4.1);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+end{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout BeginFrame
@@ -630,12 +910,182 @@ Basic comprehension about computer architecture and operative systems.
 A pragmatic point of view
 \end_layout
 
+\begin_layout BeginFrame
+The Basecamp
+\end_layout
+
+\begin_layout Enumerate
+Proficient C/C++ and/or Fortran 2003.
+\end_layout
+
+\begin_layout Enumerate
+Proficient use of concurrency 
+\series bold
+and
+\series default
+ parallelism.
+\end_layout
+
+\begin_layout Enumerate
+Knowledge about bleeding edge high performance scalable libraries.
+\end_layout
+
+\begin_layout Enumerate
+Basic comprehension about computer architecture and operative systems.
+\end_layout
+
+\begin_layout Enumerate
+A paranoid mentality.
+\end_layout
+
 \begin_layout Enumerate
 
 \series bold
 A Tier-3 resource
 \series default
 .
+\end_layout
+
+\begin_layout BeginFrame
+Tier-3.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+begin{tikzpicture}[scale=1]
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw[thick] (-3,0) -- (0,6);
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw[thick] (0,6) -- (3,0);
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw (-3,0) -- (3,0) node [right] {$10^0$};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw (-2.5,1) -- (2.5,1) node [right] {$10^1$};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw (-2,2) -- (2,2) node [right] {Tier-3};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw (-1.5,3) -- (1.5,3) node [right] {Tier-2};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw (-1,4) -- (1,4) node [right] {Tier-1};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw (-0.5,5) -- (0.5,5) node [right] {Tier-0};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+fill[red,semitransparent] (-0.6,4.9) rectangle (0.6,6.1);
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+fill[yellow,semitransparent] (-1.1,3.9) rectangle (1.1,5.1);
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+fill[blue,semitransparent] (-1.6,2.9) rectangle (1.6,4.1);
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+fill[green,semitransparent] (-2.1,1.9) rectangle (2.1,3.1);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+end{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout BeginFrame
@@ -748,7 +1198,7 @@ Need for a realistic architecture.
 
 \end_deeper
 \begin_layout BeginFrame
-A Tier-3 infrastructure
+A Tier-3 resource
 \end_layout
 
 \begin_layout Itemize
@@ -922,14 +1372,14 @@ Scalability
 \end_layout
 
 \begin_layout Itemize
-Strong scaling: How your code is able to reduce the runtime with a constant
- problem size.
+Strong scaling: How your code is able to reduce the solution time with a
+ constant problem size.
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
 Scalability: 
-\begin_inset Formula $S(N)=t(N)/t(N_{0})$
+\begin_inset Formula $S(N)=t_{0}/t_{n}$
 \end_inset
 
 
@@ -937,7 +1387,7 @@ Scalability:
 
 \begin_layout Itemize
 Efficiency: 
-\begin_inset Formula $E(N)=t(N)/Nt(N_{0})$
+\begin_inset Formula $E(N)=S(N)/N$
 \end_inset
 
 
@@ -957,7 +1407,7 @@ You can still choose your problem size.
 
 \end_deeper
 \begin_layout Itemize
-Weak scaling: How your code is able to reduce the runtime with a problem
+Weak scaling: How your code is able to reduce the solution time with a problem
  size proportional to 
 \begin_inset Formula $N$
 \end_inset
@@ -968,7 +1418,7 @@ Weak scaling: How your code is able to reduce the runtime with a problem
 \begin_deeper
 \begin_layout Itemize
 Scalability: 
-\begin_inset Formula $s(N)=t(N)/t(N_{0})$
+\begin_inset Formula $s(N)=Nt_{0}/t_{n}$
 \end_inset
 
 
@@ -976,7 +1426,7 @@ Scalability:
 
 \begin_layout Itemize
 Efficiency: 
-\begin_inset Formula $e(N)=t(N)/Nt(N_{0})$
+\begin_inset Formula $e(N)=S(N)/N$
 \end_inset
 
 
@@ -1012,7 +1462,17 @@ Take a
 \begin_inset Formula $N_{0}$
 \end_inset
 
- that makes sense and plot scalings with 
+ that makes sense.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Noone is asking you to run in sequential.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Plot scalings with 
 \begin_inset Formula $N$
 \end_inset
 
@@ -1037,7 +1497,7 @@ Extrapolations are believed to a factor of 2 and only if
 
 \begin_deeper
 \begin_layout Itemize
-Tier-N+1
+Supercomputing centers open special queues.
 \end_layout
 
 \end_deeper
